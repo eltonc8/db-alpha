@@ -1,23 +1,14 @@
 # View Wireframes
 
-## New Session
-![new-session]
+##  (landing page)
+![root]
 
-## Feed Show (landing page)
-![feed-show]
-
-## Blog Show
-![blog-show]
+## Company Show
+![company-show]
 
 ## Post Show
-![post-show]
-
-## Post Form
-![post-form]
-
-## Search Results
-![search-results]
+![user-show]
 
 [root]: ./wireframes/root_landing.png
-[company_show]: ./wireframes/company_show.png
-[user_show]: ./wireframes/user_show.png
+[company-show]: ./wireframes/company_show.png
+[user-show]: ./wireframes/user_show.png
