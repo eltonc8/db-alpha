@@ -1,17 +1,44 @@
-<h1><%= action %></h1>
-
-<form action='<%= form_action %>' method='post'>
+<div class="form-container text-center">
+  <form
+    action='<%= form_action %>'
+    method='post'
+    class='text-left'>
+  <h1><%= action %></h1>
   <%= auth_token %>
 
-  <br>
-  <label>Username
-    <input type='text' name='user[email]' value='<%= h(user.email) %>'>
-  </label>
+  <% if flash[:user_notices] %>
+  <div>
+    <ul>
+      <% flash[:user_notices].each do |notice| %>
+      <li>
+        <%= notice %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
-  <br>
-  <label>Password
-    <input type='password' name='user[password]'>
-  </label>
+  <div class='form-group'>
+    <label>Email Address:
+      <input
+        type='text'
+        name='user[email]'
+        class="form-control"
+        value='<%= h(user.email) %>'
+        placeholder="Email">
+    </label>
+  </div>
 
-  <input type='submit' value='<%= action %>'>
+  <div class='form-group'>
+    <label>Password:
+      <input
+        type='password'
+        name='user[password]'
+        class="form-control"
+        placeholder="Password">
+    </label>
+  </div>
+
+  <input type='submit' value='<%= action %>' class="btn btn-primary">
 </form>
+</div>

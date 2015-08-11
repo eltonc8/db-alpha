@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       sign_in!
       redirect_to root_url
     else
-      flash.now[:notices] = @user.errors.full_messages
+      flash.now[:user_notices] = @user.errors.full_messages
       render :new, status: 422
     end
   end
