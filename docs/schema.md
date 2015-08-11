@@ -13,9 +13,15 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
-shared      | boolean   | 
+shared      | boolean   |
 title       | string    | not null
 body        | string    |
+
+## post_taggings
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+
 
 ## compnay_followings
 column name | data type | details

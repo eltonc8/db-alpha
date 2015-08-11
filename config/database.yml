@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: draft-dbalpha_development
+
+test:
+  <<: *default
+  database: draft-dbalpha_test
+
+production:
+  <<: *default
+  database: draft-dbalpha_production
+  username: draft-dbalpha
+  password: <%= ENV['DRAFT-DBALPHA_DATABASE_PASSWORD'] %>
