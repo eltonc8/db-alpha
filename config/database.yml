@@ -5,14 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: draft-dbalpha_development
+  database: dbalpha_development
 
 test:
   <<: *default
-  database: draft-dbalpha_test
+  database: dbalpha_test
 
 production:
   <<: *default
-  database: draft-dbalpha_production
-  username: draft-dbalpha
-  password: <%= ENV['DRAFT-DBALPHA_DATABASE_PASSWORD'] %>
+  database: dbalpha_production
+  username: dbalpha
+  password: <%= ENV['DBALPHA_DATABASE_PASSWORD'] %>

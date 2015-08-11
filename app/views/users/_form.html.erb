@@ -1,0 +1,17 @@
+<h1><%= action %></h1>
+
+<form action='<%= form_action %>' method='post'>
+  <%= auth_token %>
+
+  <br>
+  <label>Username
+    <input type='text' name='user[email]' value='<%= h(user.email) %>'>
+  </label>
+
+  <br>
+  <label>Password
+    <input type='password' name='user[password]'>
+  </label>
+
+  <input type='submit' value='<%= action %>'>
+</form>

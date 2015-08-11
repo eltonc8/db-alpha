@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div>
+    <% if flash[:notices] %>
+    <ul>
+      <% flash[:notices].each do |notice| %>
+      <li>
+        <%= notice %>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+
+  <div>
+    <% if signed_in? %>
+      <%= "currently logged in as #{ current_user.email }".html_safe %>
+      <%= button_to "Sign Out", session_url, method: :delete %>
+    <% else %>
+    <%= link_to "Sign Up", new_user_url %>
+    <%= link_to "Sign In", new_session_url %>
+    <% end %>
+  </div>
+</nav>
