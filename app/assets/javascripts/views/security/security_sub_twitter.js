@@ -1,7 +1,13 @@
 DbAlpha.Views.SecuritySubTwitter = Backbone.CompositeView.extend({
-  tagName: "security-show-sub-twitter",
+  className: "security-show-sub-twitter",
+
+  initialize: function () {
+    this.listenTo(this.model, "sync", this.render);
+    this.render();
+  },
 
   render: function () {
-    this.$el.html( this.model.symbol );
+    this.$el.html( this.model.escape("symbol") );
+    return this;
   }
 });

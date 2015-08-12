@@ -1,6 +1,6 @@
 DbAlpha.Views.SecurityShow = Backbone.CompositeView.extend({
   template: JST['security/security_show'],
-  className: "security-show",
+  className: "security-show row",
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -8,27 +8,27 @@ DbAlpha.Views.SecurityShow = Backbone.CompositeView.extend({
   },
 
   addViews: function () {
-    this.addSubView('.security-show.left',
-      new DbAlpha.Views.SecuritySubMain({ model: this.model })
+    this.addSubview('.left',
+      new DbAlpha.Views.SecuritySubInfo({ model: this.model })
     );
-    this.addSubView('.security-show.left',
+    this.addSubview('.left',
       new DbAlpha.Views.SecuritySubLinks({ model: this.model })
     );
-    this.addSubView('.security-show.top',
+    this.addSubview('.top',
       new DbAlpha.Views.SecuritySubRss({ model: this.model })
     );
-    this.addSubView('.security-show.top',
+    this.addSubview('.top',
       new DbAlpha.Views.SecuritySubTwitter({ model: this.model })
     );
-    this.addSubView('.security-show.bottom',
+    this.addSubview('.bottom',
       new DbAlpha.Views.PostIndex({ model: this.model })
     );
   },
 
   render: function () {
-    // var content = this.template();
-    // this.$el.html(content);
-    // this.attachSubviews();
+    var content = this.template();
+    this.$el.html(content);
+    this.attachSubviews();
     this.$el.html(this.model.symbol);
     return this;
   }

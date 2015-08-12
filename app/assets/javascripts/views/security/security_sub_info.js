@@ -1,5 +1,5 @@
-DbAlpha.Views.SecuritySubLinks = Backbone.CompositeView.extend({
-  className: "security-show-sub-links",
+DbAlpha.Views.SecuritySubInfo = Backbone.View.extend({
+  className: "security-show-sub-info",
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
