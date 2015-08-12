@@ -1,9 +1,9 @@
 class StaticPagesController < ApplicationController
   def root
     if signed_in?
-      render :landing_page
-    else
       render :index
+    else
+      render :landing_page
     end
   end
 end

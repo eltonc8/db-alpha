@@ -1,0 +1,13 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form-container { padding-top: 70px; }
+
+form {
+    border: 1px solid #888;
+    padding: 15px 40px 40px 40px;
+    border-radius: 20px;
+    margin: auto;
+    display: inline-block;
+}
