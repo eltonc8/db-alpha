@@ -7,8 +7,8 @@
 ## Minimum Viable Product
 db-Alpha is a clone of SeekingAlpha built on Rails and Backbone. Users can:
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
+- [x] Create accounts
+- [x] Create sessions (log in)
 - [ ] Visit company "dashboard" - with links to company info, news, twitter feed
 - [ ] Create remarks or "blog-like" articles about companies (public or private)
 - [ ] View companies and posts

@@ -15,15 +15,22 @@ id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
 shared      | boolean   |
 title       | string    | not null
-body        | string    |
+body        | text      |
 
 ## post_taggings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
+tag_id      | integer   | not null, foreign key (references tags)
+post_id     | integer   | not null, foreign key (references posts)
 
+## tags
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+tag         | string    | not null
 
-## compnay_followings
+## company_followings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
