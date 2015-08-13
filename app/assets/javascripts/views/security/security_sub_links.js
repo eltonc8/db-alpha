@@ -1,4 +1,5 @@
 DbAlpha.Views.SecuritySubLinks = Backbone.CompositeView.extend({
+  template: JST["security/security_links"],
   className: "security-show-sub-links",
 
   initialize: function () {
@@ -7,7 +8,8 @@ DbAlpha.Views.SecuritySubLinks = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( this.model.escape("symbol") );
+    var content = this.template({ model: this.model });
+    this.$el.html( content );
     return this;
   }
 });
