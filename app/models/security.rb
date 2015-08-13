@@ -1,17 +1,19 @@
 class Security < ActiveRecord::Base
   validates :symbol, presence: true, uniqueness: true
-  attr_accessor :feedy, :feedg
+  attr_accessor :feeds
 
   def self.search_or_initialize(value)
-    if value.to_i > 0
-      begin
-        self.find(value)
-      rescue
-        return nil
-      end
-    else
-      self.find_or_initialize_by(symbol: value.upcase)
+    begin
+      result = value.to_i > 0 ? self.find(value) : self.find_or_initialize_by(symbol: value.upcase)
+    rescue
+      result = nil
     end
+
+    if result
+      result.feeds = Feedjira::Feed.fetch_and_parse("http://feeds.finance.yahoo.com/rss/2.0/headline?region=US&s=#{result.symbol.html_safe}")
+    end
+
+    result
   end
 
   def symbol=(symbol_string)

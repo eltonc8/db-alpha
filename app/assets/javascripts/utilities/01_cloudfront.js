@@ -868,107 +868,107 @@
   //   };
   //   postMessage.on("close", onClose, true);
   // };
-  // TradingView.postMessageWrapper = function() {
-  //   var get_handlers = {},
-  //   on_handlers = {},
-  //   client_targets = {},
-  //   on_target, call_id = 0,
-  //   post_id = 0,
-  //   provider_id = "TradingView";
-  //   if (window.addEventListener) {
-  //     window.addEventListener("message", function(e) {
-  //       var msg;
-  //       try {
-  //         msg = JSON.parse(e.data);
-  //       } catch (error) {
-  //         return;
-  //       }
-  //       if (!msg.provider || msg.provider != provider_id) {
-  //         return;
-  //       }
-  //       if (msg.type == "get") {
-  //         if (!on_handlers[msg.name]) {
-  //           return;
-  //         }
-  //         on_handlers[msg.name].forEach(function(on_handler) {
-  //           if (typeof on_handler === "function") {
-  //             on_handler.call(msg, msg.data, function(result) {
-  //               var reply = {
-  //                 id: msg.id,
-  //                 type: "on",
-  //                 name: msg.name,
-  //                 client_id: msg.client_id,
-  //                 data: result,
-  //                 provider: provider_id
-  //               };
-  //               on_target.postMessage(JSON.stringify(reply), "*");
-  //             });
-  //           }
-  //         });
-  //       } else if (msg.type == "on") {
-  //         if (get_handlers[msg.client_id] && get_handlers[msg.client_id][msg.id]) {
-  //           get_handlers[msg.client_id][msg.id].call(msg, msg.data);
-  //           delete get_handlers[msg.client_id][msg.id];
-  //         }
-  //       } else if (msg.type == "post") {
-  //         if (!on_handlers[msg.name]) {
-  //           return;
-  //         }
-  //         on_handlers[msg.name].forEach(function(on_handler) {
-  //           if (typeof on_handler === "function") {
-  //             on_handler.call(msg, msg.data, function() {});
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }
-  //   return function(target, client_id) {
-  //     get_handlers[client_id] = {};
-  //     client_targets[client_id] = target;
-  //     on_target = target;
-  //     return {
-  //       on: function(name, callback, keepPrevious) {
-  //         if (!on_handlers[name] || !keepPrevious) {
-  //           on_handlers[name] = [];
-  //         }
-  //         on_handlers[name].push(callback);
-  //       },
-  //       off: function(name, callback) {
-  //         if (!on_handlers[name]) {
-  //           return false;
-  //         }
-  //         var index = on_handlers[name].indexOf(callback);
-  //         if (index > -1) {
-  //           on_handlers[name].splice(index, 1);
-  //         }
-  //       },
-  //       get: function(name, data, callback) {
-  //         var msg = {
-  //           id: call_id++,
-  //           type: "get",
-  //           name: name,
-  //           client_id: client_id,
-  //           data: data,
-  //           provider: provider_id
-  //         };
-  //         get_handlers[client_id][msg.id] = callback;
-  //         client_targets[client_id].postMessage(JSON.stringify(msg), "*");
-  //       },
-  //       post: function(target, name, data) {
-  //         var msg = {
-  //           id: post_id++,
-  //           type: "post",
-  //           name: name,
-  //           data: data,
-  //           provider: provider_id
-  //         };
-  //         if (target && typeof target.postMessage === "function") {
-  //           target.postMessage(JSON.stringify(msg), "*");
-  //         }
-  //       }
-  //     };
-  //   };
-  // }();
+  TradingView.postMessageWrapper = function() {
+    var get_handlers = {},
+    on_handlers = {},
+    client_targets = {},
+    on_target, call_id = 0,
+    post_id = 0,
+    provider_id = "TradingView";
+    if (window.addEventListener) {
+      window.addEventListener("message", function(e) {
+        var msg;
+        try {
+          msg = JSON.parse(e.data);
+        } catch (error) {
+          return;
+        }
+        if (!msg.provider || msg.provider != provider_id) {
+          return;
+        }
+        if (msg.type == "get") {
+          if (!on_handlers[msg.name]) {
+            return;
+          }
+          on_handlers[msg.name].forEach(function(on_handler) {
+            if (typeof on_handler === "function") {
+              on_handler.call(msg, msg.data, function(result) {
+                var reply = {
+                  id: msg.id,
+                  type: "on",
+                  name: msg.name,
+                  client_id: msg.client_id,
+                  data: result,
+                  provider: provider_id
+                };
+                on_target.postMessage(JSON.stringify(reply), "*");
+              });
+            }
+          });
+        } else if (msg.type == "on") {
+          if (get_handlers[msg.client_id] && get_handlers[msg.client_id][msg.id]) {
+            get_handlers[msg.client_id][msg.id].call(msg, msg.data);
+            delete get_handlers[msg.client_id][msg.id];
+          }
+        } else if (msg.type == "post") {
+          if (!on_handlers[msg.name]) {
+            return;
+          }
+          on_handlers[msg.name].forEach(function(on_handler) {
+            if (typeof on_handler === "function") {
+              on_handler.call(msg, msg.data, function() {});
+            }
+          });
+        }
+      });
+    }
+    return function(target, client_id) {
+      get_handlers[client_id] = {};
+      client_targets[client_id] = target;
+      on_target = target;
+      return {
+        on: function(name, callback, keepPrevious) {
+          if (!on_handlers[name] || !keepPrevious) {
+            on_handlers[name] = [];
+          }
+          on_handlers[name].push(callback);
+        },
+        off: function(name, callback) {
+          if (!on_handlers[name]) {
+            return false;
+          }
+          var index = on_handlers[name].indexOf(callback);
+          if (index > -1) {
+            on_handlers[name].splice(index, 1);
+          }
+        },
+        get: function(name, data, callback) {
+          var msg = {
+            id: call_id++,
+            type: "get",
+            name: name,
+            client_id: client_id,
+            data: data,
+            provider: provider_id
+          };
+          get_handlers[client_id][msg.id] = callback;
+          client_targets[client_id].postMessage(JSON.stringify(msg), "*");
+        },
+        post: function(target, name, data) {
+          var msg = {
+            id: post_id++,
+            type: "post",
+            name: name,
+            data: data,
+            provider: provider_id
+          };
+          if (target && typeof target.postMessage === "function") {
+            target.postMessage(JSON.stringify(msg), "*");
+          }
+        }
+      };
+    };
+  }();
   TradingView.getUrlParams = function() {
     var pl = /\+/g,
     search = /([^&=]+)=?([^&]*)/g,

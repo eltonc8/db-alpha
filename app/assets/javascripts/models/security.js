@@ -11,10 +11,21 @@ DbAlpha.Models.Security = Backbone.Model.extend({
     return this.urlRoot + "/" + ( this.id || this.escape("symbol") );
   },
 
-  // saveData: function (queryResult) {
-  //   debugger
-  //   this.quote = queryResult.query.results.quote;
-  // }
+  parse: function (responseData) {
+    if (responseData.feeds) {
+      this.articles().set(responseData.feeds);
+      delete responseData.feeds;
+    }
+    return responseData;
+  },
+
+  articles: function () {
+    if (!this._articles) {
+      this._articles = new DbAlpha.Collections.Articles([], { security: this });
+    }
+
+    return this._articles;
+  }
 });
 
 // %20 are spaces
