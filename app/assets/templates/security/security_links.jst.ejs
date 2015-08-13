@@ -1,9 +1,15 @@
 <% var sym = model.escape('symbol') %>
 <div class='security-show-links btn'>
-  <a href="http://finance.yahoo.com/q?s=<%= sym %>" target="_blank">Yahoo Finance</a>
+  <a href="http://www.finviz.com/quote.ashx?t=<%= sym %>" target="_blank">Finviz</a>
+</div>
+<div class='security-show-links btn'>
+  <a href="http://www.google.com/finance?q=<%= sym %>" target="_blank">Google Finance</a>
 </div>
 <div class='security-show-links btn'>
   <a href="http://quote.morningstar.com/stock/s.aspx?t=<%= sym %>" target="_blank">Morningstar Page</a>
+</div>
+<div class='security-show-links btn'>
+  <a href="http://caps.fool.com/Ticker/<%= sym %>.aspx" target="_blank">The Motley Fool</a>
 </div>
 <div class='security-show-links btn'>
   <a href="http://investing.money.msn.com/investments/stock-price?Symbol=<%= sym %>" target="_blank">MSN Money Page</a>
@@ -12,17 +18,11 @@
   <a href="http://seekingalpha.com/symbol/<%= sym %>" target="_blank">SeekingAlpha</a>
 </div>
 <div class='security-show-links btn'>
-  <a href="http://caps.fool.com/Ticker/<%= sym %>.aspx" target="_blank">The Motley Fool</a>
+  <a href="http://stockcharts.com/h-sc/ui?s=<%= sym %>" target="_blank">StockCharts.com</a>
 </div>
 <div class='security-show-links btn'>
   <a href="http://www.thestreet.com/quote/<%= sym %>.html" target="_blank">TheStreet.com</a>
 </div>
 <div class='security-show-links btn'>
-  <a href="http://www.google.com/finance?q=<%= sym %>" target="_blank">Google Finance</a>
-</div>
-<div class='security-show-links btn'>
-  <a href="http://www.finviz.com/quote.ashx?t=<%= sym %>" target="_blank">Finviz</a>
-</div>
-<div class='security-show-links btn'>
-  <a href="http://stockcharts.com/h-sc/ui?s=<%= sym %>" target="_blank">StockCharts.com</a>
+  <a href="http://finance.yahoo.com/q?s=<%= sym %>" target="_blank">Yahoo Finance</a>
 </div>

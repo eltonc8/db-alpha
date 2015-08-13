@@ -1,1 +1,31 @@
+<br>
+<a href="<%= model.escape("link") %>"><%= model.escape.name %></a>
+
+<br>
 <img src="http://chart.finance.yahoo.com/z?s=<%= model.escape("symbol") %>&t=6m&q=l&l=on&z=s&p=m50,m200"/>
+
+<br>
+<!-- <img src="https://www.google.com/finance/getchart?q=AMZN&p=20Y&i=86400"> -->
+
+<!-- TradingView Widget BEGIN -->
+<!-- <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script> -->
+<script type="text/javascript">
+$(function () { if (true) {
+  new TradingView.widget({
+    "width": "300px",
+    "symbol": "AAPL",
+    "interval": "D",
+    "timezone": "America/New_York",
+    "theme": "Black",
+    "style": "1",
+    "toolbar_bg": "rgba(255, 255, 255, 1)",
+    "allow_symbol_change": true,
+    "hideideas": true,
+    "show_popup_button": true,
+    "popup_width": "1000",
+    "popup_height": "650"
+  });
+  }
+})
+</script>
+<!-- TradingView Widget END -->
