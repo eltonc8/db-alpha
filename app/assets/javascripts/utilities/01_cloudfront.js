@@ -171,19 +171,19 @@
       this._ready_handlers = [];
       this.create();
     },
-    // chart: function(options) {
-    //   this.id = TradingView.gId();
-    //   this.is_fullscreen = false;
-    //   this.options = {
-    //     width: options.width || 640,
-    //     height: options.height || 500,
-    //     container: options.container_id || "",
-    //     realtime: options.realtime,
-    //     chart: options.chart
-    //   };
-    //   this._ready_handlers = [];
-    //   this.create();
-    // },
+    chart: function(options) {
+      this.id = TradingView.gId();
+      this.is_fullscreen = false;
+      this.options = {
+        width: options.width || 640,
+        height: options.height || 500,
+        container: options.container_id || "",
+        realtime: options.realtime,
+        chart: options.chart
+      };
+      this._ready_handlers = [];
+      this.create();
+    },
     WidgetPopup: function(options) {
       this.id = TradingView.gId();
       this.options = {
@@ -695,123 +695,123 @@
       parent.innerHTML = this.render();
     }
   };
-  // TradingView.chart.prototype = {
-  //   create: function() {
-  //     var chart_html = this.render(),
-  //     self = this,
-  //     a, c, f;
-  //     if (!TradingView.chartCssAttached) {
-  //       TradingView.css(this.renderCss());
-  //       TradingView.chartCssAttached = true;
-  //     }
-  //     addWidget(chart_html, this.options.container);
-  //     c = TradingView.gEl(this.id);
-  //     a = TradingView.gEl(this.id + "_actions");
-  //     f = TradingView.gEl(this.id + "_fullscreen");
-  //     TradingView.bindEvent(c, "load", function() {
-  //       var i;
-  //       a.style.display = "block";
-  //       self._ready = true;
-  //       for (i = self._ready_handlers.length; i--;) {
-  //         self._ready_handlers[i].call(self);
-  //       }
-  //     });
-  //     TradingView.bindEvent(f, "click", function() {
-  //       self.toggleFullscreen();
-  //     });
-  //     TradingView.onready(function() {
-  //       var rf = false;
-  //       if (document.querySelector && document.querySelector('a[href$="/v/' + self.options.chart + '/"]')) {
-  //         rf = true;
-  //       }
-  //       if (!rf) {
-  //         var anchors = document.getElementsByTagName("a");
-  //         var re_short = new RegExp("/v/" + self.options.chart + "/$");
-  //         var re_full = new RegExp("/chart/([0-9a-zA-Z:+*-/()]+)/" + self.options.chart);
-  //         var re_script = new RegExp("/script/" + self.options.chart);
-  //         for (var i = 0; i < anchors.length; i++) {
-  //           if (re_short.test(anchors[i].href) || re_full.test(anchors[i].href)) {
-  //             rf = true;
-  //             break;
-  //           }
-  //         }
-  //       }
-  //       if (rf) {
-  //         c.src += "#nolinks";
-  //         c.name = "nolinks";
-  //       }
-  //     });
-  //     this.postMessage = TradingView.postMessageWrapper(c.contentWindow, this.id);
-  //   },
-  //   ready: TradingView.widget.prototype.ready,
-  //   renderCss: function() {
-  //     var url = TradingView.host;
-  //     return ".tradingview-widget {position: relative;}.tradingview-widget .chart-actions-float {display: none; position: absolute; z-index: 5; top: 0; right: 0; background: #fff; border: 1px solid #bfbfbf; border-radius: 0 3px 0 3px; padding: 3px 3px 3px 3px; height: 23px;}.tradingview-widget .chart-actions-float .tradingview-button {font-weight: normal; font-size: 11px; padding: 3px 5px;}.tradingview-widget .chart-actions-float .status-picture {margin: 4px 1px 0 3px; border: none !important; padding: 0 !important; background: none !important;}.tradingview-widget .chart-status-picture {position: absolute; z-index: 50;}.tradingview-widget .icon {display: inline-block; background: url('" + url + "/static/images/icons.png') 0 0 no-repeat; position: relative;}.tradingview-widget .icon-action-realtime{background-position: -120px -80px; width: 15px; height: 15px; left: -1px; vertical-align: top;}.tradingview-widget .icon-action-zoom{background-position: -100px -80px; width: 15px; height: 15px; left: -1px; vertical-align: top;}.tradingview-widget .exit-fullscreen {z-index: 16; position: fixed; top: -1px; left: 50%; display: none; opacity: 0.6; background: #f9f9f9; color: #848487; border-radius: 0 0 3px 3px; border: 1px solid #b2b5b8; font-size: 11px; width: 116px; font-weight: bold; padding: 2px 4px; cursor: default; margin: 0 0 0 -62px;}.tradingview-widget .exit-fullscreen:hover {opacity: 1;}.tradingview-widget .tradingview-button {padding: 6px 10px 5px; height: 15px; display: inline-block; vertical-align: top; text-decoration: none !important;color: #6f7073; cursor: pointer;border: 1px solid #b2b5b8; font: bold 12px Calibri, Arial; background: url('" + url + "/static/images/button-bg.png') 0 0 repeat-x; border-radius: 3px; -moz-border-radius: 3px; -webkit-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none; box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;}.tradingview-widget .tradingview-button:hover, .tv-button:active {background-position: 0 -26px; color: #68696b;}";
-  //   },
-  //   render: function() {
-  //     var url = TradingView.host;
-  //     return '<div class="tradingview-widget" style="width: ' + this.options.width + "px; height: " + this.options.height + 'px;">' + '<div id="' + this.id + '_actions" class="chart-actions-float">' + '<a id="' + this.id + '_fullscreen" class="tradingview-button"><span class="icon icon-action-zoom"></span> Full Screen</a> ' + '<a id="' + this.id + '_live" class="tradingview-button" target="_blank" href="https://www.tradingview.com/chart/?clone=' + this.options.chart + '">' + '<span class="icon icon-action-realtime"></span> Make It Live' + "</a> " + "</div>" + '<iframe id="' + this.id + '"' + ' src="' + url + "/embed/" + this.options.chart + "/?method=script&" + TradingView.generateUtmForUrlParams() + '"' + ' width="' + this.options.width + '"' + ' height="' + this.options.height + '"' + ' frameborder="0" allowTransparency="true" scrolling="no"></iframe>' + "</div>";
-  //   },
-  //   windowSize: function() {
-  //     var w = 0,
-  //     h = 0;
-  //     if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
-  //       w = document.documentElement.clientWidth;
-  //       h = document.documentElement.clientHeight;
-  //     } else if (typeof window.innerWidth == "number") {
-  //       w = window.innerWidth;
-  //       h = window.innerHeight;
-  //     } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
-  //       w = document.body.clientWidth;
-  //       h = document.body.clientHeight;
-  //     }
-  //     return {
-  //       width: w,
-  //       height: h
-  //     };
-  //   },
-  //   toggleFullscreen: function() {
-  //     var frame = TradingView.gEl(this.id),
-  //     actions = TradingView.gEl(this.id + "_actions"),
-  //     ws = this.windowSize();
-  //     if (this.is_fullscreen) {
-  //       frame.style.position = "static";
-  //       frame.style.width = this.options.width + "px";
-  //       frame.style.height = this.options.height + "px";
-  //       frame.style.zIndex = "auto";
-  //       frame.style.backgroundColor = "transparent";
-  //       actions.style.position = "absolute";
-  //       actions.style.zIndex = "auto";
-  //       TradingView.unbindEvent(document, "keydown", this.getKeyHandler());
-  //     } else {
-  //       frame.style.position = "fixed";
-  //       frame.style.width = ws.width + "px";
-  //       frame.style.height = ws.height + "px";
-  //       frame.style.left = "0px";
-  //       frame.style.top = "0px";
-  //       frame.style.zIndex = "1000000";
-  //       frame.style.backgroundColor = "#fff";
-  //       actions.style.position = "fixed";
-  //       actions.style.zIndex = "1000001";
-  //       TradingView.bindEvent(document, "keydown", this.getKeyHandler());
-  //     }
-  //     this.is_fullscreen = !this.is_fullscreen;
-  //   },
-  //   getKeyHandler: function() {
-  //     var that = this;
-  //     if (!this.keyHandler) {
-  //       this.keyHandler = function(e) {
-  //         if (e.keyCode == 27) {
-  //           that.toggleFullscreen();
-  //         }
-  //       };
-  //     }
-  //     return this.keyHandler;
-  //   },
-  //   getSymbolInfo: function(callback) {
-  //     this.postMessage.get("symbolInfo", {}, callback);
-  //   }
-  // };
+  TradingView.chart.prototype = {
+    create: function() {
+      var chart_html = this.render(),
+      self = this,
+      a, c, f;
+      if (!TradingView.chartCssAttached) {
+        TradingView.css(this.renderCss());
+        TradingView.chartCssAttached = true;
+      }
+      addWidget(chart_html, this.options.container);
+      c = TradingView.gEl(this.id);
+      a = TradingView.gEl(this.id + "_actions");
+      f = TradingView.gEl(this.id + "_fullscreen");
+      TradingView.bindEvent(c, "load", function() {
+        var i;
+        a.style.display = "block";
+        self._ready = true;
+        for (i = self._ready_handlers.length; i--;) {
+          self._ready_handlers[i].call(self);
+        }
+      });
+      TradingView.bindEvent(f, "click", function() {
+        self.toggleFullscreen();
+      });
+      TradingView.onready(function() {
+        var rf = false;
+        if (document.querySelector && document.querySelector('a[href$="/v/' + self.options.chart + '/"]')) {
+          rf = true;
+        }
+        if (!rf) {
+          var anchors = document.getElementsByTagName("a");
+          var re_short = new RegExp("/v/" + self.options.chart + "/$");
+          var re_full = new RegExp("/chart/([0-9a-zA-Z:+*-/()]+)/" + self.options.chart);
+          var re_script = new RegExp("/script/" + self.options.chart);
+          for (var i = 0; i < anchors.length; i++) {
+            if (re_short.test(anchors[i].href) || re_full.test(anchors[i].href)) {
+              rf = true;
+              break;
+            }
+          }
+        }
+        if (rf) {
+          c.src += "#nolinks";
+          c.name = "nolinks";
+        }
+      });
+      this.postMessage = TradingView.postMessageWrapper(c.contentWindow, this.id);
+    },
+    ready: TradingView.widget.prototype.ready,
+    renderCss: function() {
+      var url = TradingView.host;
+      return ".tradingview-widget {position: relative;}.tradingview-widget .chart-actions-float {display: none; position: absolute; z-index: 5; top: 0; right: 0; background: #fff; border: 1px solid #bfbfbf; border-radius: 0 3px 0 3px; padding: 3px 3px 3px 3px; height: 23px;}.tradingview-widget .chart-actions-float .tradingview-button {font-weight: normal; font-size: 11px; padding: 3px 5px;}.tradingview-widget .chart-actions-float .status-picture {margin: 4px 1px 0 3px; border: none !important; padding: 0 !important; background: none !important;}.tradingview-widget .chart-status-picture {position: absolute; z-index: 50;}.tradingview-widget .icon {display: inline-block; background: url('" + url + "/static/images/icons.png') 0 0 no-repeat; position: relative;}.tradingview-widget .icon-action-realtime{background-position: -120px -80px; width: 15px; height: 15px; left: -1px; vertical-align: top;}.tradingview-widget .icon-action-zoom{background-position: -100px -80px; width: 15px; height: 15px; left: -1px; vertical-align: top;}.tradingview-widget .exit-fullscreen {z-index: 16; position: fixed; top: -1px; left: 50%; display: none; opacity: 0.6; background: #f9f9f9; color: #848487; border-radius: 0 0 3px 3px; border: 1px solid #b2b5b8; font-size: 11px; width: 116px; font-weight: bold; padding: 2px 4px; cursor: default; margin: 0 0 0 -62px;}.tradingview-widget .exit-fullscreen:hover {opacity: 1;}.tradingview-widget .tradingview-button {padding: 6px 10px 5px; height: 15px; display: inline-block; vertical-align: top; text-decoration: none !important;color: #6f7073; cursor: pointer;border: 1px solid #b2b5b8; font: bold 12px Calibri, Arial; background: url('" + url + "/static/images/button-bg.png') 0 0 repeat-x; border-radius: 3px; -moz-border-radius: 3px; -webkit-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none; box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;}.tradingview-widget .tradingview-button:hover, .tv-button:active {background-position: 0 -26px; color: #68696b;}";
+    },
+    render: function() {
+      var url = TradingView.host;
+      return '<div class="tradingview-widget" style="width: ' + this.options.width + "px; height: " + this.options.height + 'px;">' + '<div id="' + this.id + '_actions" class="chart-actions-float">' + '<a id="' + this.id + '_fullscreen" class="tradingview-button"><span class="icon icon-action-zoom"></span> Full Screen</a> ' + '<a id="' + this.id + '_live" class="tradingview-button" target="_blank" href="https://www.tradingview.com/chart/?clone=' + this.options.chart + '">' + '<span class="icon icon-action-realtime"></span> Make It Live' + "</a> " + "</div>" + '<iframe id="' + this.id + '"' + ' src="' + url + "/embed/" + this.options.chart + "/?method=script&" + TradingView.generateUtmForUrlParams() + '"' + ' width="' + this.options.width + '"' + ' height="' + this.options.height + '"' + ' frameborder="0" allowTransparency="true" scrolling="no"></iframe>' + "</div>";
+    },
+    windowSize: function() {
+      var w = 0,
+      h = 0;
+      if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+        w = document.documentElement.clientWidth;
+        h = document.documentElement.clientHeight;
+      } else if (typeof window.innerWidth == "number") {
+        w = window.innerWidth;
+        h = window.innerHeight;
+      } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+        w = document.body.clientWidth;
+        h = document.body.clientHeight;
+      }
+      return {
+        width: w,
+        height: h
+      };
+    },
+    toggleFullscreen: function() {
+      var frame = TradingView.gEl(this.id),
+      actions = TradingView.gEl(this.id + "_actions"),
+      ws = this.windowSize();
+      if (this.is_fullscreen) {
+        frame.style.position = "static";
+        frame.style.width = this.options.width + "px";
+        frame.style.height = this.options.height + "px";
+        frame.style.zIndex = "auto";
+        frame.style.backgroundColor = "transparent";
+        actions.style.position = "absolute";
+        actions.style.zIndex = "auto";
+        TradingView.unbindEvent(document, "keydown", this.getKeyHandler());
+      } else {
+        frame.style.position = "fixed";
+        frame.style.width = ws.width + "px";
+        frame.style.height = ws.height + "px";
+        frame.style.left = "0px";
+        frame.style.top = "0px";
+        frame.style.zIndex = "1000000";
+        frame.style.backgroundColor = "#fff";
+        actions.style.position = "fixed";
+        actions.style.zIndex = "1000001";
+        TradingView.bindEvent(document, "keydown", this.getKeyHandler());
+      }
+      this.is_fullscreen = !this.is_fullscreen;
+    },
+    getKeyHandler: function() {
+      var that = this;
+      if (!this.keyHandler) {
+        this.keyHandler = function(e) {
+          if (e.keyCode == 27) {
+            that.toggleFullscreen();
+          }
+        };
+      }
+      return this.keyHandler;
+    },
+    getSymbolInfo: function(callback) {
+      this.postMessage.get("symbolInfo", {}, callback);
+    }
+  };
   // TradingView.showSignIn = function(options, callback) {
   //   var shadowBox = document.createElement("div");
   //   shadowBox.style.cssText = "position: fixed;" + "left: 0;" + "top: 0;" + "width: 100%;" + "height: 100%;" + " background: rgba(0, 0, 0, 0.5);" + "z-index: 120;" + " -webkit-transform: translate3d(0, 0, 0);";
