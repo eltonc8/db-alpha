@@ -6,6 +6,7 @@ default: &default
 development:
   <<: *default
   database: dbalpha_development
+  # host: localhost
 
 test:
   <<: *default

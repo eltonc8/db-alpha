@@ -4,10 +4,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   after_initialize :ensure_session_token
-  before_validation :ensure_downcase
-  before_save :ensure_downcase
-  before_update :ensure_downcase
-  before_create :ensure_downcase
   attr_reader :password
 
   def self.generate_session_token
@@ -15,8 +11,17 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_credentials(email, password)
-    @user = User.find_by_email(email)
+    @user = User.find_by_email(email.downcase)
     @user if @user && @user.is_password?(password)
+  end
+
+  def email=(email_string)
+    super(email_string.downcase)
+  end
+
+  def ensure_session_token
+    self.session_token ||= User.generate_session_token
+    session_token
   end
 
   def is_password?(password)
@@ -33,13 +38,4 @@ class User < ActiveRecord::Base
     session_token
   end
 
-  def ensure_session_token
-    self.session_token ||= User.generate_session_token
-    session_token
-  end
-
-  private
-  def ensure_downcase
-    @email && @email.downcase!
-  end
 end
