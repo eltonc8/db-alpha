@@ -1,10 +1,13 @@
 <br>
-<a href="<%= model.escape("link") %>"><%= model.escape.name %></a>
+<!-- <a href="<%= model.escape("link") %>"><%= model.escape.name %></a> -->
 
 <br>
-<img src="http://chart.finance.yahoo.com/z?s=<%= model.escape("symbol") %>&t=6m&q=l&l=on&z=s&p=m50,m200"/>
+<!-- <img src="http://chart.finance.yahoo.com/z?s=<%= model.escape("symbol") %>&t=6m&q=l&l=on&z=s&p=m50,m200"/> -->
 
 <br>
+<div id="tradingview-widget">
+
+</div>
 <!-- <img src="https://www.google.com/finance/getchart?q=AMZN&p=20Y&i=86400"> -->
 
 <!-- TradingView Widget BEGIN -->
@@ -12,6 +15,7 @@
 <script type="text/javascript">
 $(function () { if (true) {
   new TradingView.widget({
+    "container_id": "tradingview-widget",
     "width": "300px",
     "symbol": "AAPL",
     "interval": "D",

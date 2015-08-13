@@ -1,6 +1,6 @@
 class Security < ActiveRecord::Base
   validates :symbol, presence: true, uniqueness: true
-  attr_accessor :feeds
+  attr_accessor :feedy, :feedg
 
   def self.search_or_initialize(value)
     if value.to_i > 0
