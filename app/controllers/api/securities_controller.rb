@@ -5,8 +5,7 @@ class Api::SecuritiesController < ApplicationController
   def show
     @security = Security.search_or_initialize(params[:id])
     if @security
-      render JSON: @security
-      # render "securities/show.json"
+      render "securities/show.json"
     else
       render JSON: @security, status: 404
     end
