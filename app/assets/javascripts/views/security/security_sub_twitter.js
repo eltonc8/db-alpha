@@ -8,7 +8,7 @@ DbAlpha.Views.SecuritySubTwitter = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( this.template );
+    this.$el.html( this.template({ model: this.model }) );
     return this;
   }
 });

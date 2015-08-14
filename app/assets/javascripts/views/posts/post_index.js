@@ -1,5 +1,6 @@
 DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
   className: "post-index",
+  template: JST['post/index'],
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -7,7 +8,8 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( "future post index goes here" );
+    var content = this.template();
+    this.$el.html( content );
     return this;
   }
 });

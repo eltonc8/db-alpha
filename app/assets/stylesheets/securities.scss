@@ -8,7 +8,7 @@
 
 .security-show-links {
   display: block;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .security-show-links > a {
@@ -54,9 +54,9 @@ ul.article-feed {
   width: 98%;
   font-size: 1.5rem;
   margin: 0.25rem;
-  background-color: #ccc;
+  background-color: transparent;
   padding: 0.5rem 2rem;
-  border-radius: 1rem;
+  border-radius: .5rem;
 }
 
 ul.article-feed li.article-list-item:hover {
