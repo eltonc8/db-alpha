@@ -1,9 +1,9 @@
-<a href="<%= this.model.escape("url") %>">
+<a href="<%= this.model.escape("url") %>" target="_blank">
   <div class="article-title">
     <%= this.model.escape("title") %>
   </div>
-
-  <div class="article-summary">
-    <%= this.model.escape("summary") %>
-  </div>
 </a>
+
+<div class="article-summary">
+  <%= this.model.escape("summary") %>
+</div>
