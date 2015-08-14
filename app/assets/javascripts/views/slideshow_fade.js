@@ -5,7 +5,7 @@ DbAlpha.Views.SlideshowFade = Backbone.View.extend({
     this.interval = options.interval || 8000;
     this.transition = options.transition || 1000;
     this.setElement(options.slides);
-    this._array = this.$el.children(".slide").hide();
+    this._array = this.$el.children(".slide");
     this._index = Math.floor( Math.random() * this._array.length );
     this._manualCount = 0;
     this.render();
@@ -25,9 +25,9 @@ DbAlpha.Views.SlideshowFade = Backbone.View.extend({
       this._manualCount -= 1;
       return;
     }
-    this._array.eq(this._index).fadeOut(this.transition, "swing");
+    this._array.eq(this._index).removeClass("active");
     this._index = (this._index + (manualOffset || 1)) % this._array.length;
-    this._array.eq(this._index).fadeIn(this.transition, "swing");
+    this._array.eq(this._index).addClass("active");
     this.schedule();
   },
 

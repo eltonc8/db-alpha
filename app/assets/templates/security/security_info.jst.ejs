@@ -1,5 +1,5 @@
 <br>
-<a href="<%= model.escape("link") %>"><%= model.escape.name %></a>
+<a href="<%= model.escape("link") %>"><%= model.escape("name") %></a>
 
 <br>
 
@@ -13,23 +13,24 @@
 <!-- TradingView Widget BEGIN -->
 <!-- <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script> -->
 <script type="text/javascript">
-$(function () { if (true) {
+
+$(function (model) {
   new TradingView.widget({
     "container_id": "tradingview-widget",
-    "width": "300px",
-    "symbol": "AAPL",
+    "width": "100%",
+    "symbol": "<%= model.escape('symbol') %>",
     "interval": "D",
     "timezone": "America/New_York",
     "theme": "Black",
     "style": "1",
     "toolbar_bg": "rgba(255, 255, 255, 1)",
+    "hide_side_toolbar": false,
     "allow_symbol_change": true,
     "hideideas": true,
     "show_popup_button": true,
     "popup_width": "1000",
     "popup_height": "650"
   });
-  }
 })
 </script>
 <!-- TradingView Widget END -->

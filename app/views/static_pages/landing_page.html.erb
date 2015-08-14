@@ -1,57 +1,3 @@
-<style>
-img{
-	filter: blur(1px) sepia(90%) hue-rotate(180deg);
-	-webkit-filter: blur(1px) sepia(90%) hue-rotate(180deg);
-	-moz-filter: blur(1px) sepia(90%) hue-rotate(180deg);
-	-o-filter: blur(1px) sepia(90%) hue-rotate(180deg);
-	-ms-filter: blur(1px) sepia(90%) hue-rotate(180deg);
-}
-
-.overlay1 {
-	color: #FFF;
-	width: 20%;
-	display: block;
-	position: absolute;
-	top: 30%;
-	left: 10%;
-	width: 40%;
-	z-index: 10;
-}
-
-.overlay2 {
-	color: #FFF;
-	width: 20%;
-	display: block;
-	position: absolute;
-	top: 30%;
-	left: 60%;
-	width: 25%;
-	z-index: 10;
-}
-
-#slideshow {
-    margin: auto;
-    position: relative;
-		display: block;
-    width: 100%;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-}
-#slideshow:before{
-	content:	"";
-	display:  block;
-	padding-top: 60%;
-}
-/*controls content*/
-#slideshow > div {
-    position: absolute;
-    top:	 	 	0px;
-    left:  		0px;
-    right:  	0px;
-    bottom:   0px;
-}
-
-</style>
-
 <div id="slideshow">
 	<div class="slide">
 		<img src="/assets/landing/ben_graham.jpg" width=100% height=100%>
@@ -71,6 +17,9 @@ img{
 
 <script>
 $(function () {
-	new DbAlpha.Views.SlideshowFade( { slides: $("#slideshow") } );
+	new DbAlpha.Views.SlideshowFade( {
+		slides: $("#slideshow"),
+		interval: 5000
+	} );
 })
 </script>

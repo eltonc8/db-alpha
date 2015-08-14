@@ -7,3 +7,68 @@
   background-color: #000;
   margin: 5px;
 }
+
+.overlay1 {
+	color: #FFF;
+	width: 20%;
+	display: block;
+	position: absolute;
+	top: 30%;
+	left: 10%;
+	width: 40%;
+	z-index: 10;
+}
+
+.overlay2 {
+	color: #FFF;
+	width: 20%;
+	display: block;
+	position: absolute;
+	top: 30%;
+	left: 60%;
+	width: 25%;
+	z-index: 10;
+}
+
+
+#slideshow {
+    margin: auto;
+    position: relative;
+		display: block;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+#slideshow:before{
+	content:	"";
+	display:  block;
+	padding-top: 60%;
+}
+/*controls content*/
+#slideshow > div {
+    position: absolute;
+    top:	 	 	  0px;
+    left:  		  0px;
+    right:  	  0px;
+    bottom:     0px;
+    opacity:    0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#slideshow > div.active {
+  opacity:    1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#slideshow > div.slide > div {
+  font-size: 3rem;
+	text-shadow: #000 0px 0px 2rem;
+}
+
+#slideshow > div.slide > img {
+	filter: blur(1px) sepia(90%) hue-rotate(180deg);
+	-webkit-filter: blur(1px) sepia(90%) hue-rotate(180deg);
+	-moz-filter: blur(1px) sepia(90%) hue-rotate(180deg);
+	-o-filter: blur(1px) sepia(90%) hue-rotate(180deg);
+	-ms-filter: blur(1px) sepia(90%) hue-rotate(180deg);
+}
