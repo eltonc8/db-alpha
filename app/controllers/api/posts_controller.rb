@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   def index
-    @posts = Post.new
+    @posts = Post.all
     render json: @posts
   end
 
@@ -16,6 +16,7 @@ class Api::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    render json: @post
   end
 
   def destroy

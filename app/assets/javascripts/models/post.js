@@ -1,3 +1,7 @@
-DbAlpha.Models.Article = Backbone.Model.extend({
-  urlRoot: ""
+DbAlpha.Models.Post = Backbone.Model.extend({
+  urlRoot: "/api/posts",
+
+  comparator: function (article) {
+    return article.comparator();
+  }
 });

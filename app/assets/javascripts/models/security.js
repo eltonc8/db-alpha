@@ -8,7 +8,7 @@ DbAlpha.Models.Security = Backbone.Model.extend({
   // },
 
   url: function () {
-    return this.urlRoot + "/" + ( this.id || this.escape("symbol") );
+    return this.urlRoot + "/" + ( this.escape("symbol") || this.id );
   },
 
   parse: function (responseData) {
@@ -25,6 +25,12 @@ DbAlpha.Models.Security = Backbone.Model.extend({
     }
 
     return this._articles;
+  },
+
+  posts: function () {
+    if (!this._posts) {
+      this._posts = new DbAlpha.Collections.Posts([], { security: this });
+    }
   }
 });
 

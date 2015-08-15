@@ -15,7 +15,6 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   securityShow: function (value) {
-
     var view = new DbAlpha.Views.SecurityShow({
       model: this.collection.getOrFetch(value)
     });
