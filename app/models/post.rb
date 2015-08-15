@@ -1,19 +1,28 @@
 class Post < ActiveRecord::Base
   validates :title, presence: true
-  validates :tags
-  validates :user
+  validates :user, presence: true
 
   belongs_to :user
 
   def is_public?
-    /public/ =~ tags
+    /public/ =~ shared_with
+  end
+
+  def shared_with=(input)
+    input = input.join(",") if input.is_a? Array
+    super(input.downcase.split(/,/).map(&:strip).reject(&:empty?).uniq.join(","))
+  end
+
+  def shared_with
+    super ? super.split(/,/) : []
   end
 
   def tags=(input)
-    super(input.split(/,/).map(&:strip).reject(&:empty?).join(","))
+    input = input.join(",") if input.is_a? Array
+    super(input.upcase.split(/,/).map(&:strip).reject(&:empty?).uniq.join(","))
   end
 
   def tags
-    (super).split(/,/)
+    super ? super.downcase.split(/,/) : []
   end
 end

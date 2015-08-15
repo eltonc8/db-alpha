@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.integer :user_id, null: false
       t.string  :title, null: false
+      t.string  :shared_with
       t.string  :tags
       t.text    :note
       t.text    :body

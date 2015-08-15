@@ -1,13 +1,14 @@
-class PostsController < ApplicationController
+class Api::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.new
+    render json: @posts
   end
 
   def create
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      render "/show.json"
+      render json: @post
     else
       render json: @post.errors.full_messages, status: 422
     end
