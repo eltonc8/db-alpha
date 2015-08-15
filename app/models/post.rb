@@ -4,6 +4,16 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
+  def self.search(options)
+    if options[:security_id]
+      Post.order(:created_at)
+          .where("user_id = ? OR shared_with LIKE '\\mpublic\\M' AND tags LIKE ?", options[:id], options[:security_id].upcase)
+    else
+      Post.order(:created_at)
+          .where("user_id = ? OR shared_with LIKE '\\mpublic\\M'", options[:id])
+    end
+  end
+
   def is_public?
     /public/ =~ shared_with
   end

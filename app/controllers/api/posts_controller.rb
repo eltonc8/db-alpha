@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.search( id: current_user.id, security_id: params[:security_id] )
     render json: @posts
   end
 
