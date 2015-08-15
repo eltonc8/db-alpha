@@ -3,13 +3,15 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
   url: "/api/links",
 
   getOrFetch: function (value) {
-    var security;
+    var security, attrs;
     if (+value) {
+      attr = { id: value };
       security = this.get(value);
     } else {
-      security = this.findWhere({ symbol: value });
+      attr = { symbol: value };
+      security = this.findWhere( attr );
     }
-    if (!security) { security = new this.model({ id: value }); }
+    if (!security) { security = new this.model( attr ); }
     security.fetch();
     this.add(security, {merge: true});
 

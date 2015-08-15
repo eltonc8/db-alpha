@@ -1,10 +1,15 @@
 DbAlpha.Collections.Posts = Backbone.Collection.extend({
   model: DbAlpha.Models.Post,
-  url: function () {
-    return "/api/" + (this.model ? this.model.escape("symbol") : "") + "posts";
+
+  initialize: function (models, options) {
+    this.security = options && options.security;
   },
 
-  comparator: function () {
-    return Date.parse( this.escape("created_at") ) || new Date();
-  }
+  comparator: function (post) {
+    return Date.parse( post.escape("created_at") ) || new Date();
+  },
+
+  url: function () {
+    return (this.security ? this.security.url() : "/api") + "/posts";
+  },
 });

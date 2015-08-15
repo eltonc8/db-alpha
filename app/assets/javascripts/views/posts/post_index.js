@@ -4,6 +4,7 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.collection = this.model ? this.model.posts() : new DbAlpha.Collections.Posts([]);
+    this.collection.fetch();
     this.listenTo(this.collection, "sync add remove", this.render);
     this.listenTo(this.collection, 'add', this.addPostSubview);
 
