@@ -3,6 +3,7 @@ DbAlpha.Collections.Posts = Backbone.Collection.extend({
 
   initialize: function (models, options) {
     this.security = options && options.security;
+    this.fetch();
   },
 
   comparator: function (post) {
