@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   namespace :api, default: { format: :json } do
     resources :securities, only: [:show, :create]
+    resources :posts, only: [:index, :create, :show, :destroy]
   end
 end
