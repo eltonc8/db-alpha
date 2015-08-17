@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
   def index
     @posts = Post.search( id: current_user.id, security_id: params[:security_id] )
-    render json: @posts
+    render "posts/index.json"
   end
 
   def create

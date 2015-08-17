@@ -18,7 +18,7 @@ DbAlpha.Views.Post = Backbone.View.extend({
     "click input.btn": "submitForm",
     "dblclick .post-title": "toggleShow",
     "dblclick .post-body": "toggleCondense",
-
+    "click button.edit": "toggleEdit"
   },
 
   render: function () {
@@ -31,12 +31,11 @@ DbAlpha.Views.Post = Backbone.View.extend({
 
   submitForm: function (event) {
     event.preventDefault();
-    var formData = this.$("form").serializeJSON().post
+    var formData = this.$("form").serializeJSON().post;
     this.model.save(formData, {
       success: this._saveSuccess.bind(this),
       errors: this._saveErrors.bind(this)
     });
-
   },
 
   toggleEdit: function () {
