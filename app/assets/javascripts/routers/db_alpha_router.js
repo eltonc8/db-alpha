@@ -10,8 +10,9 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   root: function () {
-    var view = new DbAlpha.Views.Root({});
-    this._swapView(view);
+    Backbone.history.navigate("#/securities/spy")
+    // var view = new DbAlpha.Views.Root({});
+    // this._swapView(view);
   },
 
   securityShow: function (value) {

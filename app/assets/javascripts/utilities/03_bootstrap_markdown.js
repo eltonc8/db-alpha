@@ -909,7 +909,7 @@
     /* Editor Properties */
     autofocus: false,
     hideable: false,
-    savable: false,
+    savable: true,
     width: 'inherit',
     height: 'inherit',
     resize: 'none',
