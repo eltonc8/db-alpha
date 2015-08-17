@@ -1,3 +1,28 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-index {
+  list-style: none;
+  padding: 1em;
+  font-size: 1em;
+  display: block;
+  margin-top: 0.25em;
+  margin: auto;
+}
+
+ul.post-index li.post-list-item {
+  float: left;
+  list-style: none;
+  display: block;
+  width: 98%;
+  font-size: 1.0em;
+  margin: 0.25em;
+  background-color: transparent;
+  padding: 0.5rem 2em;
+  border-radius: .25em;
+}
+
+ul.post-index li.post-list-item:hover {
+  background-color: #eee;
+}
