@@ -7,9 +7,10 @@ class Api::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
 
-    if @post.save
+    if @post
       render json: @post
     else
+      debugger
       render json: @post.errors.full_messages, status: 422
     end
   end
@@ -21,7 +22,7 @@ class Api::PostsController < ApplicationController
 
   def update
     @post = current_user.posts.find(params[:id])
-    debugger
+    
     if @post && @post.update(post_params)
       render json: @post
     else
@@ -37,8 +38,8 @@ class Api::PostsController < ApplicationController
 
   private
   def post_params
-    post_params = params.require(:post).permit(:user_id, :title, :tag, :note, :body, :share_with)
-    post_params[:share_with] ||= []
+    post_params = params.require(:post).permit(:user_id, :title, :tag, :note, :body, :shared_with)
+    post_params[:shared_with] ||= []
     post_params
   end
 end

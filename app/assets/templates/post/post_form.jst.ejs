@@ -15,9 +15,9 @@
   </div>
 
   <div class='form-group'>
-    <label for="post-shared-with">Share with: </label>
+    <label for="post-shared-with">Shared with: </label>
     <input
-      name="post[share_with][]"
+      name="post[shared_with][]"
       type="checkbox"
       value="public"
       <%= /\bpublic\b/i.test(model.escape("shared_with")) ? "checked" : ""%>
