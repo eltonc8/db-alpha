@@ -4,6 +4,7 @@ class CreateSecurities < ActiveRecord::Migration
       t.string     :symbol,   null: false
       t.string     :name
       t.string     :website
+      t.string     :image
 
       t.timestamps null: false
     end

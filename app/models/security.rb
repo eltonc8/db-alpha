@@ -11,6 +11,14 @@ class Security < ActiveRecord::Base
 
     if result
       result.feeds = Feedjira::Feed.fetch_and_parse("http://feeds.finance.yahoo.com/rss/2.0/headline?region=US&s=#{result.symbol.html_safe}")
+      /for (?<name>.*)\Z/ =~ result.feeds.description
+      if name
+        result.name ||= name
+        google_web = Google::Search::Web.new(query: name + " investor")
+        result.website ||= google_web.first.visible_uri
+        google_image = Google::Search::Image.new(query: name + " logo")
+        result.image ||= google_image.first.uri
+      end
     end
 
     result

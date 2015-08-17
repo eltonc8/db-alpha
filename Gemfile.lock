@@ -98,6 +98,8 @@ GEM
       thor (~> 0.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    google-search (1.0.3)
+      json
     http (0.6.4)
       http_parser.rb (~> 0.6.0)
     http-cookie (1.0.2)
@@ -223,6 +225,7 @@ DEPENDENCIES
   ejs
   feedjira
   figaro
+  google-search
   jbuilder (~> 2.0)
   jquery-rails
   newrelic_rpm

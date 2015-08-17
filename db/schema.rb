@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150814181651) do
     t.string   "symbol",     null: false
     t.string   "name"
     t.string   "website"
+    t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
