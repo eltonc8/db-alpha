@@ -1,0 +1,9 @@
+<div class="post-title"><%= model.escape("title") %></div>
+
+<% if (model.escape("note")) { %>
+<div class="post-node">
+  <%= model.escape("note") %>
+</div>
+<% } %>
+
+<div class="post-body"><%= model.escape("body") %></div>

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     resources :securities, only: [:show, :create] do
       resources :posts, only: [:index]
     end
-    resources :posts, only: [:index, :create, :show, :destroy]
+    resources :posts, only: [:index, :create, :show, :update, :destroy]
   end
 end

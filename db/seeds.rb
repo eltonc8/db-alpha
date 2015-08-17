@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(email: "eltonchan@cal.berkeley.edu", password: "development123")
+User.create!(email: "guess_login@welcome.com", password: "password_for_guest")
 
 Security.create!(symbol: "aapl", name: "Apple Inc.", website: "http://investor.apple.com/")
 
@@ -14,7 +15,7 @@ Post.create!(
   user_id: 1,
   title: "First post",
   shared_with: "public",
-  tags: "test",
-  note: "note content",
-  body: "a very long string of text can go here",
+  tags: "test,aapl",
+  note: "note content. I may need to use a new class instead",
+  body: "a very long string of text can go here! This body can go on for a while",
 )

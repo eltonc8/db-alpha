@@ -30,7 +30,7 @@
       name="post[tags]"
       type="text"
       placeholder="Tags (optional)"
-      value="<%= model.escape("tags") %>"
+      value="<%= model.escape("tags") || model.symbol %>"
       id="post-title"/>
   </div>
 

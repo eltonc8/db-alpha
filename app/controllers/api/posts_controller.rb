@@ -19,6 +19,16 @@ class Api::PostsController < ApplicationController
     render json: @post
   end
 
+  def update
+    @post = current_user.posts.find(params[:id])
+
+    if @post && @post.save(post_params)
+      render json: @post
+    else
+      render json: @post.errors.full_messages, status: 422
+    end
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.try(:destroy)
@@ -27,6 +37,8 @@ class Api::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:user_id, :title, :tag, :note, :body)
+    post_params = params.require(:post).permit(:user_id, :title, :tag, :note, :body)
+    post_params.shared_with ||= []
+    post_params
   end
 end

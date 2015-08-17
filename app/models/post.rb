@@ -29,6 +29,6 @@ class Post < ActiveRecord::Base
   end
 
   def tags
-    super ? super.downcase.split(/,/) : []
+    super ? super.split(/,/) : []
   end
 end
