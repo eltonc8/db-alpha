@@ -10,11 +10,11 @@
 
 .security-show-links {
   display: block;
-  border-radius: 0.25rem;
+  border-radius: 0.25em;
 }
 
 .security-show-links > a {
-  font-size: 2rem;
+  font-size: 2em;
   display: block;
   margin: auto;
 }
@@ -30,7 +30,7 @@ div.article-header {
   right: 0;
   left: 0;
   z-index: 500;
-  padding: 1.5rem;
+  padding: 1.5em;
   background-color: #FFF;
 }
 
@@ -54,11 +54,11 @@ ul.article-feed {
   list-style: none;
   display: block;
   width: 98%;
-  font-size: 1.5rem;
-  margin: 0.25rem;
+  font-size: 1.5em;
+  margin: 0.25em;
   background-color: transparent;
-  padding: 0.5rem 2rem;
-  border-radius: .5rem;
+  padding: 0.5rem 2em;
+  border-radius: .5em;
 }
 
 ul.article-feed li.article-list-item:hover {
