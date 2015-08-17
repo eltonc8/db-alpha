@@ -6,8 +6,8 @@ class Post < ActiveRecord::Base
 
   def self.search(options)
     query = "(user_id = :id OR shared_with ~* 'public')"
-    query += "AND tags ~* :s_id" if options[:security_id]
-    Post.order(:created_at).where(query, id: options[:id], s_id: '%\y(' + options[:security_id] + ')\y%')
+    query += " AND tags ~* :s_id" if options[:security_id]
+    Post.order(:created_at).where(query, id: options[:id], s_id: "\\y" + options[:security_id] + "\\y")
   end
 
   def is_public?
