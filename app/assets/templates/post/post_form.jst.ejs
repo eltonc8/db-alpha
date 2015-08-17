@@ -19,9 +19,9 @@
     <input
       name="post[share_with][]"
       type="checkbox"
-      placeholder="Tags (optional)"
-      value="<%= model.escape("tags") %>"
-      id="post-title"/>
+      value="public"
+      <%= /\bpublic\b/i.test(model.escape("shared_with")) ? "checked" : ""%>
+      id="post-title"/>public
   </div>
 
   <div class='form-group'>
@@ -40,9 +40,12 @@
   <textarea
     name="post[body]"
     placeholder="Body (optional)"
-    data-provide="markdown"
+    data-provide="markdown-editable"
     id="post-body"><%= marked( model.escape("body") ) %></textarea>
   </div>
 
-
+  <input
+    type="submit"
+    class="btn post-submit"
+    value="<%= model.isNew() ? "create post" : "save edit"%>">
 </form>

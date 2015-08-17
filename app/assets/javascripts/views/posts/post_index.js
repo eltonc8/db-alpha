@@ -18,7 +18,7 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
   },
 
   addNewForm: function () {
-    this.collection.add(new this.collection.model() );
+    this.collection.add(new this.collection.model({security: this.model && this.model.escape("symbol")}) );
   },
 
   addPostListItem: function (post) {
