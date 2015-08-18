@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(email: "eltonchan@cal.berkeley.edu", password: "development123")
-User.create!(email: "guess_login@welcome.com", password: "password_for_guest")
+User.create!(email: "guest_login@dbalpha.info", password: "GuestPassword")
 
 Security.create!(symbol: "aapl", name: "Apple Inc.", website: "http://investor.apple.com/")
 
