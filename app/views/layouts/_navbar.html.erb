@@ -8,10 +8,8 @@
 
     <ul class="nav navbar-nav navbar-right">
       <% if signed_in? %>
-      <li class="nav-item">
-        <%= "Welcome, #{ current_user.email }".html_safe %>
-        <%= button_to "Sign Out", session_url, method: :delete %>
-      </li>
+      <li class="nav-item"><div class="nav-name"><%= "Welcome, #{ current_user.email }".html_safe %></div></li>
+      <li class="nav-item"><div class="nav-box"><%= button_to "Sign Out", session_url, method: :delete %></div></li>
       <% else %>
       <li class="nav-item"><%= link_to "Sign Up", new_user_url %></li>
       <li class="nav-item"><%= link_to "Sign In", new_session_url %></li>

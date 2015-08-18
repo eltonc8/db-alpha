@@ -17,7 +17,13 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
   },
 
   addNewForm: function () {
-    this.collection.add(new this.collection.model({symbol: this.model && this.model.escape("symbol")}) );
+    if (this.collection.any( function(model) {return model.isNew();} )) {return;}
+    var newPost = new this.collection.model();
+    newPost.set({
+      tags: this.model && this.model.escape("symbol"),
+      editable: true
+    });
+    this.collection.add(newPost);
   },
 
   addPostListItem: function (post) {

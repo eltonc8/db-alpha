@@ -26,14 +26,12 @@ body {
   border-bottom: 1px solid #001733;
 }
 
-.navbar-nav > li > form  {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border: none;
+.navbar-nav > li > .nav-box {
+  padding: 12px;
 }
 
-.navbar-nav > li > form > input {
-  color: #000;
+.navbar-nav > li > .nav-name  {
+  padding: 15px;
 }
 
 .navbar-nav > li {
