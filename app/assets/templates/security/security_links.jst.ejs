@@ -1,37 +1,36 @@
 <% var sym = model.escape('symbol') %>
-<div class='security-show-links'>
-  <a href="http://www.finviz.com/quote.ashx?t=<%= sym %>" class='btn finviz' target="_blank">Finviz</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://www.google.com/finance?q=<%= sym %>" class='btn google-finance' target="_blank">Google Finance</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://quote.morningstar.com/stock/s.aspx?t=<%= sym %>" class='btn morningstar' target="_blank">Morningstar Page</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://caps.fool.com/Ticker/<%= sym %>.aspx" class='btn motley-fool' target="_blank">The Motley Fool</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://investing.money.msn.com/investments/stock-price?Symbol=<%= sym %>" class='btn msn-money' target="_blank">MSN Money</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://seekingalpha.com/symbol/<%= sym %>" class='btn seeking-alpha' target="_blank">SeekingAlpha</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://stockcharts.com/h-sc/ui?s=<%= sym %>" class='btn stock-chart' target="_blank">StockCharts.com</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://www.thestreet.com/quote/<%= sym %>.html" class='btn the-street' target="_blank">TheStreet.com</a>
-
-</div>
-<div class='security-show-links'>
-  <a href="http://finance.yahoo.com/q?s=<%= sym %>" class='btn yahoo-finance' target="_blank">Yahoo Finance</a>
-
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Additional resources:
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li class=''>
+      <a href="http://www.finviz.com/quote.ashx?t=<%= sym %>" class='btn finviz' target="_blank">Finviz</a>
+    </li>
+    <li class=''>
+      <a href="http://www.google.com/finance?q=<%= sym %>" class='btn google-finance' target="_blank">Google Finance</a>
+    </li>
+    <li class=''>
+      <a href="http://quote.morningstar.com/stock/s.aspx?t=<%= sym %>" class='btn morningstar' target="_blank">Morningstar Page</a>
+    </li>
+    <li class=''>
+      <a href="http://caps.fool.com/Ticker/<%= sym %>.aspx" class='btn motley-fool' target="_blank">The Motley Fool</a>
+    </li>
+    <li class=''>
+      <a href="http://investing.money.msn.com/investments/stock-price?Symbol=<%= sym %>" class='btn msn-money' target="_blank">MSN Money</a>
+    </li>
+    <li class=''>
+      <a href="http://seekingalpha.com/symbol/<%= sym %>" class='btn seeking-alpha' target="_blank">SeekingAlpha</a>
+    </li>
+    <li class=''>
+      <a href="http://stockcharts.com/h-sc/ui?s=<%= sym %>" class='btn stock-chart' target="_blank">StockCharts.com</a>
+    </li>
+    <li class=''>
+      <a href="http://www.thestreet.com/quote/<%= sym %>.html" class='btn the-street' target="_blank">TheStreet.com</a>
+    </li>
+    <li class=''>
+      <a href="http://finance.yahoo.com/q?s=<%= sym %>" class='btn yahoo-finance' target="_blank">Yahoo Finance</a>
+    </li>
+  </ul>
 </div>

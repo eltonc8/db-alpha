@@ -8,16 +8,14 @@
   padding: 50px
 }
 
-.security-show-links {
-  display: block;
-  border-radius: 0.25em;
-}
-
-.security-show-links > a {
-  font-size: 2em;
-  display: block;
+.dropdown {
   margin: auto;
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+ }
 
 .security-show-sub-rss {
   position: absolute;
@@ -31,7 +29,7 @@ div.article-header {
   left: 0;
   z-index: 500;
   padding: 1.5em;
-  background-color: #FFF;
+  background-color: #F8F8F8;
 }
 
 .security-show-sub-rss:before {

@@ -30,6 +30,18 @@ body {
   padding: 12px;
 }
 
+.navbar-nav > li > .nav-search > input {
+  color: #000;
+  width: 4em;
+  transition: width 1s;
+}
+
+.navbar-nav > li > .nav-search > input:hover,
+.navbar-nav > li > .nav-search > input:focus {
+  width: 10em;
+  transition: width 1s;
+}
+
 .navbar-nav > li > .nav-name  {
   padding: 15px;
 }

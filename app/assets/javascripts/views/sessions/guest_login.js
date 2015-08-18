@@ -2,7 +2,7 @@ DbAlpha.Views.GuestLogin = Backbone.View.extend({
   initialize: function (options) {
     var guestBtn = $("<div>");
     this.$el.append(guestBtn);
-    guestBtn.addClass("btn btn-primary btn-guest").html("Guest Login");
+    guestBtn.addClass("btn btn-success btn-guest").html("Guest Login");
 
     this.email = "guest_login@dbalpha.info";
     this.password = "GuestPassword";

@@ -9,9 +9,9 @@ db-Alpha is a clone of SeekingAlpha built on Rails and Backbone. Users can:
 
 - [x] Create accounts
 - [x] Create sessions (log in)
-- [ ] Visit company "dashboard" - with links to company info, news, twitter feed
-- [ ] Create remarks or "blog-like" articles about companies (public or private)
-- [ ] View companies and posts
+- [x] Visit company "dashboard" - with links to company info, news, twitter feed
+- [x] Create remarks or "blog-like" articles about companies (public or private)
+- [x] View companies and posts
 - [ ] Have homepage with feeds of followed companies (show others' notes)
 - [ ] Tag posts
 - [ ] Search for notes/blogs by companies
