@@ -7,7 +7,7 @@
 <script type="text/javascript">
 
 $(function (model) {
-  new TradingView.widget({
+  var widget = new TradingView.widget({
     "container_id": "tradingview-widget",
     "width": "100%",
     "symbol": "<%= model.escape('symbol') %>",

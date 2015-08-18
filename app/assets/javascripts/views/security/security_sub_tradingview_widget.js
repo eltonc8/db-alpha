@@ -2,13 +2,16 @@ DbAlpha.Views.SecurityTradingviewWidget = Backbone.CompositeView.extend({
   template: JST["security/security_tradingview_widget"],
   className: "security-show-sub-links",
 
-  initialize: function () {
+  content: function () {
+    if (!this._content) {
+      this._content = this.template({ model: this.model });
+    }
 
+    return this._content;
   },
 
   render: function () {
-    var content = this.template({ model: this.model });
-    this.$el.html( content );
+    this.$el.html( this.content() );
     return this;
   }
 });

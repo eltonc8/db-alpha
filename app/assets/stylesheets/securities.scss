@@ -8,18 +8,38 @@
   padding: 50px
 }
 
-.dropdown {
-  margin: auto;
-  margin-top: 0; // remove the gap so it doesn't close
-}
+/*formatting for info*/
 
 .dropdown:hover .dropdown-menu {
   display: block;
+  margin-top: 0; // remove the gap so it doesn't close
 }
+
+.dropdown .dropdown-menu {
+  margin-top: 0; // remove the gap so it doesn't close
+}
+
+.dropdown {
+  display: inline-block
+}
+
+.security-show-sub-info {
+  margin-bottom: 1em;
+}
+
+/* formatting for rss */
 
 .security-show-sub-rss {
   position: absolute;
   overflow-y: scroll;
+}
+
+.info-header {
+  font-size: 2em;
+  margin: 0.25em;
+  padding: 0.5em;
+  text-align: center;
+  background-color: #eee;
 }
 
 div.article-header {
@@ -28,7 +48,8 @@ div.article-header {
   right: 0;
   left: 0;
   z-index: 500;
-  padding: 1.5em;
+  font-size: 1em;
+  padding: 1em;
   background-color: #F8F8F8;
 }
 
