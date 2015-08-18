@@ -27,15 +27,33 @@
   margin-bottom: 1em;
 }
 
+img.logo {
+  width: auto;
+  height: 4em;
+  margin: auto;
+}
+
+/* right side */
+
+.security-show.right {
+  padding-top: 2em;
+}
+
 /* formatting for rss */
 
 .security-show-sub-rss {
   position: absolute;
-  overflow-y: scroll;
+}
+
+.security-show-sub-rss:before {
+  content:	"";
+  display:  block;
+  padding-top: 60%;
 }
 
 .info-header {
   font-size: 2em;
+  font-weight: bold;
   margin: 0.25em;
   padding: 0.5em;
   text-align: center;
@@ -48,27 +66,25 @@ div.article-header {
   right: 0;
   left: 0;
   z-index: 500;
-  font-size: 1em;
+  font-size: 1.3em;
+  font-weight: bold;
   padding: 1em;
+  padding-top: 1.5em;
   background-color: #F8F8F8;
 }
 
-.security-show-sub-rss:before {
-  content:	"";
-  display:  block;
-  padding-top: 60%;
-}
 
 ul.article-feed {
-  padding: 6rem 0 0 0;
+  padding: 6.5rem 0 0 0;
   position: absolute;
   top:	 	 	  0px;
   left:  		  0px;
   right:  	  0px;
   bottom:     0px;
+  overflow-y: scroll;
 }
 
-.article-feed .article-list-item {
+.article-list-item {
   float: left;
   list-style: none;
   display: block;
@@ -78,21 +94,22 @@ ul.article-feed {
   background-color: transparent;
   padding: 0.5rem 2em;
   border-radius: .25em;
+  // border-bottom:
 }
 
-ul.article-feed li.article-list-item:hover {
+.article-list-item .article-title {
+  font-weight: bolder;
+}
+
+.article-list-item .article-published-date {
+  font-size: 0.8em;
+  padding-left: 1em;
+}
+
+.article-list-item:hover {
   background-color: #eee;
 }
 
-ul.article-feed li.article-list-item div.article-title {
-  font-weight: bold;
-}
-
-img.logo {
-  width: auto;
-  height: 4em;
-  margin: auto;
-}
 
 // markdown css
 .md-editor {
