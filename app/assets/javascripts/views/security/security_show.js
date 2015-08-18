@@ -12,7 +12,7 @@ DbAlpha.Views.SecurityShow = Backbone.CompositeView.extend({
       new DbAlpha.Views.SecuritySubInfo({ model: this.model })
     );
     this.addSubview('.left',
-      new DbAlpha.Views.SecuritySubLinks({ model: this.model })
+      new DbAlpha.Views.SecurityTradingviewWidget({ model: this.model })
     );
     this.addSubview('.top',
       new DbAlpha.Views.SecuritySubRss({ model: this.model })

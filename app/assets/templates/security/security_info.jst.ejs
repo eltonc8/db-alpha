@@ -7,34 +7,4 @@
 </div>
 </a>
 
-<br>
-
-<br>
-<div id="tradingview-widget"></div>
-<!-- <img src="http://chart.finance.yahoo.com/z?s=<%= model.escape("symbol") %>&t=6m&q=l&l=on&z=s&p=m50,m200"/> -->
-<!-- <img src="https://www.google.com/finance/getchart?q=AMZN&p=20Y&i=86400"> -->
-
-<!-- TradingView Widget BEGIN -->
-<!-- <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script> -->
-<script type="text/javascript">
-
-$(function (model) {
-  new TradingView.widget({
-    "container_id": "tradingview-widget",
-    "width": "100%",
-    "symbol": "<%= model.escape('symbol') %>",
-    "interval": "D",
-    "timezone": "America/New_York",
-    "theme": "Black",
-    "style": "1",
-    "toolbar_bg": "rgba(255, 255, 255, 1)",
-    "hide_side_toolbar": true,
-    "allow_symbol_change": true,
-    "hideideas": true,
-    "show_popup_button": true,
-    "popup_width": "1000",
-    "popup_height": "650"
-  });
-})
-</script>
-<!-- TradingView Widget END -->
+<%= JST["security/_security_links"]({ model: model }) %>
