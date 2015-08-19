@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(version: 20150814181651) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "securities", force: :cascade do |t|
-    t.string   "symbol",     null: false
+    t.string   "symbol",            null: false
     t.string   "name"
     t.string   "website"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "twitter_widget_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "securities", ["symbol"], name: "index_securities_on_symbol", unique: true, using: :btree

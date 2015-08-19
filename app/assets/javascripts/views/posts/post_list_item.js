@@ -3,14 +3,13 @@ DbAlpha.Views.Post = Backbone.View.extend({
   className: "post-list-item article-list-item",
 
   template: function () {
-    if (this.state === "edit") { return JST['post/post_form']; }
-    if (this.state === "show") { return JST['post/post_show']; }
+    if (this._state === "edit") { return JST['post/post_form']; }
+    if (this._state === "show") { return JST['post/post_show']; }
     return JST['post/post_list_item'];
   },
 
   initialize: function (options) {
-    if (options) { this.symbol = options.symbol; }
-    if (this.model.isNew()) { this.state = "edit"; }
+    if (this.model.isNew()) { this._state = "edit"; }
     this.listenTo(this.model, "sync", this.render);
   },
 
@@ -53,17 +52,17 @@ DbAlpha.Views.Post = Backbone.View.extend({
   },
 
   toggleEdit: function () {
-    this.state = "edit";
+    this._state = "edit";
     this.render();
   },
 
   toggleShow: function () {
-    this.state = "show";
+    this._state = "show";
     this.render();
   },
 
   toggleCondense: function () {
-    this.state = null;
+    this._state = null;
     this.render();
   },
 

@@ -9,7 +9,7 @@
 User.create!(email: "eltonchan@cal.berkeley.edu", password: "development123")
 User.create!(email: "guest_login@dbalpha.info", password: "GuestPassword")
 
-Security.create!(symbol: "aapl", name: "Apple Inc.", website: "http://investor.apple.com/")
+Security.create!(symbol: "aapl", name: "Apple Inc.", website: "http://investor.apple.com/", twitter_widget_id: 631601971376447488)
 
 Post.create!(
   user_id: 1,

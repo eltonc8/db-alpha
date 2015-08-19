@@ -5,6 +5,7 @@ class CreateSecurities < ActiveRecord::Migration
       t.string     :name
       t.string     :website
       t.string     :image
+      t.string     :twitter_widget_id
 
       t.timestamps null: false
     end
