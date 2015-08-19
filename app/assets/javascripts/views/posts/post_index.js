@@ -13,7 +13,7 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
   },
 
   events: {
-    "click button.post-index": "addNewForm"
+    "click button.post-index-new": "addNewForm"
   },
 
   addNewForm: function () {
@@ -30,7 +30,7 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
     var postListItem = new DbAlpha.Views.Post({
       model: post
     });
-    this.addSubview("ul.post-index", postListItem);
+    this.addSubview("ul.post-index-list", postListItem);
   },
 
   render: function () {

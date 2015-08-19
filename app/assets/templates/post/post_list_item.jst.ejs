@@ -1,1 +1,2 @@
-<div class="post-title"><%= model.escape("title") %></div>
+<div class="post-title article-title"><%= model.escape("title") %></div>
+<%= JST["shared/published_date"]({ date: model.escape("created_at") }) %>

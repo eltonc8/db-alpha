@@ -1,5 +1,5 @@
 DbAlpha.Views.SecuritySubRss = Backbone.CompositeView.extend({
-  template: JST['security/security_feed'],
+  template: JST['security/security_articles'],
 
   className: "security-show-sub-rss col-lg-8 col-md-7 col-sm-8 col-xs-12",
 

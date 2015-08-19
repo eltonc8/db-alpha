@@ -1,0 +1,10 @@
+<div class="published-date">
+  <% var pub_date = new Date( date ) %>
+  <% if (pub_date.getDay() === new Date().getDay()) { %>
+    Today, <%= /\d+:\d+/.exec(pub_date)[0] %>
+  <% } else if ((pub_date.getDay() + 1) % 7 === new Date().getDay()) { %>
+    Yesterday, <%= /\d+:\d+/.exec(pub_date)[0] %>
+  <% } else { %>
+    <%= pub_date.toDateString() %>
+  <% } %>
+</div>

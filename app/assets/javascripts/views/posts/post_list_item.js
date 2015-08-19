@@ -1,6 +1,6 @@
 DbAlpha.Views.Post = Backbone.View.extend({
   tagName: "li",
-  className: "post-list-item",
+  className: "post-list-item article-list-item",
 
   template: function () {
     if (this.state === "edit") { return JST['post/post_form']; }
@@ -32,6 +32,7 @@ DbAlpha.Views.Post = Backbone.View.extend({
   submitForm: function (event) {
     event.preventDefault();
     var formData = this.$("form").serializeJSON().post;
+    debugger
     this.model.save(formData, {
       success: this._saveSuccess.bind(this),
       errors: this._saveErrors.bind(this)

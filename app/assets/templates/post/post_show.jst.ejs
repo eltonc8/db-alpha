@@ -1,7 +1,7 @@
-<div class="post-title"><%= model.escape("title") %></div>
+<div class="post-title article-title"><%= model.escape("title") %></div>
+
+<div class="post-body"><%= marked(model.escape("body")) %></div>
 
 <% if (model.escape("editable")) { %>
   <button class="btn edit">Edit</button>
 <% } %>
-
-<div class="post-body"><%= model.escape("body") %></div>

@@ -1,16 +1,8 @@
-<a href="<%= this.model.escape("url") %>" target="_blank">
+<a href="<%= model.escape("url") %>" target="_blank">
   <div class="article-title">
-    <%= this.model.escape("title") %>
+    <%= model.escape("title") %>
   </div>
 </a>
 
-<div class="article-published-date">
-  <% var pub_date = new Date(this.model.escape("published")) %>
-  <% if (pub_date.getDay() === new Date().getDay()) { %>
-    Today, <%= /\d+:\d+/.exec(pub_date)[0] %>
-  <% } else if ((pub_date.getDay() + 1) % 7 === new Date().getDay()) { %>
-    Yesterday, <%= /\d+:\d+/.exec(pub_date)[0] %>
-  <% } else { %>
-    <%= pub_date.toDateString() %>
-  <% } %>
-</div>
+
+<%= JST["shared/published_date"]({ date: model.escape("published") }) %>
