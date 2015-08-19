@@ -48,7 +48,7 @@ DbAlpha.Views.Post = Backbone.View.extend({
     var formData = this.$("form").serializeJSON().post;
     this.model.save(formData, {
       success: this._saveSuccess.bind(this),
-      errors: this._saveErrors.bind(this)
+      error: this._saveError.bind(this)
     });
   },
 
@@ -71,8 +71,8 @@ DbAlpha.Views.Post = Backbone.View.extend({
     this.collection.remove(this.model);
   },
 
-  _saveErrors: function (model, response) {
-    var errorField = this.$("ul.form-errors").empty();
+  _saveError: function (model, response) {
+    var errorField = this.$("ul.form-error").empty();
     JSON.parse(response.responseText).forEach(function (errorText) {
       var msg = $("<li>").html(errorText);
       errorField.append(msg);
