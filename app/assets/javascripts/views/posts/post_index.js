@@ -6,6 +6,7 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
     this.collection = this.model ? this.model.posts() : new DbAlpha.Collections.Posts([]);
     this.listenTo(this.collection, "sync add remove", this.render);
     this.listenTo(this.collection, 'add', this.addPostListItem);
+    this.listenTo(this.collection, 'remove', this.removePostListItem);
 
     this.collection.each(function (post) {
       this.addPostSubview(post);
@@ -28,9 +29,14 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
 
   addPostListItem: function (post) {
     var postListItem = new DbAlpha.Views.Post({
-      model: post
+      model: post,
+      collection: this.collection
     });
     this.addSubview("ul.post-index-list", postListItem);
+  },
+
+  removePostListItem: function (post) {
+    this.removeModelSubview("ul.post-index-list", post);
   },
 
   render: function () {

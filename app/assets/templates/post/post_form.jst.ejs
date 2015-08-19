@@ -41,11 +41,13 @@
     name="post[body]"
     placeholder="Body (optional)"
     data-provide="markdown-editable"
-    id="post-body"><%= marked( model.escape("body") ) %></textarea>
+    id="post-body"><%= model.escape("body") %></textarea>
   </div>
 
   <input
     type="submit"
     class="btn post-submit"
     value="<%= model.isNew() ? "create post" : "save edit"%>">
+
+  <button class="btn post-delete">Delete Post</button>
 </form>

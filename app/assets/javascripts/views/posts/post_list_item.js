@@ -15,10 +15,24 @@ DbAlpha.Views.Post = Backbone.View.extend({
   },
 
   events: {
-    "click input.btn": "submitForm",
-    "dblclick .post-title": "toggleShow",
+    "click input.post-submit": "submitForm",
+    "click button.post-delete": "deleteForm",
+    "click .post-title": "toggleShow",
     "dblclick .post-body": "toggleCondense",
     "click button.edit": "toggleEdit"
+  },
+
+  deleteForm: function (event) {
+    event.preventDefault();
+    if (confirm("Want to delete?")) {
+      if (this.model.isNew()) {
+        this._deleteSuccess();
+      } else {
+        this.model.destroy({
+          success: this._deleteSuccess.bind(this)
+        });
+      }
+    }
   },
 
   render: function () {
@@ -32,7 +46,6 @@ DbAlpha.Views.Post = Backbone.View.extend({
   submitForm: function (event) {
     event.preventDefault();
     var formData = this.$("form").serializeJSON().post;
-    debugger
     this.model.save(formData, {
       success: this._saveSuccess.bind(this),
       errors: this._saveErrors.bind(this)
@@ -52,6 +65,10 @@ DbAlpha.Views.Post = Backbone.View.extend({
   toggleCondense: function () {
     this.state = null;
     this.render();
+  },
+
+  _deleteSuccess: function () {
+    this.collection.remove(this.model);
   },
 
   _saveErrors: function (model, response) {
