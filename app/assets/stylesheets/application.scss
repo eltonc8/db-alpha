@@ -26,20 +26,24 @@ body {
   border-bottom: 1px solid #001733;
 }
 
-.navbar-nav > li > .nav-box {
+.navbar-nav li .nav-box {
   padding: 12px;
 }
 
-.navbar-nav > li > .nav-search > input {
+.navbar-nav li .nav-box form input{
+  color: #000;
+}
+
+.navbar-nav li .nav-search input {
   color: #000;
   width: 4em;
-  transition: width 1s;
+  transition: width 0.5s;
 }
 
 .navbar-nav > li > .nav-search > input:hover,
 .navbar-nav > li > .nav-search > input:focus {
   width: 10em;
-  transition: width 1s;
+  transition: width 0.5s;
 }
 
 .navbar-nav > li > .nav-name  {
