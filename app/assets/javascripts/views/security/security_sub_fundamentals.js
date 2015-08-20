@@ -1,3 +1,5 @@
-DbAlpha.Views.Fundamentals = Backbone.CompositeView.extend({
-  
+DbAlpha.Views.SecurityFundamentals = Backbone.View.extend({
+  render: function () {
+
+  }
 });

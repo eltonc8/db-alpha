@@ -9,10 +9,14 @@ DbAlpha.Views.SecuritySubInfo = Backbone.CompositeView.extend({
   },
 
   attachFundamentals: function () {
-    var fundamentals = new DbAlpha.Views.Fundamentals({
+    var fundamentals = new DbAlpha.Views.SecurityFundamentals({
       model: this.model
     });
-    this.addSubview("div.info-fundamentals-container");
+    this.addSubview("div.info-fundamentals-container",
+      new DbAlpha.Views.SecurityFundamentals({
+        model: this.model
+      })
+    );
   },
 
   render: function () {

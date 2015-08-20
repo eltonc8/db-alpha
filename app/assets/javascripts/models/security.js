@@ -1,5 +1,6 @@
 DbAlpha.Models.Security = Backbone.Model.extend({
   urlRoot: "/api/securities",
+
   url: function () {
     return this.urlRoot + "/" + ( this.escape("symbol") || this.escape("id") );
   },
@@ -29,11 +30,9 @@ DbAlpha.Models.Security = Backbone.Model.extend({
   },
 
   quotes: function () {
-    if (!this._quote) {
-      this._quote = new Backbone.YqlQuery({
-        query: 'select*from yahoo.finance.quotes where symbol="'+ this.escape("symbol") +'"'
-      });
-    }
+    if (!this._quote) { this._quote = new Backbone.StockQuery({
+      security: this
+    }); }
 
     return this._quote;
   }

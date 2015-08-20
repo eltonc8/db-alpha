@@ -4,7 +4,7 @@ Backbone.YqlQuery = Backbone.Model.extend({
   url: function () {
     var uri = this.rootUrl;
     if (this.query) { uri += "&q=" + encodeURIComponent(this.query); }
-    
+
     return uri;
   },
 
@@ -14,5 +14,21 @@ Backbone.YqlQuery = Backbone.Model.extend({
 
   parse: function (response) {
     return response.query;
+  }
+});
+
+Backbone.StockQuery = Backbone.YqlQuery.extend({
+  queryRoot: 'select*from yahoo.finance.quotes where symbol="#{}"',
+
+  initialize: function (options) {
+    if (options && options.security) { this.security = options.security; }
+    this.listenTo(this.security, "sync", this.updateQuery);
+    this.updateQuery();
+  },
+
+  updateQuery: function () {
+    this.set({
+      query: this.queryRoot.replace("#{}", this.security.escape("symbol"))
+    });
   }
 });
