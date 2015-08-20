@@ -108,3 +108,22 @@ ul.article-feed {
 .article-list-item:hover {
   background-color: #eee;
 }
+
+// format for security fundamentals
+
+li.fundamental-item.red {
+  background-color: red;
+}
+
+li.fundamental-item.green {
+  background-color: green;
+}
+
+li.fundamental-item {
+  background-color: white;
+  transition: background-color 1s ease-in;
+  display: block;
+  padding: 1em;
+  font-size: 1em;
+  list-style-type: none;
+}

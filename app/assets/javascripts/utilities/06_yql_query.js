@@ -3,13 +3,13 @@ Backbone.YqlQuery = Backbone.Model.extend({
 
   url: function () {
     var uri = this.rootUrl;
-    if (this.query) { uri += "&q=" + encodeURIComponent(this.query); }
+    if (this.attributes.query) { uri += "&q=" + encodeURIComponent(this.attributes.query); }
 
     return uri;
   },
 
   initialize: function (options) {
-    if (options.query) { this.query = options.query; }
+    if (options.query) { this.attributes.query = options.query; }
   },
 
   parse: function (response) {
@@ -28,7 +28,7 @@ Backbone.StockQuery = Backbone.YqlQuery.extend({
 
   updateQuery: function () {
     this.set({
-      query: this.queryRoot.replace("#{}", this.security.escape("symbol"))
+      query: this.queryRoot.replace("#{}", this.security.get("symbol"))
     });
   }
 });
