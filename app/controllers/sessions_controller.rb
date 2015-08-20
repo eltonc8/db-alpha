@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       sign_in!
       redirect_to root_url
     else
-      flash[:user_notices] = ['Invalid email and password combination']
+      flash.now[:user_notices] = ['Invalid email and password combination']
       render :new, status: 422
     end
   end

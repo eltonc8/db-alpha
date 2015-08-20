@@ -1,8 +1,6 @@
 # db-Alpha
 
-[Heroku link][heroku]
-
-[heroku]: http://pending.herokuapp.com
+[heroku]: http://dbalpha.herokuapp.com
 
 ## Minimum Viable Product
 db-Alpha is a clone of SeekingAlpha built on Rails and Backbone. Users can:

@@ -1,4 +1,4 @@
-DbAlpha.Views.SecurityTradingviewWidget = Backbone.CompositeView.extend({
+DbAlpha.Views.SecurityTradingviewWidget = Backbone.View.extend({
   template: JST["security/security_tradingview_widget"],
   className: "security-show-sub-links",
 
