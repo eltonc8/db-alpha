@@ -20,11 +20,12 @@
 }
 
 .dropdown {
-  display: inline-block
+  display: inline-block;
+  padding: 1em;
 }
 
 .security-show-sub-info {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 img.logo {
@@ -57,7 +58,7 @@ img.logo {
   margin: 0.25em;
   padding: 0.5em;
   text-align: center;
-  background-color: #eee;
+  border-bottom: 0.2em solid black;
 }
 
 div.article-header {
@@ -70,7 +71,9 @@ div.article-header {
   font-weight: bold;
   padding: 1em;
   padding-top: 1.5em;
-  background-color: #F8F8F8;
+  padding-bottom: 0.5em;
+  background-color: #FFF;
+  border-bottom: 0.1em solid black;
 }
 
 
@@ -100,6 +103,10 @@ ul.article-feed {
   font-weight: bolder;
 }
 
+input.article-title {
+  width: auto;
+}
+
 .published-date {
   font-size: 0.8em;
   padding-left: 1em;
@@ -113,13 +120,13 @@ ul.article-feed {
 
 li.fundamental-item.red {
   background-color: red;
-  // transition: background-color 0.5s ease-out;
+  transition: background-color 0.2s ease-in;
 }
 
 li.fundamental-item:hover,
 li.fundamental-item.green {
   background-color: green;
-  // transition: background-color 0.5s ease-out;
+  transition: background-color 0.2s ease-in;
 }
 
 li.fundamental-item {

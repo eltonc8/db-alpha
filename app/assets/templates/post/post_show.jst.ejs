@@ -1,7 +1,9 @@
-<div class="post-title article-title"><%= model.escape("title") %></div>
+<div class="post-toggle-hide">
+  <div class="post-title article-title"><%= model.escape("title") %></div>
 
-<div class="post-body"><%= marked(model.escape("body")) %></div>
+  <div class="post-body"><%= marked(model.escape("body")) %></div>
 
-<% if (model.escape("editable")) { %>
-  <button class="btn edit">Edit</button>
-<% } %>
+  <% if (model.escape("editable")) { %>
+    <button class="btn edit">Edit</button>
+  <% } %>
+</div>

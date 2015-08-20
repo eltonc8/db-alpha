@@ -3,6 +3,7 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
   fundamentals: {
     LastTradePriceOnly: "last trade",
     Change: "change",
+    ChangeinPercent: "%change",
     YearLow: "52wk low",
     YearHigh: "52wk high",
     EarningsShare: "earnings/share",

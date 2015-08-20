@@ -26,11 +26,11 @@ DbAlpha.Views.SecurityFundamentalItem = Backbone.CompositeView.extend({
 
   _triggerGreen: function () {
     this.$el.addClass("green");
-    setTimeout(this._triggerDefault.bind(this), 300);
+    setTimeout(this._triggerDefault.bind(this), 200);
   },
 
   _triggerRed: function () {
     this.$el.addClass("red");
-    setTimeout(this._triggerDefault.bind(this), 300);
+    setTimeout(this._triggerDefault.bind(this), 200);
   },
 });

@@ -14,11 +14,22 @@
 .post-index-title {
   font-size: 1.5em;
   padding: 1em;
-  background-color: #EEE;
+  padding-bottom: 0.25em;
+  background-color: #FFF;
+  border-bottom: 0.1em solid #000;
+}
+
+.post-form {
+  width: 100%;
 }
 
 ul.post-index-list {
   padding: 0;
+}
+
+button.post-index-new {
+  align-content: center;
+  font-size: 0.5em;
 }
 
 .post-list-item {

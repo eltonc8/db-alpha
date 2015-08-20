@@ -1,2 +1,4 @@
-<div class="post-title article-title"><%= model.escape("title") %></div>
-<%= JST["shared/published_date"]({ date: model.escape("created_at") }) %>
+<div class="post-toggle-show">
+  <div class="post-title article-title"><%= model.escape("title") %></div>
+  <%= JST["shared/published_date"]({ date: model.escape("created_at") }) %>
+</div>

@@ -11,7 +11,8 @@
       type="text"
       placeholder="Title (required)"
       value="<%= model.escape("title") %>"
-      id="post-title"/>
+      class="post-title post-form"
+      id="form-group"/>
   </div>
 
   <div class='form-group'>
@@ -21,7 +22,7 @@
       type="checkbox"
       value="public"
       <%= /\bpublic\b/i.test(model.escape("shared_with")) ? "checked" : ""%>
-      id="post-title"/>public
+      class="post-shared-with"/>public
   </div>
 
   <div class='form-group'>
@@ -29,9 +30,10 @@
     <input
       name="post[tags]"
       type="text"
+      class="post-form"
       placeholder="Tags (optional)"
       value="<%= model.escape("tags") %>"
-      id="post-title"/>
+      id="post-tags"/>
   </div>
 
   <div class='form-group'>
@@ -41,6 +43,7 @@
     name="post[body]"
     placeholder="Body (optional)"
     data-provide="markdown-editable"
+    class="post-form"
     id="post-body"><%= model.escape("body") %></textarea>
   </div>
 
