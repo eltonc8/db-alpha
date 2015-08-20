@@ -8,28 +8,29 @@ DbAlpha.Views.SecurityFundamentalItem = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( this.label + ": " + this.value );
-
+    this.$el.html( "<strong>" + this.label + "</strong>: " + this.value);
     return this;
   },
 
   update: function (values) {
-    if (this.value < values[this.label]) { this._triggerGreen(); }
-    else if (this.value > values[this.label]) { this._triggerRed(); }
-    this.value = values[this.label];
+    var val = values[this.key]
+    if (this.value < val) { this._triggerGreen(); }
+    else if (this.value > val) { this._triggerRed(); }
+    this.value = values[this.key];
+    this.render();
   },
 
   _triggerDefault: function () {
-    this.removeClass("red").removeClass("green");
+    this.$el.removeClass("red").removeClass("green");
   },
 
   _triggerGreen: function () {
-    this.addClass("green");
-    setTimeout(_triggerDefault.bind(this), 1);
+    this.$el.addClass("green");
+    setTimeout(this._triggerDefault.bind(this), 300);
   },
 
   _triggerRed: function () {
-    this.addClass("red");
-    setTimeout(_triggerDefault.bind(this), 1);
+    this.$el.addClass("red");
+    setTimeout(this._triggerDefault.bind(this), 300);
   },
 });

@@ -9,7 +9,6 @@ DbAlpha.Views.SecuritySubInfo = Backbone.CompositeView.extend({
   },
 
   attachFundamentals: function () {
-    debugger
     var fundamentals = new DbAlpha.Views.SecurityFundamentals({
       model: this.model
     });

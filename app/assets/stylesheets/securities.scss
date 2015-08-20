@@ -113,17 +113,28 @@ ul.article-feed {
 
 li.fundamental-item.red {
   background-color: red;
+  // transition: background-color 0.5s ease-out;
 }
 
+li.fundamental-item:hover,
 li.fundamental-item.green {
   background-color: green;
+  // transition: background-color 0.5s ease-out;
 }
 
 li.fundamental-item {
   background-color: white;
-  transition: background-color 1s ease-in;
+  transition: background-color 0.5s ease-in;
   display: block;
-  padding: 1em;
-  font-size: 1em;
+  width: 12em;
+  margin: 0.25em;
+  padding: 0.5em;
+  font-size: 1.0em;
+  float: left;
   list-style-type: none;
+  border: 1px solid #EEE;
+}
+
+ul.fundamental-list:after {
+  clear: both;
 }
