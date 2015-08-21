@@ -12,6 +12,22 @@
 
     <ul class="nav navbar-nav navbar-right">
       <% if signed_in? %>
+      <li>
+        <div class="dropdown">
+          <div class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            navigate to
+            <span class="caret"></span>
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li>
+              <a href="#" class='btn'>Market View</a>
+            </li>
+            <li>
+              <a href="#" class='btn'>My Dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </li>
       <li class="nav-item"><div class="nav-name"><%= "Welcome, #{ current_user.email }".html_safe %></div></li>
       <li class="nav-item"><div class="nav-box"><%= button_to "Sign Out", session_url, method: :delete %></div></li>
       <% else %>
