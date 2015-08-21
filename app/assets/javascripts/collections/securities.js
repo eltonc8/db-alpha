@@ -2,8 +2,6 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
   model: DbAlpha.Models.Security,
   url: "/api/links",
 
-
-
   getOrFetch: function (value) {
     var security, attrs;
     if (+value) {
@@ -18,5 +16,10 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
     this.add(security, {merge: true});
 
     return security;
-  }
+  },
+
+  getSymbols: function () {
+    debugger
+    return this.map(function (model) { return model.escape("symbol"); } );
+  };
 });

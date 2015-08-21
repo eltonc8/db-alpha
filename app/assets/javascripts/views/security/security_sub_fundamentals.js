@@ -44,7 +44,9 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
     if ( 12 < time.getUTCHours() && time.getUTCHours() < 20) {
       return 2000 + 8000 * Math.random();
     } else {
-      return 3600000;
+      time.setUTCHours(13);
+      time.setDate(time.getDate() + (time.getDay() === 5 && 3) || (time.getDay() === 6 && 2) || 1);
+      return new Date() - time;
     }
   },
 

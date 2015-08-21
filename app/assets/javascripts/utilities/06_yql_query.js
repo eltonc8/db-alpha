@@ -18,7 +18,7 @@ Backbone.YqlQuery = Backbone.Model.extend({
 });
 
 Backbone.StockQuery = Backbone.YqlQuery.extend({
-  queryRoot: 'select*from yahoo.finance.quotes where symbol="#{}"',
+  queryRoot: 'SELECT*FROM yahoo.finance.quotes WHERE symbol="#{}"',
 
   initialize: function (options) {
     if (options && options.security) { this.security = options.security; }
@@ -29,6 +29,22 @@ Backbone.StockQuery = Backbone.YqlQuery.extend({
   updateQuery: function () {
     this.set({
       query: this.queryRoot.replace("#{}", this.security.get("symbol"))
+    });
+  }
+});
+
+Backbone.StocksQuery = Backbone.YqlQuery.extend({
+  queryRoot: 'SELECT Symbol,Change,LastTradePriceOnly FROM yahoo.finance.quote WHERE symbol in("#{}")',
+
+  initialize: function (options) {
+    if (options && options.collection) { this.collection = options.collection; }
+    this.listenTo(this.collection, "sync", this.updateQuery);
+    this.updateQuery();
+  },
+
+  updateQuery: function () {
+    this.set({
+      query: this.queryRoot.replace('#{}', this.collection.getSymbols().join('","').toUpperCase)
     });
   }
 });
