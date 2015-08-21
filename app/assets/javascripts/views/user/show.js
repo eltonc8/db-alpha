@@ -1,5 +1,5 @@
 DbAlpha.Views.UserShow = Backbone.CompositeView.extend({
-  template: JST['security/user_show'],
+  template: JST['security/security_show'],
   className: "user-show row",
 
   initialize: function () {
@@ -8,20 +8,20 @@ DbAlpha.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addViews: function () {
-    this.addSubview('.left',
-      new DbAlpha.Views.SecuritySubInfo({ model: this.model })
-    );
-    this.addSubview('.left',
-      new DbAlpha.Views.SecurityTradingviewWidget({ model: this.model })
-    );
-    this.addSubview('.top',
-      new DbAlpha.Views.SecuritySubRss({ model: this.model })
-    );
-    this.addSubview('.top',
-      new DbAlpha.Views.SecuritySubTwitter({ model: this.model })
-    );
+    // this.addSubview('.left',
+    //   new DbAlpha.Views.SecuritySubInfo({ model: this.model })
+    // );
+    // this.addSubview('.left',
+    //   new DbAlpha.Views.SecurityTradingviewWidget({ model: this.model })
+    // );
+    // this.addSubview('.top',
+    //   new DbAlpha.Views.SecuritySubRss({ model: this.model })
+    // );
+    // this.addSubview('.top',
+    //   new DbAlpha.Views.SecuritySubTwitter({ model: this.model })
+    // );
     this.addSubview('.bottom',
-      new DbAlpha.Views.PostIndex({ model: this.model })
+      new DbAlpha.Views.PostIndex()
     );
   },
 

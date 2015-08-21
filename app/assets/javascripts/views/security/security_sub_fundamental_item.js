@@ -13,7 +13,9 @@ DbAlpha.Views.SecurityFundamentalItem = Backbone.CompositeView.extend({
   },
 
   update: function (values) {
-    var val = values[this.key]
+    var val = +values[this.key] ?
+              Math.round(values[this.key] * 100) / 100 :
+              values[this.key];
     if (this.value < val) { this._triggerGreen(); }
     else if (this.value > val) { this._triggerRed(); }
     this.value = values[this.key];

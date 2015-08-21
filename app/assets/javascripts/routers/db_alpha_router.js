@@ -6,11 +6,12 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
 
   routes: {
     "": "root",
-    "securities/:value": "securityShow"
+    "securities/:value": "securityShow",
+    "homepage": "userShow",
   },
 
   root: function () {
-    Backbone.history.navigate("#/securities/spy")
+    Backbone.history.navigate("#/securities/spy");
     // var view = new DbAlpha.Views.Root({});
     // this._swapView(view);
   },
@@ -19,6 +20,11 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
     var view = new DbAlpha.Views.SecurityShow({
       model: this.collection.getOrFetch(value)
     });
+    this._swapView(view);
+  },
+
+  userShow: function () {
+    var view = new DbAlpha.Views.UserShow({});
     this._swapView(view);
   },
 
