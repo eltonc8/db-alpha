@@ -2,6 +2,8 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
   model: DbAlpha.Models.Security,
   url: "/api/links",
 
+
+
   getOrFetch: function (value) {
     var security, attrs;
     if (+value) {

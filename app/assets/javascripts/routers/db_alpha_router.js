@@ -12,8 +12,10 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
 
   root: function () {
     Backbone.history.navigate("#/securities/spy");
-    // var view = new DbAlpha.Views.Root({});
-    // this._swapView(view);
+    var view = new DbAlpha.Views.Markets({
+      collection: this.collection
+    });
+    this._swapView(view);
   },
 
   securityShow: function (value) {

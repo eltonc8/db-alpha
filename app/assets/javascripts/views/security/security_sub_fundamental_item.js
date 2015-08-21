@@ -1,4 +1,4 @@
-DbAlpha.Views.SecurityFundamentalItem = Backbone.CompositeView.extend({
+DbAlpha.Views.SecurityFundamentalItem = Backbone.View.extend({
   tagName: "li",
   className: "fundamental-item",
 
@@ -13,12 +13,13 @@ DbAlpha.Views.SecurityFundamentalItem = Backbone.CompositeView.extend({
   },
 
   update: function (values) {
-    var val = +values[this.key] ?
-              Math.round(values[this.key] * 100) / 100 :
-              values[this.key];
-    if (this.value < val) { this._triggerGreen(); }
-    else if (this.value > val) { this._triggerRed(); }
-    this.value = values[this.key];
+    var val = values[this.key];
+    val = Math.round(val * 100) / 100 ||
+        (/%/.test(val) && Math.round(/-?\d*\.\d*/.exec(val) * 100) / 100 + "%" ) ||
+        val;
+    if (+this.value && this.value < val) { this._triggerGreen(); }
+    else if (+this.value && this.value > val) { this._triggerRed(); }
+    this.value = val;
     this.render();
   },
 
