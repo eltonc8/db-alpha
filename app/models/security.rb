@@ -11,24 +11,28 @@ class Security < ActiveRecord::Base
       result = nil
     end
 
-    if result
-      #Cannot be refactored into instance method, as Feedjira cannot be used in an instance method yet.
-      result.feeds = Feedjira::Feed.fetch_and_parse("http://feeds.finance.yahoo.com/rss/2.0/headline?region=US&s=#{result.symbol.html_safe}")
-
-      /for (?<name>.*)\Z/ =~ result.feeds.description #grabs the name out of the feed
-      name.slice!(/ (common|comm|new com)\b.*\Z/i)
-
-      if name
-        result.name ||= name.dup
-        google_web = Google::Search::Web.new(query: name + " investor")
-        result.website ||= google_web.first.visible_uri
-        name.slice!(/ (inc|corp)\.+.*\Z/i)
-        google_image = Google::Search::Image.new(query: name + " logo")
-        result.image ||= google_image.first.uri
-      end
-    end
+    result.update_data if result
 
     result
+  end
+
+  def update_data
+    self.feeds = Feedjira::Feed.fetch_and_parse("http://feeds.finance.yahoo.com/rss/2.0/headline?region=US&s=#{symbol.html_safe}")
+
+    /for (?<qname>.*)\Z/ =~ feeds.description #grabs the name out of the feed
+    qname.slice!(/ (common|comm|new com)\b.*\Z/i)
+    self.name = qname
+
+    if name && ( updated_at && updated_at > 1.day.ago) || !image || !website
+      qname = name.dup
+      google_web = Google::Search::Web.new(query: qname + " investor")
+      self.website ||= google_web.first.visible_uri
+      name.slice!(/ (inc|corp)\.+.*\Z/i)
+      google_image = Google::Search::Image.new(query: name + " logo")
+      self.image ||= google_image.first.uri
+
+      self.save
+    end
   end
 
   def symbol=(symbol_string)
