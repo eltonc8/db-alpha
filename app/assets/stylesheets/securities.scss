@@ -21,7 +21,11 @@
 
 .dropdown {
   display: inline-block;
-  padding: 1em;
+}
+
+#dropdownMenu1 {
+  float: left;
+  margin: 1em;
 }
 
 .security-show-sub-info {
