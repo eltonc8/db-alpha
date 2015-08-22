@@ -32,7 +32,7 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
   },
 
   _updateQuote: function () {
-    this.model.quotes().fetch();
+    this.collection.quotes().fetch();
     setTimeout(function () {
         this._updateQuote();
       }.bind(this), this._updateQuoteTimer()
@@ -45,8 +45,9 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
       return 2000 + 8000 * Math.random();
     } else {
       time.setUTCHours(13);
+      time.setMinutes(29);
       time.setDate(time.getDate() + (time.getDay() === 5 && 3) || (time.getDay() === 6 && 2) || 1);
-      return new Date() - time;
+      return time - new Date();
     }
   },
 

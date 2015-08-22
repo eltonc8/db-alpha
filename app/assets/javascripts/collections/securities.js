@@ -21,5 +21,5 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
   getSymbols: function () {
     debugger
     return this.map(function (model) { return model.escape("symbol"); } );
-  };
+  },
 });

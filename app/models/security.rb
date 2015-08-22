@@ -27,8 +27,8 @@ class Security < ActiveRecord::Base
       qname = name.dup
       google_web = Google::Search::Web.new(query: qname + " investor")
       self.website ||= google_web.first.visible_uri
-      name.slice!(/ (inc|corp)\.+.*\Z/i)
-      google_image = Google::Search::Image.new(query: name + " logo")
+      qname.slice!(/ (inc|corp)\.+.*\Z/i)
+      google_image = Google::Search::Image.new(query: qname + " logo")
       self.image ||= google_image.first.uri
 
       self.save

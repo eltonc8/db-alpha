@@ -29,11 +29,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   _updateQuoteTimer: function () {
     var time = new Date();
     if ( 12 < time.getUTCHours() && time.getUTCHours() < 20) {
-      return 2000 + 8000 * Math.random();
+      return 8000 + 2000 * Math.random();
     } else {
       time.setUTCHours(13);
+      time.setMinutes(29);
       time.setDate(time.getDate() + (time.getDay() === 5 && 3) || (time.getDay() === 6 && 2) || 1);
-      return new Date() - time;
+      return time - new Date();
     }
   },
 
