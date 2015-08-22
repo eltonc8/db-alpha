@@ -12,12 +12,12 @@ DbAlpha.Views.SecurityFundamentalItem = Backbone.View.extend({
     return this;
   },
 
-  update: function (values) {
-    var val = values[this.key];
+  update: function (quotes) {
+    var val = quotes[this.key];
     val = Math.round(val * 100) / 100 ||
-        (/%/.test(val) && Math.round(/-?\d*\.\d*/.exec(val) * 100) / 100 + "%" ) ||
-        val;
-    if (+this.value && this.value < val) { this._triggerGreen(); }
+          (/%/.test(val) && Math.round(/-?\d*\.\d*/.exec(val) * 100) / 100 + "%" ) ||
+          val;
+    if      (+this.value && this.value < val) { this._triggerGreen(); }
     else if (+this.value && this.value > val) { this._triggerRed(); }
     this.value = val;
     this.render();

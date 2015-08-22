@@ -22,4 +22,12 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
     debugger
     return this.map(function (model) { return model.escape("symbol"); } );
   },
+
+  quotes: function () {
+    if (!this._quotes) { this._quotes = new Backbone.StocksQuery({
+      collection: this
+    }); }
+
+    return this._quotes;
+  }
 });

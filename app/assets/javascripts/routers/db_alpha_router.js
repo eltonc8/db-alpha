@@ -5,14 +5,14 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   routes: {
-    "": "root",
+    "": "marketView",
+    "securities/": "marketView",
     "securities/:value": "securityShow",
     "homepage": "userShow",
   },
 
-  root: function () {
-    Backbone.history.navigate("#/securities/spy");
-    var view = new DbAlpha.Views.Markets({
+  marketView: function () {
+    var view = new DbAlpha.Views.MarketBoard({
       collection: this.collection
     });
     this._swapView(view);

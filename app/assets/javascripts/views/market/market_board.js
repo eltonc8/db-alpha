@@ -1,5 +1,14 @@
 DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
+  djia: ["AAPL","AXP","BA","CAT","CSCO",
+         "CVX","DD","DIS","GE","GS",
+         "HD","IBM","INTC","JNJ","JPM",
+         "KO","MCD","MMM","MRK","MSFT",
+         "NKE","PFE","PG","TRV","UNH",
+         "UTX","V","VZ","WMT","XOM"],
+
   initialize: function () {
+    _(this.djia).each( this.collection.getOrFetch.bind(this.collection) );
+    debugger
     this.collection._updateQuote();
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._updateBoardItems);
