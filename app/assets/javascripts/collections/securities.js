@@ -8,7 +8,7 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
       attr = { id: value };
       security = this.get(value);
     } else {
-      attr = { symbol: value };
+      attr = { symbol: value.toUpperCase() };
       security = this.findWhere( attr );
     }
     if (!security) { security = new this.model( attr ); }

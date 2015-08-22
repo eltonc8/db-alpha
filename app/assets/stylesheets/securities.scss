@@ -120,7 +120,7 @@ input.article-title {
   background-color: #eee;
 }
 
-// format for security fundamentals
+/* format for security fundamentals */
 
 li.fundamental-item.red {
   background-color: red;
@@ -148,4 +148,17 @@ li.fundamental-item {
 
 ul.fundamental-list:after {
   clear: both;
+}
+
+
+/* format for market show */
+
+li.board-item {
+  float: left;
+  height: 12em;
+  width: 12em;
+  text-align: center;
+  list-style: none;
+  background-color: #000;
+  color: #FFF;
 }

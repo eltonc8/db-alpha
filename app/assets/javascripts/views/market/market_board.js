@@ -1,10 +1,11 @@
 DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
-  djia: ["AAPL","AXP","BA","CAT","CSCO",
-         "CVX","DD","DIS","GE","GS",
-         "HD","IBM","INTC","JNJ","JPM",
-         "KO","MCD","MMM","MRK","MSFT",
-         "NKE","PFE","PG","TRV","UNH",
-         "UTX","V","VZ","WMT","XOM"],
+  djia: [ "AAPL","AXP","BA","CAT","CSCO",
+          "CVX","DD","DIS","GE","GS",
+          "HD","IBM","INTC","JNJ","JPM",
+          "KO","MCD","MMM","MRK","MSFT",
+          "NKE","PFE","PG","TRV","UNH",
+          "UTX","V","VZ","WMT","XOM"],
+  className: "market-board",
 
   initialize: function () {
     _(this.djia).each( this.collection.getOrFetch.bind(this.collection) );
@@ -15,7 +16,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( $("<ul>") );
+    this.$el.html( $("<ul>").addClass("market-board") );
     this.attachSubviews();
     return this;
   },
@@ -47,6 +48,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _updateBoardItems: function () {
+    debugger
     var quote = this.collection.quotes().attributes.results.quote;
     this.eachSubview( function (boardItem) {
       boardItem.update(quote);
