@@ -32,7 +32,7 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
   },
 
   _updateQuote: function () {
-    this.collection.quotes().fetch();
+    this.model.quotes().fetch();
     setTimeout(function () {
         this._updateQuote();
       }.bind(this), this._updateQuoteTimer()

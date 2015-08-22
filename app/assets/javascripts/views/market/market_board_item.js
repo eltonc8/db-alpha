@@ -3,7 +3,8 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
   tagName: "li",
   className: "board-item",
 
-  initialize: function () {},
+  initialize: function () {
+  },
 
   render: function () {
     var content = this.template({model: this.model});

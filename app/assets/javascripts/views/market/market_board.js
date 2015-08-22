@@ -8,8 +8,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   initialize: function () {
     _(this.djia).each( this.collection.getOrFetch.bind(this.collection) );
-    debugger
-    this.collection._updateQuote();
+    this._updateQuote();
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._updateBoardItems);
     this.collection.each(this._addBoardItem.bind(this));
@@ -23,12 +22,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _addBoardItem: function (model) {
     this.addSubview("ul", new DbAlpha.Views.MarketBoardItem({
-      model: this.model
+      model: model
     }));
   },
 
   _updateQuote: function () {
-    this.model.quotes().fetch();
+    this.collection.quotes().fetch();
     setTimeout(function () {
         this._updateQuote();
       }.bind(this), this._updateQuoteTimer()
