@@ -4,6 +4,7 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
   className: "board-item",
 
   initialize: function () {
+    this.listenTo( this.model, "sync", this.render );
   },
 
   render: function () {

@@ -20,7 +20,7 @@ class Security < ActiveRecord::Base
     self.feeds = Feedjira::Feed.fetch_and_parse("http://feeds.finance.yahoo.com/rss/2.0/headline?region=US&s=#{symbol.html_safe}")
 
     /for (?<qname>.*)\Z/ =~ feeds.description #grabs the name out of the feed
-    qname.slice!(/ (common|comm|new com)\b.*\Z/i)
+    qname.slice!(/ (common|commo|comm|new com)\b.*\Z/i)
     self.name = qname
 
     if name && ( updated_at && updated_at > 1.day.ago) || !image || !website
