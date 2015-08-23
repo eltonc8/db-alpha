@@ -48,13 +48,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _distributeQuotes: function () {
-    var quotes = this.collection.quotes().attributes.results.quote;
-    debugger
+    var quotes = this.collection.quotes().get("results").quote;
     var idx = 0;
     this.collection.each(function (model) {
       if ( RegExp(quotes[idx].Symbol, "i").test(model.get("symbol")) ) {
-        model.quotes().set("results", quotes[idx])
-        debugger
+        model.quotes().set("results", {quote: quotes[idx]});
+        // debugger
       }
     });
   },

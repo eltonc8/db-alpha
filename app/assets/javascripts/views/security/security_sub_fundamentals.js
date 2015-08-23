@@ -44,15 +44,15 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
     if ( 12 < time.getUTCHours() && time.getUTCHours() < 20) {
       return 2000 + 8000 * Math.random();
     } else {
-      time.setUTCHours(13);
       time.setMinutes(29);
+      time.setUTCHours(13);
       time.setDate(time.getDate() + (time.getDay() === 5 && 3) || (time.getDay() === 6 && 2) || 1);
       return time - new Date();
     }
   },
 
   _updateFundamental: function () {
-    var quote = this.model.quotes().attributes.results.quote;
+    var quote = this.model.quotes().get("results").quote;
     this.eachSubview( function (fundamentalItem) {
       fundamentalItem.update(quote);
     });
