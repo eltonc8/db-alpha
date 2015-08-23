@@ -38,7 +38,7 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
 
   initialize: function (options) {
     if (options && options.collection) { this.collection = options.collection; }
-    this.listenTo(this.collection, "sync", this.updateQuery);
+    this.listenTo(this.collection, "sync sort", this.updateQuery);
     this.updateQuery();
   },
 
@@ -49,7 +49,6 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
   },
 
   parse: function (response) {
-    debugger
     return response.query;
   }
 });

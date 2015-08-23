@@ -11,7 +11,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     _(this.djia).each( this.collection.getOrFetch.bind(this.collection) );
     this._updateQuote();
     this.listenTo(this.collection, "add", this._addBoardItem);
-    this.listenTo(this.collection.quotes(), "sync", this._updateBoardItems);
+    this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
     this.collection.each(this._addBoardItem.bind(this));
   },
 
@@ -47,11 +47,15 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     }
   },
 
-  _updateBoardItems: function () {
+  _distributeQuotes: function () {
+    var quotes = this.collection.quotes().attributes.results.quote;
     debugger
-    var quote = this.collection.quotes().attributes.results.quote;
-    this.eachSubview( function (boardItem) {
-      boardItem.update(quote);
+    var idx = 0;
+    this.collection.each(function (model) {
+      if ( RegExp(quotes[idx].Symbol, "i").test(model.get("symbol")) ) {
+        model.quotes().set("results", quotes[idx])
+        debugger
+      }
     });
   },
 });

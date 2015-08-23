@@ -164,6 +164,20 @@ li.board-item {
   box-shadow: inset 0px 0px 10em #000;
 }
 
+div.board-item {
+  display: block;
+  height: 16.6%;
+}
+
+div.board-item.name {
+  overflow: hidden;
+  font-size: 0.75em;
+}
+
+div.board-item.symbol {
+  font-weight: bold;
+}
+
 div.board-item.logo {
   height: 33.3%;
   width: 80%;
@@ -174,16 +188,4 @@ div.board-item.logo {
 div.board-item.logo > img {
   max-width:100%;
   max-height:100%;
-}
-
-div.board-item.symbol {
-  display: block;
-  height: 16.6%;
-}
-
-div.board-item.name {
-  display: block;
-  height: 16.6%;
-  overflow: hidden;
-  font-size: 0.75em;
 }
