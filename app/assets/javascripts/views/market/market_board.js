@@ -54,7 +54,8 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     } else {
       time.setUTCHours(13);
       time.setMinutes(29);
-      time.setDate(time.getDate() + (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1);
+      var dayDelay = (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1;
+      time.setDate(time.getDate() + dayDelay);
       return time - new Date();
     }
   },

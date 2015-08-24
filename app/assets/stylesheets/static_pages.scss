@@ -31,6 +31,7 @@
     margin: auto;
     position: relative;
 		display: block;
+		min-width: 800px;
     width: 100%;
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
@@ -38,6 +39,7 @@
 #slideshow:before{
 	content:	"";
 	display:  block;
+	min-height: 480px;
 	padding-top: 60%;
 }
 /*controls content*/
