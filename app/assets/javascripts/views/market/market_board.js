@@ -8,7 +8,10 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   className: "market-board after-clear",
 
   initialize: function () {
-    _(this.djia).each( this.collection.getOrFetch.bind(this.collection) );
+    _(this.djia).each( function (symbol) {
+      this.collection.getOrFetch(symbol, {delayFetch: true}).bind(this.collection);
+    }.bind(this));
+    this.collection.fetch({merge: true});
     this._updateQuote();
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
