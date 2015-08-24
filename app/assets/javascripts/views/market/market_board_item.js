@@ -12,6 +12,7 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
 
   render: function () {
     var content = this.template({model: this.model});
+    this.$el.data("symbol", this.model.escape("symbol") );
     this.$el.html( content );
     this.update();
     return this;
