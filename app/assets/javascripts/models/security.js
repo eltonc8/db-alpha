@@ -1,5 +1,6 @@
 DbAlpha.Models.Security = Backbone.Model.extend({
   urlRoot: "/api/securities",
+  idAttribute: "symbol",
 
   url: function () {
     return this.urlRoot + "/" + ( this.escape("symbol") || this.escape("id") );

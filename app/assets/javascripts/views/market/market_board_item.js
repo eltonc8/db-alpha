@@ -1,7 +1,7 @@
 DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
   template: JST["market/board_list_item"],
   tagName: "li",
-  className: "board-item",
+  className: "board-item after-clear",
 
   initialize: function () {
     this._percent = 0;
@@ -56,7 +56,8 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
     setTimeout(this._triggerDefault.bind(this), 200);
   },
 
-  _update: function (option) {
-    setTimeout(this.update.bind(this), Math.random() * (option || 8000));
+  _update: function (delay) {
+    debugger
+    setTimeout(this.update.bind(this), Math.random() * (delay || 8000));
   }
 });

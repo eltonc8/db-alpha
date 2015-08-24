@@ -202,15 +202,16 @@ div.board-item.name {
 
 div.board-item.symbol {
   font-weight: bold;
+  font-size: 1.5em;
 }
 
 div.board-item.logo {
   height: 33.3%;
-  width: 80%;
+  width: 100%;
+  padding: 1em 2em;
   display: block;
   margin: auto;
-  background-color: #FFF;
-  box-shadow: 0 0 1em #FFF;
+  text-shadow: 0 0 1em #000;
 }
 
 div.board-item.logo > img {
@@ -230,4 +231,6 @@ div.board-item.last-trade {
 div.board-item.percent-change {
   height: 16.6%;
   width: 100%;
+  text-shadow: 0 0 0.1em black;
+  font-size: 1.5em;
 }
