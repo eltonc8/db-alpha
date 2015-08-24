@@ -122,15 +122,22 @@ input.article-title {
 
 /* format for security fundamentals */
 
+li.board-item.red,
 li.fundamental-item.red {
   background-color: red;
   transition: background-color 0.2s ease-in;
 }
 
+li.board-item.green,
+li.board-item:hover,
 li.fundamental-item:hover,
 li.fundamental-item.green {
   background-color: green;
   transition: background-color 0.2s ease-in;
+}
+
+li.board-item {
+  transition: background-color 0.5s ease-in;
 }
 
 li.fundamental-item {
@@ -199,4 +206,9 @@ div.board-item.change,
 div.board-item.last-trade {
   width: 50%;
   float: left;
+}
+
+div.board-item.percent-change {
+  height: 16.6%;
+  width: 100%;
 }
