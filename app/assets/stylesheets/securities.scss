@@ -194,3 +194,9 @@ div.board-item.logo > img {
   display: block;
   vertical-align: middle;
 }
+
+div.board-item.change,
+div.board-item.last-trade {
+  width: 50%;
+  float: left;
+}

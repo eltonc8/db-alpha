@@ -5,24 +5,23 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
 
   initialize: function () {
     this.listenTo( this.model, "sync", this.render );
-    this.listenTo( this.model.quotes(), "sync", this.update );
+    this.listenTo( this.model.quotes(), "sync change", this._update );
     this.render();
   },
 
   render: function () {
     var content = this.template({model: this.model});
     this.$el.html( content );
-    this.update();
+    this._update();
     return this;
   },
 
   update: function () {
     if (!this.model.quotes().get("results")) return;
     var quote = this.model.quotes().get("results").quote;
-    debugger
-    this.$("div.percent-change").html( quote.PercentChange );
-    this.$("div.change").html( quote.Change );
-    this.$("div.last-trade").html( quote.LastTradePriceOnly );
+    this.$("div.percent-change").html( _.escape(quote.PercentChange) );
+    this.$("div.change").html( _.escape(quote.Change) );
+    this.$("div.last-trade").html( _.escape(quote.LastTradePriceOnly) );
   },
 
   _triggerDefault: function () {
@@ -38,4 +37,8 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
     this.$el.addClass("red");
     setTimeout(this._triggerDefault.bind(this), 200);
   },
+
+  _update: function () {
+    setTimeout(this.update.bind(this), Math.random() * 8000);
+  }
 });

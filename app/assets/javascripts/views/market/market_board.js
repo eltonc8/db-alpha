@@ -42,7 +42,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     } else {
       time.setUTCHours(13);
       time.setMinutes(29);
-      time.setDate(time.getDate() + (time.getDay() === 5 && 3) || (time.getDay() === 6 && 2) || 1);
+      time.setDate(time.getDate() + (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1);
       return time - new Date();
     }
   },
@@ -52,8 +52,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     var idx = 0;
     this.collection.each(function (model) {
       if ( RegExp(quotes[idx].Symbol, "i").test(model.get("symbol")) ) {
-        model.quotes().set("results", {quote: quotes[idx]});
-        // debugger
+        model.quotes().set("results", {quote: quotes[idx++]});
       }
     });
   },

@@ -34,7 +34,7 @@ Backbone.StockQuery = Backbone.YqlQuery.extend({
 });
 
 Backbone.StocksQuery = Backbone.YqlQuery.extend({
-  queryRoot: 'SELECT Symbol,Change,LastTradePriceOnly FROM yahoo.finance.quote WHERE symbol in("#{}")',
+  queryRoot: 'SELECT Symbol,Change,PercentChange,LastTradePriceOnly FROM yahoo.finance.quotes WHERE symbol in("#{}")',
 
   initialize: function (options) {
     if (options && options.collection) { this.collection = options.collection; }
