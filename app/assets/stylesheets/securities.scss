@@ -129,8 +129,6 @@ li.fundamental-item.red {
 }
 
 li.board-item.green,
-li.board-item:hover,
-li.fundamental-item:hover,
 li.fundamental-item.green {
   background-color: green;
   transition: background-color 0.2s ease-in;
@@ -211,7 +209,6 @@ div.board-item.logo {
   padding: 1em 2em;
   display: block;
   margin: auto;
-  text-shadow: 0 0 1em #000;
 }
 
 div.board-item.logo > img {
@@ -220,6 +217,7 @@ div.board-item.logo > img {
   margin: auto;
   display: block;
   vertical-align: middle;
+  text-shadow: 0 0 1em
 }
 
 div.board-item.change,

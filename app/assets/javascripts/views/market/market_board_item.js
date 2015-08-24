@@ -19,8 +19,8 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
   },
 
   update: function () {
-    if (!this.model.quotes().get("results")) return;
-    var quote = this.model.quotes().get("results").quote;
+    var results = this.model.quotes().get("results");
+    quote = (results && results.quote) || {};
     this.$("div.change").html( _.escape(quote.Change) );
     this.$("div.last-trade").html( _.escape(quote.LastTradePriceOnly) );
 
@@ -34,7 +34,7 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
     var b = Math.min(r,g);
     var colors = [r,g,b];
     var gradient = this._gradient.replace(/#{}/g, colors.join(","));
-    this.$(".percent-change").css("background", gradient);
+    this.$("div.percent-change").css("background", gradient);
     this.$("div.percent-change").html( percent + "%" );
     this._percent = percent;
   },
@@ -48,16 +48,15 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
 
   _triggerGreen: function () {
     this.$el.addClass("green");
-    setTimeout(this._triggerDefault.bind(this), 200);
+    setTimeout(this._triggerDefault.bind(this), 1000);
   },
 
   _triggerRed: function () {
     this.$el.addClass("red");
-    setTimeout(this._triggerDefault.bind(this), 200);
+    setTimeout(this._triggerDefault.bind(this), 1000);
   },
 
-  _update: function (delay) {
-    debugger
-    setTimeout(this.update.bind(this), Math.random() * (delay || 8000));
+  _update: function () {
+    setTimeout(this.update.bind(this), Math.random() * (8000));
   }
 });
