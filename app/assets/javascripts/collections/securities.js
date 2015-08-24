@@ -16,7 +16,7 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
     }
     if (!security) { security = new this.model( attr ); }
     if (!options || options.fetch) security.fetch();
-    this.add(security, {merge: true});
+    this.add(security, {reset: true});
 
     return security;
   },

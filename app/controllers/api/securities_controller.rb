@@ -1,8 +1,10 @@
 module Api
   class SecuritiesController < ApiController
     def index
-      @securities = list_params ? Security.where(symbol: list_params) : Security.all
-      render JSON: "securities/index.json"
+      @securities = list_params ?
+                    Security.order(:symbol).where(symbol: list_params) :
+                    Security.order(:symbol).all
+      render "securities/index.json"
     end
 
     def show
@@ -16,7 +18,7 @@ module Api
 
     private
     def list_params
-      params[:symbols] || params[:symbol].upcase.split(",")
+      params[:symbols] && params[:symbols].upcase.split(",")
     end
 
     def security_params
