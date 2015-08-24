@@ -1,6 +1,8 @@
 module Api
   class SecuritiesController < ApiController
-    def create
+    def index
+      @securities = list_params ? Security.where(symbol: list_params) : Security.all
+      render JSON: "securities/index.json"
     end
 
     def show
@@ -13,6 +15,10 @@ module Api
     end
 
     private
+    def list_params
+      params[:symbols] || params[:symbol].upcase.split(",")
+    end
+
     def security_params
       params.require(:security).permit(:symbol, :id, :name, :website)
     end
