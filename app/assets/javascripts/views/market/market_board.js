@@ -5,7 +5,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
           "KO","MCD","MMM","MRK","MSFT",
           "NKE","PFE","PG","TRV","UNH",
           "UTX","V","VZ","WMT","XOM"],
-  className: "market-board",
+  className: "market-board after-clear",
 
   initialize: function () {
     _(this.djia).each( this.collection.getOrFetch.bind(this.collection) );
@@ -16,7 +16,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( $("<ul>").addClass("market-board") );
+    this.$el.html( $("<ul>").addClass("market-board after-clear") );
     this.attachSubviews();
     return this;
   },

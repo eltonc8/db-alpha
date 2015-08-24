@@ -13,8 +13,7 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
   render: function () {
     var content = this.template({model: this.model});
     this.$el.html( content );
-    this.$(".percent-change").attr("id", this.model.escape("symbol"));
-    this._update(1000);
+    this.update();
     return this;
   },
 

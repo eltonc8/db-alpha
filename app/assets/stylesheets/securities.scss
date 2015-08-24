@@ -160,8 +160,28 @@ ul.fundamental-list:after {
 
 /* format for market show */
 
+.market-view {
+  align-items: center;
+}
+
+.after-clear:after {
+  content:'';
+  display:block;
+  clear: both;
+}
+
+div.market-board {
+  background-color: #000;
+  padding: 1em;
+  text-align: center;
+}
+
+ul.market-board {
+  padding: 1em;
+}
+
 li.board-item {
-  float: left;
+  display: inline-block;
   height: 12em;
   width: 12em;
   text-align: center;
