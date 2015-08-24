@@ -15,6 +15,15 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.collection.each(this._addBoardItem.bind(this));
   },
 
+  events: {
+    "click li": "clickNavigate"
+  },
+
+  clickNavigate: function (event) {
+    var symbol = $(event.currentTarget).data().symbol;
+    Backbone.history.navigate("securities/" + symbol, {trigger: true});
+  },
+
   render: function () {
     this.$el.html( $("<ul>").addClass("market-board after-clear") );
     this.attachSubviews();
