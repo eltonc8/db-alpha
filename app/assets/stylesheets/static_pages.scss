@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#slideshow > div.slide > div {
+	text-shadow: rgba(0,0,0,1) 0 0 0.2em;
+	font-size: 3em;
+}
+
 .overlay1 {
 	color: #FFF;
 	width: 20%;
@@ -23,8 +28,6 @@
 	width: 25%;
 	z-index: 10;
 }
-
-
 
 
 #slideshow {

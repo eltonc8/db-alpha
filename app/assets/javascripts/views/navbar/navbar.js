@@ -73,12 +73,6 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
     this._errors = null;
   },
 
-  // render: function () {
-  //   var content = this.template();
-  //   this.$el.html( content );
-  //   return this;
-  // },
-
   _signIn: function (event) {
     event.preventDefault();
     var formData = $("form.user-form").serializeJSON().user;
@@ -121,12 +115,13 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   _success: function (model, response) {
-    Backbone.history.navigate("/", trigger_true);
+    DbAlpha.Routers.router.redirect();
   },
 
   _successSignOut: function () {
     DbAlpha.Models.user.clear();
     this.render();
+    DbAlpha.Routers.router.root();
   }
 });
 
