@@ -28,6 +28,9 @@ class ApplicationController < ActionController::Base
   end
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    results = params.require(:user).permit(:email, :password, :username)
+    results[:password] = params[:password] if !results[:password] && params[:password]
+    
+    results
   end
 end

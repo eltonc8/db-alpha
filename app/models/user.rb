@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  validates :email, :session_token, presence: true
+  validates :username, :email, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  validates_uniqueness_of :username, case_sensitive: false
   validates_uniqueness_of :email, case_sensitive: false
   after_initialize :ensure_session_token
 
@@ -12,8 +13,8 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64(16)
   end
 
-  def self.find_by_credentials(email, password)
-    @user = User.find_by_email(email.downcase)
+  def self.find_by_credentials(username, password)
+    @user = User.where("username ILIKE ?", username)
     @user if @user && @user.is_password?(password)
   end
 

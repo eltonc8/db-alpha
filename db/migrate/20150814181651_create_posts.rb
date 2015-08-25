@@ -5,7 +5,6 @@ class CreatePosts < ActiveRecord::Migration
       t.string  :title, null: false
       t.string  :shared_with
       t.string  :tags
-      t.text    :note
       t.text    :body
 
       t.timestamps null: false

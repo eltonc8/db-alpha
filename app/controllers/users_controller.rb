@@ -5,12 +5,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    debugger
     if @user.save
       sign_in!
       redirect_to root_url
     else
-      flash.now[:user_notices] = @user.errors.full_messages
-      render :new, status: 422
+      @user.password = @user.password_digest = nil
+      render json: @user.errors.full_messages, status: 422
     end
   end
 end

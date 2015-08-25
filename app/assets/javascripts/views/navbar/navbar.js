@@ -7,10 +7,16 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   signUp: function (event) {
-    event.preventDefault();
+    event && event.preventDefault();
+    DbAlpha.Models.user = DbAlpha.Models.user || new Dbalpha.Models.user();
+
     bootbox.dialog({
       title: "Sign Up!",
-      message: this.templateForm({}),
+      message: this.templateForm({
+        model: DbAlpha.Models.user,
+        signUp: true,
+        errors: this._errors
+      }),
       buttons: {
         success: {
           label: "Sign Up!",
@@ -27,21 +33,30 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   _signUp: function (event) {
+    event.preventDefault();
     var formData = $("form.user-form").serializeJSON().user;
-    DbAlpha.Models.user = DbAlpha.Models.user || new Dbalpha.Models.user();
-    DbAlpha.Models.user.save(formData, {
-      success: this._signUpSuccess.bind(this),
-      error: this._signUpError.bind(this)
-    });
+
+    if (!formData.password || formData.password.length < 6) {
+      this._errors = ["Password must be 6 characters or longer."];
+      this.signUp();
+    } else if (formData.password !== formData.password_repeat) {
+      this._errors = ["Password Mismatch, please try again."];
+      this.signUp();
+    } else {
+      delete formData.password_repeat;
+      DbAlpha.Models.user.save(formData, {
+        success: this._signUpSuccess.bind(this),
+        error: this._signUpError.bind(this)
+      });
+    }
   },
 
   _signUpError: function (model, response) {
-    debugger
+    this._errors = JSON.parse( response.responseText );
     this.signUp();
   },
 
   _signUpSuccess: function (model, response) {
-    debugger
     this.signUp();
   },
 });
