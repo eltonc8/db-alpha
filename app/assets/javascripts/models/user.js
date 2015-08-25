@@ -1,5 +1,5 @@
 DbAlpha.Models.User = Backbone.Model.extend({
-  urlRoot: "/users",
+  urlRoot: "/session",
 });
 
 DbAlpha.Models.user = new DbAlpha.Models.User();

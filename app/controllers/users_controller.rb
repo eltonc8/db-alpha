@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in!
-      redirect_to root_url
+      render "users/show.json"
     else
       render json: @user.errors.full_messages, status: 422
     end

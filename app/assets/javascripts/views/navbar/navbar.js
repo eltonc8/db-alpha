@@ -28,6 +28,8 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
         }
       }
     });
+
+    this._errors = null;
   },
 
   signUp: function (event) {
@@ -49,6 +51,8 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
         }
       }
     });
+    
+    this._errors = null;
   },
 
   // render: function () {
