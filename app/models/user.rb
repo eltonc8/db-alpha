@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_credentials(username, password)
-    @user = User.where("username ILIKE ?", username)
+    @user = User.limit(1).where("username ILIKE ?", username)[0]
     @user if @user && @user.is_password?(password)
   end
 

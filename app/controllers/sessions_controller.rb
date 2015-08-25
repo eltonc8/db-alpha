@@ -5,15 +5,15 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by_credentials(
-      params[:user][:email], params[:user][:password]
-    ) || User.new(user_params)
+      params[:username], params[:password]
+    ) || User.new(username: params[:username])
+    @user.password = @user.password_digest = nil
 
     if @user.persisted?
       sign_in!
       redirect_to root_url
     else
-      flash.now[:user_notices] = ['Invalid email and password combination']
-      render :new, status: 422
+      render json: ['Invalid email and password combination'], status: 422
     end
   end
 

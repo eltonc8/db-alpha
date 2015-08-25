@@ -17,7 +17,7 @@
     class="form-control"
     value='<%= model.escape("username") %>'
     placeholder="username (required)"
-    id="user_email">
+    id="user_username">
   </div>
 
   <% if (signUp) { %>
@@ -43,8 +43,8 @@
     id="user_password">
   </div>
 
-  <% if (signUp) { %>
-    <div class='form-group'>
+  <div class='form-group'>
+    <% if (signUp) { %>
       <label for="user_password">Password: </label>
       <input
       type='password'
@@ -52,7 +52,10 @@
       class="form-control"
       placeholder="please repeat password"
       id="user_password_repeat">
-    </div>
-  <% } %>
+    <% } else { %>
+      <div class="btn btn-success btn-guest">Guest Login</div>
+      <script>new DbAlpha.Views.GuestLogin({el: $("form.user-form") })</script>
+    <% } %>
+  </div>
 
 </form>

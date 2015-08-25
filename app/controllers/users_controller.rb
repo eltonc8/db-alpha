@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    debugger
+    @user.password = @user.password_digest = nil
+
     if @user.save
       sign_in!
       redirect_to root_url
     else
-      @user.password = @user.password_digest = nil
       render json: @user.errors.full_messages, status: 422
     end
   end

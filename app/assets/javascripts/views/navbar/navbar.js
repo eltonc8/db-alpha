@@ -21,15 +21,10 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
         errors: this._errors
       }),
       buttons: {
-        success: {
-          labe: "Guest Login",
-          className: "btn-guest",
-          callback: this._guestLogin.bind(this)
-        },
         main: {
+          className: "btn-primary btn-sign-in",
           label: "Sign In!",
-          className: "btn-sign-in",
-          callback: this._signUp.bind(this)
+          callback: this._signIn.bind(this)
         }
       }
     });
@@ -65,6 +60,8 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   _signIn: function (event) {
     event.preventDefault();
     var formData = $("form.user-form").serializeJSON().user;
+    DbAlpha.Models.user.urlRoot = "/session";
+
     DbAlpha.Models.user.save(formData, {
       success: this._success.bind(this),
       error: this._signInError.bind(this)
@@ -74,6 +71,7 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   _signUp: function (event) {
     event.preventDefault();
     var formData = $("form.user-form").serializeJSON().user;
+    DbAlpha.Models.user.urlRoot = "/users";
 
     if (!formData.password || formData.password.length < 6) {
       this._errors = ["Password must be 6 characters or longer."];
@@ -103,38 +101,6 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   _success: function (model, response) {
     debugger
   },
-
-  /* this section involves logic for guest login */
-
-  _autoClick: function () {
-    this.$(".btn-sign-in").click();
-  },
-
-  _guestLogin: function (event) {
-    this.username = "guest_login@dbalpha.info";
-    this.password = "GuestPassword";
-    this.$username_field = this.$("#user_username");
-    this.$password_field = this.$("#user_password");
-
-    this.$username_field.val("");
-    this.$password_field.val("");
-    this._slowEntry(this.$username_field, this.username, this._inputPassword.bind(this));
-  },
-
-  _inputPassword: function () {
-    this._slowEntry(this.$password_field, this.password, this._autoClick.bind(this));
-  },
-
-  _slowEntry: function ($el, str, callback) {
-    var entry = setInterval(function () {
-      $el.val( $el.val() + str[0] );
-      str = str.substr(1);
-      if (!str) {
-        clearInterval(entry);
-        callback();
-      }
-    }, 50);
-  }
 });
 
 

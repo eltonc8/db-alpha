@@ -1,12 +1,8 @@
 DbAlpha.Views.GuestLogin = Backbone.View.extend({
   initialize: function (options) {
-    var guestBtn = $("<div>");
-    this.$el.append(guestBtn);
-    guestBtn.addClass("btn btn-success btn-guest").html("Guest Login");
-
-    this.email = "guest_login@dbalpha.info";
+    this.username = "guest_login@dbalpha.info";
     this.password = "GuestPassword";
-    this.$email_field = this.$("#user_email");
+    this.$username_field = this.$("#user_username");
     this.$password_field = this.$("#user_password");
   },
 
@@ -15,13 +11,14 @@ DbAlpha.Views.GuestLogin = Backbone.View.extend({
   },
 
   _autoClick: function () {
-    this.$("button").click();
+    $(".btn-sign-in").click();
+    this.off();
   },
 
   _guestLogin: function (event) {
-    this.$email_field.val("");
+    this.$username_field.val("");
     this.$password_field.val("");
-    this._slowEntry(this.$email_field, this.email, this._inputPassword.bind(this));
+    this._slowEntry(this.$username_field, this.username, this._inputPassword.bind(this));
   },
 
   _inputPassword: function () {
