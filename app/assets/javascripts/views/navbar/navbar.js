@@ -3,13 +3,16 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   templateForm: JST["user/user_form"],
 
   initialize: function () {
+    DbAlpha.Models.user.save({username: "eltonchan"});
+    this.listenTo(DbAlpha.Models.user, "sync", this.render);
     this.render();
   },
 
   events: {
     "click .sign-up": "signUp",
     "click .sign-in": "signIn",
-    "click .btn-guest": "_guestLogin"
+    "click .btn-guest": "_guestLogin",
+    "click .sign-out": "signOut",
   },
 
   render: function () {
@@ -19,8 +22,7 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
 
   signIn: function (event) {
     event && event.preventDefault();
-    DbAlpha.Models.user = DbAlpha.Models.user || new Dbalpha.Models.user();
-    DbAlpha.Models.urlRoot = "/sessions";
+    DbAlpha.Models.user.urlRoot = "/session";
 
     bootbox.dialog({
       title: "Sign In!",
@@ -41,10 +43,17 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
     this._errors = null;
   },
 
+  signOut: function (event) {
+    event && event.preventDefault();
+    DbAlpha.Models.user.urlRoot = "/session";
+    DbAlpha.Models.user.destroy({
+      success: this._successSignOut.bind(this)
+    });
+  },
+
   signUp: function (event) {
     event && event.preventDefault();
-    DbAlpha.Models.user = DbAlpha.Models.user || new Dbalpha.Models.user();
-    DbAlpha.Models.urlRoot = "/users";
+    DbAlpha.Models.user.urlRoot = "/users";
 
     bootbox.dialog({
       title: "Sign Up!",
@@ -112,8 +121,13 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   _success: function (model, response) {
-    debugger
+    Backbone.history.navigate("/", trigger_true);
   },
+
+  _successSignOut: function () {
+    DbAlpha.Models.user.clear();
+    this.render();
+  }
 });
 
 

@@ -13,11 +13,12 @@
 <div class="nav-bar-js"></div>
 <div class="container-fluid" id='db-alpha'></div>
 
-
 <script>
   $(function () {
-    DbAlpha.Views.navbar = new DbAlpha.Views.Navbar({el: $("div.nav-bar-js")});
     Backbone.history.start();
+    window.trigger_true = {trigger: true}
+    DbAlpha.Views.navbar = new DbAlpha.Views.Navbar({el: $("div.nav-bar-js")});
+    DbAlpha.Routers.router = new DbAlpha.Routers.DbAlphaRouter({$rootEl: $("#db-alpha")});
   })
 </script>
 

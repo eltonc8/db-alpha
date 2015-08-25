@@ -5,14 +5,14 @@
         dbAlpha
       </li>
       <% if ( !DbAlpha.Models.user.isNew() ) { %>
-        <li class="nav-item"><div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
+        <li class=""><div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
           <script>$(function () { new DbAlpha.Views.SearchBar({ el: $(".nav-search")}) })</script></li>
       <% } %>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
       <% if ( !DbAlpha.Models.user.isNew() ) { %>
-      <li class="nav-item">
+      <li class="">
         <div class="dropdown nav-name">
           <div class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             navigate to
@@ -28,7 +28,7 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item username">Welcome, <%= current_user.escape("username") %> %></li>
+      <li class="nav-item username">Welcome, <%= DbAlpha.Models.user.escape("username") %></li>
       <li class="nav-item sign-out">Sign Out</li>
       <% } else { %>
       <li class="nav-item sign-up">Sign Up</li>

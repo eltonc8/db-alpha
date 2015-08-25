@@ -31,6 +31,7 @@ body {
   color: #000;
   width: 4em;
   transition: width 0.5s;
+  margin: 12px;
 }
 
 .navbar-nav > li > .nav-search > input:hover,
@@ -40,7 +41,9 @@ body {
 }
 
 .navbar-nav > .nav-item {
+  vertical-align: middle;
   padding: 15px;
+  max-height: 50px;
 }
 
 #navbar-brand {
@@ -61,4 +64,8 @@ body {
 
 .container-fluid {
   min-width: 850px;
+}
+
+#dropdownMenu2 {
+  padding: 15.5px 38px;
 }

@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out!
-    redirect_to root_url
+    @user = User.new
+    render "users/show.json"
   end
 end
