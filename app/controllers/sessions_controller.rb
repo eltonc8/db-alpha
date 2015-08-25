@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    debugger
     @user = current_user || User.find_by_credentials(
       params[:username], params[:password]
     ) || User.new(username: params[:username])
@@ -19,6 +18,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out!
-    redirect_to new_session_url
+    redirect_to root_url
   end
 end

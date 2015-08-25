@@ -8,11 +8,19 @@
 </head>
 <body>
 
-
-  <%= render 'layouts/navbar' %>
-
-
 <%= yield %>
+
+<div class="nav-bar-js"></div>
+<div class="container-fluid" id='db-alpha'></div>
+
+
+<script>
+  $(function () {
+    DbAlpha.Views.navbar = new DbAlpha.Views.Navbar({el: $("div.nav-bar-js")});
+    Backbone.history.start();
+  })
+</script>
+
 
 </body>
 </html>

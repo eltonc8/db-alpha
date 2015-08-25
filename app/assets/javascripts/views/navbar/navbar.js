@@ -2,10 +2,19 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   template: JST["navbar/navbar"],
   templateForm: JST["user/user_form"],
 
+  initialize: function () {
+    this.render();
+  },
+
   events: {
     "click .sign-up": "signUp",
     "click .sign-in": "signIn",
     "click .btn-guest": "_guestLogin"
+  },
+
+  render: function () {
+    var content = this.template();
+    this.$el.html(content);
   },
 
   signIn: function (event) {
@@ -51,7 +60,7 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
         }
       }
     });
-    
+
     this._errors = null;
   },
 
