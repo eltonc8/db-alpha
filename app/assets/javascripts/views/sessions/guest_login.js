@@ -1,6 +1,6 @@
 DbAlpha.Views.GuestLogin = Backbone.View.extend({
   initialize: function (options) {
-    this.username = "guest_login@dbalpha.info";
+    this.username = "guest_login";
     this.password = "GuestPassword";
     this.$username_field = this.$("#user_username");
     this.$password_field = this.$("#user_password");
