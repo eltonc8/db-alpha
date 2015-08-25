@@ -1,19 +1,17 @@
-<div class="nav-bar-js">
-
 <nav class="navbar navbar-fixed-top">
   <div class="container container-fluid">
     <ul class="nav navbar-nav navbar-left">
       <li class="nav-item">
         <a class="navbar-brand" href="#">dbAlpha</a>
       </li>
-      <% if signed_in? %>
+      <% if ( !Dbalpha.Models.user.isNew() ) { %>
         <li class="nav-item"><div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
-          <script>$(function () { new DbAlpha.Views.SearchBar({ el: $(".nav-search")}); })</script></li>
-      <% end %>
+          <script>$(function () { new DbAlpha.Views.SearchBar({ el: $(".nav-search")}) })</script></li>
+      <% } %>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <% if signed_in? %>
+      <% if ( !Dbalpha.Models.user.isNew() ) { %>
       <li class="nav-item">
         <div class="dropdown nav-name">
           <div class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -30,20 +28,12 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item"><div class="nav-name"><%= "Welcome, #{ current_user.email }".html_safe %></div></li>
-      <li class="nav-item"><div class="nav-box"><%= button_to "Sign Out", session_url, method: :delete %></div></li>
-      <% else %>
-      <li class="nav-item"><%= link_to "Sign Up", new_user_url %></li>
-      <li class="nav-item"><%= link_to "Sign In", new_session_url %></li>
-      <% end %>
+      <li class="nav-item"><div class="nav-name">Welcome, <%= current_user.escape("email") %> %></div></li>
+      <li class="nav-item"><div class="nav-box">Sign Out</div></li>
+      <% } else { %>
+      <li class="nav-item">Sign Up</li>
+      <li class="nav-item">Sign In</li>
+      <% } %>
     </ul>
   </div>
 </nav>
-
-</div>
-
-<script>
-  $(function () {
-    DbAlpha.Views.navbar.setElement($("div.nav-bar-js"));
-  })
-</script>

@@ -23,15 +23,11 @@ DbAlpha.Views.Post = Backbone.View.extend({
 
   deleteForm: function (event) {
     event.preventDefault();
-    if (confirm("Confirm delete?")) {
-      if (this.model.isNew()) {
-        this._deleteSuccess();
-      } else {
-        this.model.destroy({
-          success: this._deleteSuccess.bind(this)
-        });
-      }
-    }
+
+    bootbox.confirm(
+      "Are you sure you wish to delete your post " + this.model.escape("title") + "?",
+      this._deleteConfirmed.bind(this)
+    );
   },
 
   render: function () {
@@ -65,6 +61,16 @@ DbAlpha.Views.Post = Backbone.View.extend({
     if (this._state === "edit") { return; }
     this._state = null;
     this.render();
+  },
+
+  _deleteConfirmed: function (confirmation) {
+    if ( !confirmation ) return;
+    if ( this.model.isNew() ) { this._deleteSuccess(); }
+    else {
+      this.model.destroy({
+        success: this._deleteSuccess.bind(this)
+      });
+    }
   },
 
   _deleteSuccess: function () {
