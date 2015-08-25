@@ -3,12 +3,42 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   templateForm: JST["user/user_form"],
 
   events: {
-    "click .sign-up": "signUp"
+    "click .sign-up": "signUp",
+    "click .sign-in": "signIn",
+    "click .btn-guest": "_guestLogin"
+  },
+
+  signIn: function (event) {
+    event && event.preventDefault();
+    DbAlpha.Models.user = DbAlpha.Models.user || new Dbalpha.Models.user();
+    DbAlpha.Models.urlRoot = "/sessions";
+
+    bootbox.dialog({
+      title: "Sign In!",
+      message: this.templateForm({
+        model: DbAlpha.Models.user,
+        signUp: false,
+        errors: this._errors
+      }),
+      buttons: {
+        success: {
+          labe: "Guest Login",
+          className: "btn-guest",
+          callback: this._guestLogin.bind(this)
+        },
+        main: {
+          label: "Sign In!",
+          className: "btn-sign-in",
+          callback: this._signUp.bind(this)
+        }
+      }
+    });
   },
 
   signUp: function (event) {
     event && event.preventDefault();
     DbAlpha.Models.user = DbAlpha.Models.user || new Dbalpha.Models.user();
+    DbAlpha.Models.urlRoot = "/users";
 
     bootbox.dialog({
       title: "Sign Up!",
@@ -18,7 +48,7 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
         errors: this._errors
       }),
       buttons: {
-        success: {
+        main: {
           label: "Sign Up!",
           callback: this._signUp.bind(this)
         }
@@ -26,10 +56,19 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
     });
   },
 
-  render: function () {
-    var content = this.template();
-    this.$el.html( content );
-    return this;
+  // render: function () {
+  //   var content = this.template();
+  //   this.$el.html( content );
+  //   return this;
+  // },
+
+  _signIn: function (event) {
+    event.preventDefault();
+    var formData = $("form.user-form").serializeJSON().user;
+    DbAlpha.Models.user.save(formData, {
+      success: this._success.bind(this),
+      error: this._signInError.bind(this)
+    });
   },
 
   _signUp: function (event) {
@@ -45,10 +84,15 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
     } else {
       delete formData.password_repeat;
       DbAlpha.Models.user.save(formData, {
-        success: this._signUpSuccess.bind(this),
+        success: this._success.bind(this),
         error: this._signUpError.bind(this)
       });
     }
+  },
+
+  _signInError: function (model, response) {
+    this._errors = JSON.parse( response.responseText );
+    this.signIn();
   },
 
   _signUpError: function (model, response) {
@@ -56,9 +100,42 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
     this.signUp();
   },
 
-  _signUpSuccess: function (model, response) {
-    this.signUp();
+  _success: function (model, response) {
+    debugger
   },
+
+  /* this section involves logic for guest login */
+
+  _autoClick: function () {
+    this.$(".btn-sign-in").click();
+  },
+
+  _guestLogin: function (event) {
+    this.username = "guest_login@dbalpha.info";
+    this.password = "GuestPassword";
+    this.$username_field = this.$("#user_username");
+    this.$password_field = this.$("#user_password");
+
+    this.$username_field.val("");
+    this.$password_field.val("");
+    this._slowEntry(this.$username_field, this.username, this._inputPassword.bind(this));
+  },
+
+  _inputPassword: function () {
+    this._slowEntry(this.$password_field, this.password, this._autoClick.bind(this));
+  },
+
+  _slowEntry: function ($el, str, callback) {
+    var entry = setInterval(function () {
+      $el.val( $el.val() + str[0] );
+      str = str.substr(1);
+      if (!str) {
+        clearInterval(entry);
+        callback();
+      }
+    }, 50);
+  }
 });
+
 
 DbAlpha.Views.navbar = new DbAlpha.Views.Navbar();
