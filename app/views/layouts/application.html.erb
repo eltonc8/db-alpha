@@ -15,10 +15,10 @@
 
 <script>
   $(function () {
-    Backbone.history.start();
     window.trigger_true = {trigger: true}
     DbAlpha.Views.navbar = new DbAlpha.Views.Navbar({el: $("div.nav-bar-js")});
     DbAlpha.Routers.router = new DbAlpha.Routers.DbAlphaRouter({$rootEl: $("#db-alpha")});
+    Backbone.history.start();
   })
 </script>
 
