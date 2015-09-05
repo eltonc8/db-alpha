@@ -34,7 +34,9 @@
 
 img.logo {
   width: auto;
-  height: 4em;
+  max-width: 100%;
+  height: auto;
+  max-height: 4em;
   margin: auto;
 }
 
@@ -177,6 +179,7 @@ div.market-board {
   padding: 1em;
   position: relative;
   text-align: center;
+  min-height: 100vh;
 }
 
 div.market-board:before {

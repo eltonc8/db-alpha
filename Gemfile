@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.2.3"
 
 # gem 'capistrano-rails', group: :development
 # gem 'unicorn'
