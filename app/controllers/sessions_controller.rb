@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       sign_in!
       render "users/show.json"
     else
-      render json: ['Invalid email and password combination'], status: 422
+      render json: ['Invalid email and password combination'], status: 301
     end
   end
 
