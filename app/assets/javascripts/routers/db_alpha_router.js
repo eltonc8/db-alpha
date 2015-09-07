@@ -9,24 +9,21 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
     "securities": "marketView",
     "securities/:value": "securityShow",
     "homepage": "userShow",
+    ":default": "root"
   },
 
   redirect: function () {
     Backbone.history.navigate("redirect");
-    Backbone.history.navigate("securities", trigger_true);
+    Backbone.history.navigate("", trigger_true);
   },
 
   root: function () {
-    if ( !DbAlpha.Models.user.isNew() ) {
-      this.redirect();
-    } else {
-      var view = new DbAlpha.Views.Root();
-      this._swapView(view);
-    }
+    var view = new DbAlpha.Views.Root();
+    this._swapView(view);
   },
 
   marketView: function () {
-    if ( DbAlpha.Models.user.isNew() ) Backbone.history.navigate("", trigger_true);
+    if ( DbAlpha.Models.user.isNew() ) this.redirect();
     var view = new DbAlpha.Views.MarketBoard({
       collection: this.collection
     });
@@ -34,7 +31,7 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   securityShow: function (value) {
-    if ( DbAlpha.Models.user.isNew() ) Backbone.history.navigate("", trigger_true);
+    if ( DbAlpha.Models.user.isNew() ) this.redirect();
     var view = new DbAlpha.Views.SecurityShow({
       model: this.collection.getOrFetch(value)
     });
@@ -42,7 +39,7 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   userShow: function () {
-    if ( DbAlpha.Models.user.isNew() ) Backbone.history.navigate("", trigger_true);
+    if ( DbAlpha.Models.user.isNew() ) this.redirect();
     var view = new DbAlpha.Views.UserShow({});
     this._swapView(view);
   },

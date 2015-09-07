@@ -2,11 +2,10 @@
   <div class="container container-fluid">
     <ul class="nav navbar-nav navbar-left">
       <li class="navbar-brand" id="navbar-brand">
-        dbAlpha
+        <a href="#">dbAlpha</a>
       </li>
       <% if ( !DbAlpha.Models.user.isNew() ) { %>
         <li class=""><div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
-          <script>$(function () { new DbAlpha.Views.SearchBar({ el: $(".nav-search")}) })</script></li>
       <% } %>
     </ul>
 

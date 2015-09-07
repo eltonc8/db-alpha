@@ -13,6 +13,14 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
     "click .sign-in": "signIn",
     "click .btn-guest": "_guestLogin",
     "click .sign-out": "signOut",
+    "keydown .nav-search": "processKeypress",
+  },
+
+  processKeypress: function (event) {
+    if (event.keyCode === 13) {
+      var fieldData = this.$("input").val();
+      Backbone.history.navigate("securities/" + fieldData, {trigger: true});
+    }
   },
 
   render: function () {
