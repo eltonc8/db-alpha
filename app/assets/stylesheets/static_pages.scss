@@ -2,11 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#slideshow > div.slide > div {
-	text-shadow: rgba(0,0,0,1) 0 0 0.2em;
-	font-size: 3em;
-}
-
 .overlay1 {
 	color: #FFF;
 	width: 20%;
@@ -29,6 +24,9 @@
 	z-index: 10;
 }
 
+#intro {
+  min-height: 60vh;
+}
 
 #slideshow {
     margin: auto;
@@ -45,7 +43,8 @@
 	min-height: 480px;
 	padding-top: 60%;
 }
-/*controls content*/
+
+/*controls slideshow content*/
 #slideshow > div {
     position: absolute;
     top:	 	 	  0px;
@@ -64,6 +63,7 @@
 #slideshow > div.slide > div {
   font-size: 3em;
 	text-shadow: #000 0px 0px 2em;
+	font-size: 18px;
 }
 
 #slideshow > div.slide > img {
