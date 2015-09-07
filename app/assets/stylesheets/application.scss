@@ -19,10 +19,13 @@
 body {
   padding-top: 50px;
   background-color: #FCFFFF;
+  min-width: 600px;
 }
 
+footer,
 .navbar {
   background-color: #00306B;
+  color: #FFF;
   box-shadow: inset 0px  5px 5px -5px #FFF,
               inset 0px -5px 5px -5px #000;
 }
@@ -63,10 +66,17 @@ body {
               inset 0px -10px 10px -10px;
 }
 
-.container-fluid {
-  min-width: 850px;
-}
-
 #dropdownMenu2 {
   padding: 15.5px 38px;
+}
+
+#db-alpha {
+  min-height: 92vh;
+}
+
+footer {
+  text-align: center;
+  padding: 1vh;
+  display: block;
+  width: auto;
 }
