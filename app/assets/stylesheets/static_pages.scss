@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+span.dbalpha:after {
+  content: "dbAlpha";
+  color: #00F;
+  font-weight: bold;
+}
+
 .overlay1 {
   color: #FFF;
   width: 20%;
@@ -28,31 +34,49 @@
   min-height: 60vh;
 }
 
+.intro.row {
+  display: block;
+  padding: 40px;
+}
+
+.intro.col {
+  text-align: center;
+}
+
+.intro.col > p {
+  text-align: justify;
+}
+
+.intro.col > .glyphicon {
+  font-size: 40px;
+}
+
+
 #slideshow {
-    margin: auto;
-    position: relative;
-    display: block;
-    min-width: 800px;
-    width: 100%;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  margin: auto;
+  position: relative;
+  display: block;
+  min-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
 #slideshow:before{
-  content:  "";
-  display:  block;
-  min-height: 480px;
+  content:     "";
+  display:     block;
+  min-height:  480px;
   padding-top: 60%;
 }
 
 /*controls slideshow content*/
 #slideshow > div {
-    position: absolute;
-    top:          0px;
-    left:        0px;
-    right:      0px;
-    bottom:     0px;
-    opacity:    0;
-    transition: opacity 0.5s ease-in-out;
+  position: absolute;
+  top:        0px;
+  left:       0px;
+  right:      0px;
+  bottom:     0px;
+  opacity:    0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 #slideshow > div.active {
