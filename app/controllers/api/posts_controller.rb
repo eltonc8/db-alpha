@@ -1,7 +1,7 @@
 module Api
   class PostsController < ApiController
     def index
-      @posts = Post.search( id: current_user.id, security_id: params[:security_id] )
+      @posts = Post.search( user: current_user, security_id: params[:security_id] )
       render "posts/index.json"
     end
 

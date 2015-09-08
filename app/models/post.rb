@@ -5,10 +5,13 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   def self.search(options)
-    query = "(user_id = :id OR shared_with ~* 'public')"
-    query += " AND tags ~* :s_id" if options[:security_id]
-
-    Post.order("created_at DESC").where(query, id: options[:id], s_id: "\\y#{ options[:security_id] }\\y")
+    if options[:security_id]
+      query = "(user_id = ? OR shared_with ~* 'public') AND tags ~* ?"
+      options[:security_id] = options[:security_id].upcase
+      Post.order("created_at DESC").where(query, options[:user].id, "\\y#{ options[:security_id] }\\y")
+    else
+      options[:user].posts.order("created_at DESC")
+    end
   end
 
   def is_public?
