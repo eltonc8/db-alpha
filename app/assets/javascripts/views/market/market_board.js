@@ -15,6 +15,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.collection.fetch({merge: true});
     this._updateQuote();
     this.listenTo(this.collection, "add", this._addBoardItem);
+    this.listenTo(this.collection, "remove", this._removeBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
     this.collection.each(this._addBoardItem.bind(this));
   },
@@ -38,6 +39,10 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.addSubview("ul", new DbAlpha.Views.MarketBoardItem({
       model: model
     }));
+  },
+
+  _removeBoardItem: function (model) {
+    this.removeModelSubview("ul", model);
   },
 
   _updateQuote: function () {

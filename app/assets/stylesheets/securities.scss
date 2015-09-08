@@ -127,17 +127,18 @@ input.article-title {
 li.board-list-item.red,
 li.fundamental-item.red {
   background-color: red;
-  transition: background-color 1s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 
 li.board-list-item.green,
 li.fundamental-item.green {
   background-color: green;
-  transition: background-color 1s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 
 li.board-list-item:hover,
 li.fundamental-item:hover {
+  transition: background-color 0.2s ease-in-out;
   background-color: #888;
 }
 
@@ -170,10 +171,6 @@ ul.fundamental-list:after {
   clear: both;
 }
 
-div.market-board > .title {
-  padding: 0 15%;
-}
-
 div.market-board > .title > h1 {
   color: #FFF;
   border-bottom-color: white;
@@ -202,12 +199,13 @@ li.board-list-item {
   list-style: none;
   background-color: #008;
   color: #FFF;
-  box-shadow: inset 0px 0px 10em #000;
+  box-shadow: inset 0px 0px 5em #000;
+  margin: 0em;
 }
 
 li.board-list-item > div.board-item {
   display: block;
-  height: 16.6%;
+  height: 20%;
   float: left;
   width: 100%;
 }
@@ -217,10 +215,8 @@ li.board-list-item > div.board-item.symbol {
   font-weight: bold;
   font-size: 1.5em;
 }
-
-
+/* 25 20 20 10 25*/
 li.board-list-item > div.board-item.percent-change {
-  height: 16.6%;
   text-shadow: 0 0 0.1em black;
   font-size: 1.5em;
 }
@@ -228,16 +224,22 @@ li.board-list-item > div.board-item.percent-change {
 li.board-list-item > div.board-item.change,
 li.board-list-item > div.board-item.last-trade {
   width: 50%;
+  height: 10%;
 }
 
 li.board-list-item > div.board-item.name {
   overflow: hidden;
   font-size: 0.75em;
+  vertical-align: middle;
+}
+
+li.board-list-item > div.board-item.name > span {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 li.board-list-item > div.board-item.logo {
-  height: 33.3%;
-  padding: 1em 2em;
+  padding: 0.2em 0.5em;
   margin: auto;
 }
 
@@ -249,7 +251,8 @@ li.board-list-item > div.board-item.logo > img {
 li.board-list-item > div.board-item.name,
 li.board-list-item > div.board-item.logo {
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  height: 25%;
+  transition: opacity 0.3s ease-in-out;
 }
 
 li.board-list-item:hover > div.board-item.name,

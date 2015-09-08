@@ -46,7 +46,7 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
     } else {
       time.setMinutes(29);
       time.setUTCHours(13);
-      var dayDelay = (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1;      return time - new Date();
+      var dayDelay = (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1;
       time.setDate(time.getDate() + dayDelay);
       return time - new Date();
     }
