@@ -3,13 +3,13 @@ Backbone.YqlQuery = Backbone.Model.extend({
 
   url: function () {
     var uri = this.rootUrl;
-    if (this.attributes.query) { uri += "&q=" + encodeURIComponent(this.attributes.query); }
+    if (this.get("query")) { uri += "&q=" + encodeURIComponent(this.get("query")); }
 
     return uri;
   },
 
   initialize: function (options) {
-    if (options.query) { this.attributes.query = options.query; }
+    if (options.query) { this.set({"query": options.query}); }
   },
 
   parse: function (response) {
