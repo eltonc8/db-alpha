@@ -86,8 +86,8 @@ div.article-header {
 ul.article-feed {
   padding: 7rem 0 0 0;
   position: absolute;
-  top:          0px;
-  left:        0px;
+  top:        0px;
+  left:       0px;
   right:      0px;
   bottom:     0px;
   overflow-y: scroll;
@@ -124,24 +124,24 @@ input.article-title {
 
 /* format for security fundamentals */
 
-li.board-item.red,
+li.board-list-item.red,
 li.fundamental-item.red {
   background-color: red;
-  transition: background-color 1s ease-in;
+  transition: background-color 1s ease-in-out;
 }
 
-li.board-item.green,
+li.board-list-item.green,
 li.fundamental-item.green {
   background-color: green;
-  transition: background-color 1s ease-in;
+  transition: background-color 1s ease-in-out;
 }
 
-li.board-item:hover,
+li.board-list-item:hover,
 li.fundamental-item:hover {
   background-color: #888;
 }
 
-li.board-item {
+li.board-list-item {
   transition: background-color 2s ease-in-out;
 }
 
@@ -187,32 +187,13 @@ div.market-board {
   text-align: center;
   min-height: 100vh;
 }
-/*
-div.market-board:before {
-    box-shadow: inset -2em 0 2em -1em rgba(0, 0, 0, 1);
-    content: " ";
-    height: 100%;
-    left: -1em;
-    position: absolute;
-    top: 0;
-    width: 1em;
-}
-div.market-board:after {
-    box-shadow: inset 2em 0 2em -1em rgba(0, 0, 0, 1);
-    content: " ";
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: -1em;
-    width: 1em;
-}
-*/
+
 ul.market-board {
   padding: 1em;
   margin-top: 20px;
 }
 
-li.board-item {
+li.board-list-item {
   cursor: pointer;
   display: inline-block;
   height: 12em;
@@ -224,47 +205,54 @@ li.board-item {
   box-shadow: inset 0px 0px 10em #000;
 }
 
-div.board-item {
+li.board-list-item > div.board-item {
   display: block;
   height: 16.6%;
+  float: left;
+  width: 100%;
 }
 
-div.board-item.name {
-  overflow: hidden;
-  font-size: 0.75em;
-}
 
-div.board-item.symbol {
+li.board-list-item > div.board-item.symbol {
   font-weight: bold;
   font-size: 1.5em;
 }
 
-div.board-item.logo {
-  height: 33.3%;
-  width: 100%;
-  padding: 1em 2em;
-  display: block;
-  margin: auto;
-}
 
-div.board-item.logo > img {
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-  display: block;
-  vertical-align: middle;
-  text-shadow: 0 0 1em
-}
-
-div.board-item.change,
-div.board-item.last-trade {
-  width: 50%;
-  float: left;
-}
-
-div.board-item.percent-change {
+li.board-list-item > div.board-item.percent-change {
   height: 16.6%;
-  width: 100%;
   text-shadow: 0 0 0.1em black;
   font-size: 1.5em;
+}
+
+li.board-list-item > div.board-item.change,
+li.board-list-item > div.board-item.last-trade {
+  width: 50%;
+}
+
+li.board-list-item > div.board-item.name {
+  overflow: hidden;
+  font-size: 0.75em;
+}
+
+li.board-list-item > div.board-item.logo {
+  height: 33.3%;
+  padding: 1em 2em;
+  margin: auto;
+}
+
+li.board-list-item > div.board-item.logo > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+li.board-list-item > div.board-item.name,
+li.board-list-item > div.board-item.logo {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+li.board-list-item:hover > div.board-item.name,
+li.board-list-item:hover > div.board-item.logo {
+  opacity: 1;
 }
