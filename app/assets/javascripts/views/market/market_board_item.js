@@ -1,7 +1,7 @@
 DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
   template: JST["market/board_list_item"],
   tagName: "li",
-  className: "board-item after-clear",
+  className: "board-item",
 
   initialize: function () {
     this._percent = 0;

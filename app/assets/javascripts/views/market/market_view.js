@@ -1,5 +1,6 @@
 DbAlpha.Views.Markets = Backbone.CompositeView.extend({
   className: "market-view",
+  template: JST["market/market_board"],
 
   addViews: function () {
     this.addSubview('.top',
@@ -8,8 +9,8 @@ DbAlpha.Views.Markets = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( $("<ul>").addClass("top") );
-
+    var content = this.template();
+    debugger
     this.attachSubviews();
     return this;
   }
