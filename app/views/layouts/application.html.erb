@@ -23,6 +23,7 @@
     DbAlpha.Views.navbar = new DbAlpha.Views.Navbar({el: $("div.nav-bar-js")});
     DbAlpha.Routers.router = new DbAlpha.Routers.DbAlphaRouter({$rootEl: $("#db-alpha")});
     Backbone.history.start();
+    DbAlpha.Models.user.save({username: "eltonchan"});
   })
 </script>
 

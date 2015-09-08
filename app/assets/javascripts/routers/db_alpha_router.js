@@ -12,18 +12,13 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
     ":default": "root"
   },
 
-  redirect: function () {
-    Backbone.history.navigate("redirect");
-    Backbone.history.navigate("", trigger_true);
-  },
-
   root: function () {
     var view = new DbAlpha.Views.Root();
     this._swapView(view);
   },
 
   marketView: function () {
-    if ( DbAlpha.Models.user.isNew() ) this.redirect();
+    if ( DbAlpha.Models.user.isNew() ) this._userAuth();
     var view = new DbAlpha.Views.MarketBoard({
       collection: this.collection
     });
@@ -31,7 +26,7 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   securityShow: function (value) {
-    if ( DbAlpha.Models.user.isNew() ) this.redirect();
+    if ( DbAlpha.Models.user.isNew() ) this._userAuth();
     var view = new DbAlpha.Views.SecurityShow({
       model: this.collection.getOrFetch(value)
     });
@@ -39,7 +34,7 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   userShow: function () {
-    if ( DbAlpha.Models.user.isNew() ) this.redirect();
+    if ( DbAlpha.Models.user.isNew() ) this._userAuth();
     var view = new DbAlpha.Views.UserShow({});
     this._swapView(view);
   },
@@ -48,5 +43,22 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
     this._view && this._view.remove();
     this._view = view;
     this.$rootEl.html(this._view.render().$el);
+  },
+
+  _userAuth: function () {
+    //ensures that the user has signed in.
+    if ( DbAlpha.Models.user.isNew() ) {
+      // gives time for syncing to occur
+      setTimeout( this._userCheck.bind(this), 2500);
+    }
+  },
+
+  _userCheck: function () {
+    if ( DbAlpha.Models.user.isNew() ) {
+      Backbone.history.navigate("", trigger_true);
+      bootbox.alert("<br><br><br>Hello! Please sign in so that pages may be rendered correctly!");
+    }
   }
+
+
 });

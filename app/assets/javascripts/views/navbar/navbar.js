@@ -1,9 +1,8 @@
-DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
+DbAlpha.Views.Navbar = Backbone.View.extend({
   template: JST["navbar/navbar"],
   templateForm: JST["user/user_form"],
 
   initialize: function () {
-    DbAlpha.Models.user.save({username: "eltonchan"});
     this.listenTo(DbAlpha.Models.user, "sync", this.render);
     this.render();
   },
@@ -123,7 +122,7 @@ DbAlpha.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   _success: function (model, response) {
-    DbAlpha.Routers.router.redirect();
+    Backbone.history.navigate("securities", trigger_true);
   },
 
   _successSignOut: function () {
