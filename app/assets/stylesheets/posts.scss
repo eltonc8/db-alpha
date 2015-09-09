@@ -3,28 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .post-index {
-  position: absolute;
+  display: block;
   list-style: none;
   padding: 1em;
   font-size: 1em;
-  display: block;
   margin: auto;
   margin-top: 1em;
   width: 100%;
 }
 
 .post-index-title {
-  font-size: 1.5em;
+  display: inline-block;
+  float: left;
   padding: 1em;
-  clear: both;
+  font-size: 1.5em;
+  width: 100%;
   padding-bottom: 0.25em;
   background-color: #FFF;
   border-bottom: 0.1em solid #000;
-}
-
-.post-index-title > * {
-  display: inline-block;
-  float: left;
 }
 
 .post-index-new {
@@ -41,6 +37,9 @@
 }
 
 ul.post-index-list {
+  list-style: none;
+  display: block;
+  width: 100%;
   padding: 0;
 }
 
