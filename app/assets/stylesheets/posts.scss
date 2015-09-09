@@ -44,14 +44,14 @@ ul.post-index-list {
   padding: 0;
 }
 
-.post-index.placeholder-text {
+div.placeholder-text {
   z-index: -10;
-  opacity: 0;
+  display: none;
 }
 
-ul.post-index-list:empty ~ div.post-index.placeholder-text {
+ul:empty ~ div.placeholder-text {
   z-index: 1;
-  opacity: 1;
+  display: block;
 }
 
 .post-list-item {

@@ -2,5 +2,13 @@
   Articles for <%= model.escape("symbol") %>
 </div>
 
-<ul class="article-feed">
-</ul>
+<ul class="article-feed"></ul>
+
+<div class="post-index placeholder-text">
+  No entries.
+  <% if (model.escape("status")) { %>
+   <%=  "No securities found by symbol " + model.escape("symbol") %>
+ <% } else { %>
+   <%= "Fetching news. Please wait..." %>
+ <% } %>
+</div>

@@ -1,17 +1,18 @@
 class Security < ActiveRecord::Base
   validates :symbol, presence: true, uniqueness: true
-  attr_accessor :feeds
+  attr_accessor :feeds, :status
 
   def self.search_or_initialize(value)
     begin
-      result = value.to_i > 0 ?
-               self.find(value) :
-               self.find_or_initialize_by(symbol: value.upcase)
+      if value.to_i > 0
+        result = self.find(value)
+      else
+        result = self.find_or_initialize_by(symbol: value.upcase)
+      end
+      result.update_data
     rescue
-      result = nil
+      return nil
     end
-
-    result.update_data if result
 
     result
   end
@@ -19,11 +20,17 @@ class Security < ActiveRecord::Base
   def update_data
     self.feeds = Feedjira::Feed.fetch_and_parse("http://feeds.finance.yahoo.com/rss/2.0/headline?region=US&s=#{symbol.html_safe}")
 
+    if /not found/ =~ feeds.description
+      self.feeds = nil
+      self.status = 404
+      return
+    end
+    
     /for (?<qname>.*)\Z/ =~ feeds.description #grabs the name out of the feed
     qname.slice!(/ (c|com|comm|commo|common|new com)\b.*\Z/i)
     self.name = qname
 
-    if name && ( updated_at && updated_at > 1.day.ago) || !image || !website
+    if ( updated_at && updated_at > 1.day.ago) || !image || !website
       qname = name.dup
       google_web = Google::Search::Web.new(query: qname + " investor")
       self.website ||= google_web.first.visible_uri
