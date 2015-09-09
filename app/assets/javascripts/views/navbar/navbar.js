@@ -12,7 +12,12 @@ DbAlpha.Views.Navbar = Backbone.View.extend({
     "click .sign-in": "signIn",
     "click .btn-guest": "_guestLogin",
     "click .sign-out": "signOut",
+    "click .username": "homepage",
     "keydown .nav-search": "processKeypress",
+  },
+
+  homepage: function (event) {
+    Backbone.history.navigate("/homepage", trigger_true);
   },
 
   processKeypress: function (event) {

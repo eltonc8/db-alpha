@@ -51,9 +51,14 @@ footer,
 }
 
 #navbar-brand > a {
-  font-size: x-large;
+  font-size: large;
   font-weight: bold;
   color: #A8CBFF;
+}
+
+#navbar-brand > a:focus,
+#navbar-brand > a:hover {
+  background-color: inherit;
 }
 
 .navbar-nav > li {
