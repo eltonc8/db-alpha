@@ -11,9 +11,9 @@ DbAlpha.Views.UserShow = Backbone.CompositeView.extend({
     // this.addSubview('.left',
     //   new DbAlpha.Views.SecuritySubInfo({ model: this.model })
     // );
-    // this.addSubview('.left',
-    //   new DbAlpha.Views.SecurityTradingviewWidget({ model: this.model })
-    // );
+    this.addSubview('.left',
+      new DbAlpha.Views.SecurityTradingviewWidget({ model: this.model })
+    );
     // this.addSubview('.top',
     //   new DbAlpha.Views.SecuritySubRss({ model: this.model })
     // );
