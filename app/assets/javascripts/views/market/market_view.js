@@ -10,7 +10,6 @@ DbAlpha.Views.Markets = Backbone.CompositeView.extend({
 
   render: function () {
     var content = this.template();
-    debugger
     this.attachSubviews();
     return this;
   }

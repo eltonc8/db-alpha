@@ -41,7 +41,9 @@ DbAlpha.Views.Post = Backbone.View.extend({
   submitForm: function (event) {
     event.preventDefault();
     var formData = this.$("form").serializeJSON().post;
-    this.model.save(formData, {
+    if (formData.shared_with) formData.shared_with = formData.shared_with.join(",");
+    this.model.set(formData);
+    this.model.save({}, {
       success: this._saveSuccess.bind(this),
       error: this._saveError.bind(this)
     });
