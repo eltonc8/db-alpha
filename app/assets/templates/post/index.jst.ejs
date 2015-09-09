@@ -1,6 +1,12 @@
 <div class="post-index-title">
-  Posts:
-  <button class="post-index-new article-index">new</button>
+  <span>
+  <% if (typeof(model) == "undefined") { %>
+    <%= "My notes and entries:" %>
+  <% } else { %>
+    <%= "Notes and entries on " + model.escape("symbol") %>
+  <% } %>
+  </span>
+  <div class="post-index-new">new</div>
 </div>
 <br>
 

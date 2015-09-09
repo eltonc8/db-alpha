@@ -3,20 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .post-index {
+  position: absolute;
   list-style: none;
   padding: 1em;
   font-size: 1em;
   display: block;
   margin: auto;
   margin-top: 1em;
+  width: 100%;
 }
 
 .post-index-title {
   font-size: 1.5em;
   padding: 1em;
+  clear: both;
   padding-bottom: 0.25em;
   background-color: #FFF;
   border-bottom: 0.1em solid #000;
+}
+
+.post-index-title > * {
+  display: inline-block;
+  float: left;
+}
+
+.post-index-new {
+  float: right;
+  cursor: pointer;
+}
+
+.post-index-new:hover {
+  text-shadow: 0 0 18px black;
 }
 
 .post-form {
@@ -25,11 +42,6 @@
 
 ul.post-index-list {
   padding: 0;
-}
-
-button.post-index-new {
-  align-content: center;
-  font-size: 0.5em;
 }
 
 .post-list-item {

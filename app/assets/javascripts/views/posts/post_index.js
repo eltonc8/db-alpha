@@ -3,18 +3,24 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
   template: JST['post/index'],
 
   initialize: function () {
-    this.collection = this.model ? this.model.posts() : new DbAlpha.Collections.Posts([]);
+    if (this.model) {
+      this.collection = this.model.posts();
+      this.listenTo(this.model, "sync", this.render);
+    } else {
+      this.collection = new DbAlpha.Collections.Posts([])
+    }
+
     this.listenTo(this.collection, "sync add remove", this.render);
     this.listenTo(this.collection, 'add', this.addPostListItem);
     this.listenTo(this.collection, 'remove', this.removePostListItem);
 
     this.collection.each(function (post) {
-      this.addPostSubview(post);
+      this.addPostListItem(post);
     }.bind(this));
   },
 
   events: {
-    "click button.post-index-new": "addNewForm"
+    "click div.post-index-new": "addNewForm"
   },
 
   addNewForm: function () {
@@ -40,7 +46,8 @@ DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( this.template() );
+    var content = this.template({model: this.model});
+    this.$el.html( content );
     this.attachSubviews();
 
     return this;
