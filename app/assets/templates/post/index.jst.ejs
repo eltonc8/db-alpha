@@ -1,15 +1,15 @@
 <div class="post-index-title">
   <span>
-  <% if (typeof(model) == "undefined") { %>
-    <%= "My notes and entries:" %>
-  <% } else { %>
-    <%= "Notes and entries on " + model.escape("symbol") %>
-  <% } %>
+    <%= (model) ? "Notes and entries on " + model.escape("symbol") : "My notes and entries:"%>
   </span>
   <div class="post-index-new">new</div>
 </div>
 <br>
 
 
-<ul class="post-index-list">
-</ul>
+<ul class="post-index-list"></ul>
+
+<div class="post-index placeholder-text">
+  No entries <%= (model) ? "on " + model.escape("symbol") : "" %>
+  <br>Please click new to add one.
+</div>

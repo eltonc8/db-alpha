@@ -44,6 +44,16 @@ ul.post-index-list {
   padding: 0;
 }
 
+.post-index.placeholder-text {
+  z-index: -10;
+  opacity: 0;
+}
+
+ul.post-index-list:empty ~ div.post-index.placeholder-text {
+  z-index: 1;
+  opacity: 1;
+}
+
 .post-list-item {
   transition: height 1s;
 }
