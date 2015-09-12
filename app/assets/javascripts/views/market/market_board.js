@@ -18,6 +18,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "remove", this._removeBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
     this.collection.each(this._addBoardItem.bind(this));
+    this.addSubview(".market-view.information", new DbAlpha.Views.MarketTime());
   },
 
   events: {
