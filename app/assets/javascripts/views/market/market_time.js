@@ -7,10 +7,6 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
     this.setMarketTimes();
   },
 
-  getCountdown: function () {
-    return;
-  },
-
   render: function () {
     this.updateOps();
     var content = this.template( this.ops );
@@ -31,10 +27,23 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
 
   updateOps: function () {
     var time = new Date(), ops = this.ops;
-    ops.localTime = time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-    if (ops.localTime[7] % 2) ops.localTime = ops.localTime.replace(/:/g, " ");
-
     if (time > (ops.nextOpen || ops.nextClose)) this.setMarketTimes();
+    var timeDiff = Math.floor( ((ops.nextOpen || ops.nextClose) - time) / 1000 );
+    var s = timeDiff % 60;
+    var m = Math.floor(timeDiff / 60 % 60);
+    var h = Math.floor(timeDiff / 3600 % 24);
+    var d = Math.floor(timeDiff / 86400);
+    if (d) {
+      ops.countdown = d + " day" + ( d > 1 ? "s" : "")
+    } else {
+      ops.countdown = (h ? h + ":" : "") + ("00" + m).slice(-2) + ":" + ("00" + s).slice(-2);
+    }
+
+    ops.localTime = time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+    if (ops.localTime[7] % 2) {
+      ops.localTime = ops.localTime.replace(/:/g, " ");
+      ops.countdown = ops.countdown.replace(/:/g, " ");
+    }
   },
 
   remove: function () {
