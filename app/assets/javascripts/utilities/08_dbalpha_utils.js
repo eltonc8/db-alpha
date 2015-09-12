@@ -1,16 +1,41 @@
-DbAlpha.isMarketOpen = function (time) {
+// 9am EDT = 13; EST = 14
+DbAlpha.opening = 13;
+
+DbAlpha.isTradingDay = function (time) {
   if (!time) time = new Date();
-  var close = 20 // 4pm EDT = 20; 4pm EST = 21
-  return close > time.getUTCHours() && time.getUTCHours() > (close - 6 ) ||
-         (close - 7 == time.getUTCHours() && time.getMinutes() >= 30);
+
+  if (time.getUTCDay() % 6) return true;
+  //TODO implementation of holidays
 };
 
-DbAlpha.nextMarketOpen = function () {
-  var time = new Date();
+DbAlpha.isMarketOpen = function (time) {
+  if (!time) time = new Date();
+  if (!DbAlpha.isTradingDay(time)) return;
+  var close = DbAlpha.opening + 7;
+
+  if (close > time.getUTCHours() && time.getUTCHours() > (DbAlpha.opening) ||
+      (DbAlpha.opening == time.getUTCHours() && time.getMinutes() >= 30)) {
+    return time;
+  }
+};
+
+DbAlpha.nextMarketOpen = function (time) {
+  if (!time) time = new Date();
   time.setUTCHours(13);
   time.setMinutes(30);
   time.setSeconds(0);
-  var dayDelay = (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1;
-  time.setDate(time.getDate() + dayDelay);
+  while (time < Date.now() || !DbAlpha.isMarketOpen(time)) {
+    time.setUTCDate(time.getUTCDate() + 1);
+  }
+
   return time;
 };
+
+DbAlpha.nextMarketClose = function (time) {
+  time = DbAlpha.isMarketOpen(time) || DbAlpha.nextMarketOpen(time);
+  time.setUTCHours(DbAlpha.opening + 7);
+  time.setMinutes(0);
+  time.setSeconds(0);
+
+  return time;
+}
