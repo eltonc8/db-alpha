@@ -1,1 +1,8 @@
-<div class="current-time"><%= currentTime %></div>
+<div class="current-time"><%= localTime %></div>
+<div class="market-status">
+  <% if (nextOpen) { %>
+    The Market is currently closed. Data will be updated when market opens on <%= nextOpen %>
+  <% } else { %>
+    The Market is actively trading. Data will be actively updated until <%= nextClose %>
+  <% } %>
+</div>
