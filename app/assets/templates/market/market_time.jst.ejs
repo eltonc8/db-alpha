@@ -1,5 +1,7 @@
-<div class="current-time"><%= localTime %>
-  market <%= (nextOpen) ? "opens" : "closes" %> in <%= countdown %></div>
+<div class="current-time"><%= localTime + " " + localTZ %> •
+  <%= (eastLocalOffset) ? eastTime + " " + eastTZ + " •" : "" %>
+  market <%= (nextOpen) ? "opens" : "closes" %> in <%= countdown %>
+</div>
 <div class="market-status">
   <% if (nextOpen) { %>
     The market is currently closed. Data will be updated when the market opens on <%= nextOpen %>.

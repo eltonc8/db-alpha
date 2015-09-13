@@ -1,6 +1,10 @@
 DbAlpha.Views.MarketTime = Backbone.View.extend({
   template: JST['market/market_time'],
-  ops: {},
+  ops: {
+    eastTZ: "(EDT)",
+    localTZ: new Date().toTimeString().replace(/.*(\(.*\)).*/, "$1"),
+    eastLocalOffset: new Date().getTimezoneOffset() - 4 * 60, // mins to be added to get wallTime
+  },
 
   initialize: function () {
     this.interval = setInterval(this.render.bind(this), 1000);
@@ -34,15 +38,20 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
     var h = Math.floor(timeDiff / 3600 % 24);
     var d = Math.floor(timeDiff / 86400);
     if (d) {
-      ops.countdown = d + " day" + ( d > 1 ? "s" : "")
+      ops.countdown = d + " day" + ( d > 1 ? "s" : "");
     } else {
       ops.countdown = (h ? h + ":" : "") + ("00" + m).slice(-2) + ":" + ("00" + s).slice(-2);
     }
 
-    ops.localTime = time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+    // var timeString = time.toTimeString()
+    ops.localTime = time.toLocaleTimeString();
+    if ( ops.eastLocalOffset ) {
+      time.setTime( time.getTime() + ops.eastLocalOffset * 60000)
+      ops.eastTime = time.toLocaleTimeString();
+    }
     if (ops.localTime[7] % 2) {
       ops.localTime = ops.localTime.replace(/:/g, " ");
-      ops.countdown = ops.countdown.replace(/:/g, " ");
+      ops.eastTime = ops.eastTime.replace(/:/g, " ");
     }
   },
 
