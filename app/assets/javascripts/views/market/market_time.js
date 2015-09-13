@@ -46,12 +46,12 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
     // var timeString = time.toTimeString()
     ops.localTime = time.toLocaleTimeString();
     if ( ops.eastLocalOffset ) {
-      time.setTime( time.getTime() + ops.eastLocalOffset * 60000)
+      time.setTime( time.getTime() + ops.eastLocalOffset * 60000) // ms/minute
       ops.eastTime = time.toLocaleTimeString();
     }
-    if (ops.localTime[7] % 2) {
+    if ( time.getSeconds() % 2) {
       ops.localTime = ops.localTime.replace(/:/g, " ");
-      ops.eastTime = ops.eastTime.replace(/:/g, " ");
+      if (ops.eastTime) ops.eastTime = ops.eastTime.replace(/:/g, " ");
     }
   },
 
