@@ -1,13 +1,16 @@
 <div class="current-time">
   <%= localTime + " " + localTZ %>
   <%= (eastLocalOffset) ? "• " + eastTime + " " + eastTZ : "" %>
-  • market <%= (nextClose) ? "opened" : "closed" %>
+  • market <%= (nextClose) ? "opened • closes" : "closed" %>
   • <%= (nextOpen) ? "opens" : "closes" %> in <%= countdown %>
 </div>
 <div class="current-time-plus">
   <% if (nextOpen) { %>
-    The market is currently closed. Data will be updated when the market opens on <%= nextOpen %>.
+    The market is currently closed. Data will be updated when the market opens on
+    <%= nextOpen.toLocaleDateString() + " " + nextOpen.toLocaleTimeString() %>
   <% } else { %>
-    The market is actively trading. Data will be actively updated until <%= nextClose %>.
+    The market is actively trading. Data will be actively updated until
+    <%= nextClose.toLocaleDateString() + " " + nextClose.toLocaleTimeString() %>
   <% } %>
+  <%= localTZ %>
 </div>

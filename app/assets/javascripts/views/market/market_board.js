@@ -22,7 +22,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   events: {
-    "click li": "clickNavigate"
+    "click .board-list-item": "clickNavigate"
   },
 
   clickNavigate: function (event) {

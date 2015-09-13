@@ -56,8 +56,7 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
   },
 
   remove: function () {
-    debugger
     Backbone.View.prototype.remove.call(this);
-    this.clearInterval(this.interval);
+    clearInterval(this.interval);
   }
 })
