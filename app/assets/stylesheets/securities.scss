@@ -182,6 +182,20 @@ div.market-board {
   min-height: 100vh;
 }
 
+div.current-time {
+  cursor: pointer;
+}
+
+div.current-time:hover + div.current-time-plus {
+  opacity: 1;
+  transition: opacity 0s;
+}
+
+div.current-time-plus {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
 ul.market-board {
   padding: 1em;
   margin-top: 20px;

@@ -6,7 +6,7 @@ DbAlpha.isTradingDay = function (time) {
   if (!(time.getUTCDay() % 6) ) return false; //if Sunday or Monday
 
   //HOLIDAYS, 2015
-  var d = time.getUTCDay(), m = time.getUTCMonth();
+  var d = time.getUTCDate(), m = time.getUTCMonth();
   if ( m === 0 ) {         //January - New Year's && MLK's
     if ( d === 1 || d === 19 ) return false;
   } else if ( m === 1 ) {  //February - President's Day
@@ -28,10 +28,22 @@ DbAlpha.isTradingDay = function (time) {
   return true;
 };
 
+DbAlpha.tradingHours = function (time) {
+  if (!time) time = new Date();
+
+  var d = time.getUTCDate(), m = time.getUTCMonth();
+  if ( (m === 10 && d === 27 )
+    || (m === 11 && d === 24 )) {
+    return 4;
+  }
+
+  return time.getUTCDay() % 6 && 7;
+}
+
 DbAlpha.isMarketOpen = function (time) {
   if (!time) time = new Date();
   if (!DbAlpha.isTradingDay(time)) return;
-  var close = DbAlpha.opening + 7;
+  var close = DbAlpha.opening + DbAlpha.tradingHours(time);
 
   if (close > time.getUTCHours() && time.getUTCHours() > (DbAlpha.opening) ||
   (DbAlpha.opening == time.getUTCHours() && time.getMinutes() >= 30)) {
@@ -53,7 +65,7 @@ DbAlpha.nextMarketOpen = function (time) {
 
 DbAlpha.nextMarketClose = function (time) {
   time = DbAlpha.isMarketOpen(time) || DbAlpha.nextMarketOpen(time);
-  time.setUTCHours(DbAlpha.opening + 7);
+  time.setUTCHours(DbAlpha.opening + DbAlpha.tradingHours(time));
   time.setMinutes(0);
   time.setSeconds(0);
 
