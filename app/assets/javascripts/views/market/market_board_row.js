@@ -22,14 +22,24 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
 
   attachBoardItems: function () {
     this.$("ul.marquee-list").empty();
-    var subviews = this.board.subviews("marquee-list").slice(this.start, this.end + 1);
-    _(subviews).each( function (subview) {
-      this.$("ul.marquee-list").append(subview.$el);
-    }.bind(this));
-    if (subviews.length < this.board.wMin) {
-      var filler = $("<li>").addClass("board-list-item");
-      this.$("ul.marquee-list").append(filler);
+    var list = this._list(), subviews = list.slice(this.start, this.end + 1);
+    if (this.end >= list.size()) {
+      var wrapSubviews = list.slice(0, this.end + 1 - list.size() );
+      subviews = subviews.concat(wrapSubviews);
     }
+
+    while (subviews.length < this.board.wMin) {
+      var filler = $("<li>").addClass("board-list-item");
+      subviews.push(filler);
+    }
+
+    _(subviews).each( function (subview) {
+      if (subview.model) {
+        this.$("ul.marquee-list").append(subview.$el);
+      } else {
+        this.$("ul.marquee-list").append(subview);
+      }
+    }.bind(this));
   },
 
   marquee: function (successor) {
@@ -42,7 +52,13 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
         this.$("ul.marquee-list").css({left: this.offset});
       }
     } else {
-      if (this.end + 1 < successor.start) this.push();
+      console.log([this.end, successor.start])
+      if (this.end <= successor.start) {
+        if (this.end + 1 < successor.start) this.push();
+      } else {
+        var length = this._list().size();
+        if ((this.end + 1) - length < successor.start) this.push();
+      }
     }
   },
 
@@ -53,6 +69,10 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
 
   shift: function () {
     this.start++;
+    if (this.start >= this._list().size()) {
+      this.start -= this._list().size();
+      this.end -= this._list().size();
+    }
     this.offset = 0;
     this.attachBoardItems();
   },
@@ -68,5 +88,9 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
     var length = this.board.wMin;
     this.$("div.marquee-container").css({width: 160 * length});
     this.$("ul.marquee-list").css({width: 160 * (length + 1)});
+  },
+
+  _list: function () {
+    return this.board.subviews("marquee-list");
   },
 });
