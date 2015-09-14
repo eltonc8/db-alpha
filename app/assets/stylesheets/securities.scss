@@ -196,16 +196,39 @@ div.current-time-plus {
   transition: opacity 0.5s;
 }
 
-ul.market-board {
+ul.market-board-rows {
+  margin: 0;
   padding: 1em;
-  margin-top: 20px;
+  min-height: 160px;
+}
+
+ul.market-board-rows > li {
+  height: 160px;
+}
+
+li.market-board-row > div {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+li.market-board-row > div > ul {
+  margin: 0 auto;
+  padding: 0;
+  position: absolute;
+  background-color: #888;
+  width: 160px;
+  top: 0;
+  left: 0;
 }
 
 li.board-list-item {
   cursor: pointer;
   display: inline-block;
-  height: 12em;
-  width: 12em;
+  height: 160px;
+  width: 160px;
   text-align: center;
   list-style: none;
   background-color: #008;

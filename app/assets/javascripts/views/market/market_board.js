@@ -12,12 +12,15 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     _(this.djia).each( function (symbol) {
       this.collection.getOrFetch(symbol, {delayFetch: true}).bind(this.collection);
     }.bind(this));
+    this.rows = _([]);
+    this._setup();
+    $(window).on("resize", this._setup);
     this.collection.fetch({merge: true});
     this._updateQuote();
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection, "remove", this._removeBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
-    this.collection.each(this._addBoardItem.bind(this));
+    // this.collection.each(this._addBoardItem.bind(this));
     this.addSubview(".market-view.information", new DbAlpha.Views.MarketTime());
   },
 
@@ -36,14 +39,23 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     return this;
   },
 
-  _addBoardItem: function (model) {
-    this.addSubview("ul", new DbAlpha.Views.MarketBoardItem({
-      model: model
-    }));
+  _addBoardRow: function (row) {
+    this.addSubview("ul.market-board-rows", row);
   },
 
-  _removeBoardItem: function (model) {
-    this.removeModelSubview("ul", model);
+  _removeBoardRow: function (model) {
+    this.removeSubview("ul.market-board-rows", model);
+  },
+
+  _setup: function () {
+    this.rows.each( this._removeBoardRow.bind(this) );
+    while ( this.rows.size() < 4 || 160 * this.rows.size() < window.innerHeight ) {
+      this.rows.push( new DbAlpha.Views.MarketBoardRow() );
+    }
+    while ( !(this.rows.size() < 4) && 160 * this.rows.size() > window.innerHeight ) {
+      this.rows.pop();
+    }
+    this.rows.each( this._addBoardRow.bind(this) );
   },
 
   _updateQuote: function () {
