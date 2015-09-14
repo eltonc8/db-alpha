@@ -35,12 +35,17 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   marquee: function () {
-    if ( this.wLimit ) {
-      this.rows.each( function (subview) { subview.marquee(); } );
-    } else {
+    if ( !this.wLimit ) {
       this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
       this.wLimit = Math.max(1, this.wLimit);
       this._distributeRows();
+    } else if ( this.overSize ) {
+      var rows = this.rows.values(), a, b;
+      for (i = 1; i <= rows.length; i++) {
+        a = rows[i - 1];
+        b = rows[i % rows.length];
+        a.marquee(b);
+      }
     }
   },
 
@@ -79,6 +84,10 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
         rows = this.rows.values(),
         divide = this.subviews("marquee-list").size() / rowCount;
     var lower, upper;
+
+    this.wMin = Math.min(Math.ceil(divide), this.wLimit);
+    this.overSize = this.wLimit * rowCount < this.subviews("marquee-list").size();
+
     for (i = 0; i < rowCount; i++) {
       start = Math.floor(i * divide);
       end = Math.floor(( i + 1 ) * divide - 1);
