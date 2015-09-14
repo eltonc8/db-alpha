@@ -17,17 +17,17 @@ DbAlpha.Views.MarketBoardRow = Backbone.CompositeView.extend({
     return this;
   },
 
-  _addBoardItem: function (model) {
+  addBoardItem: function (model) {
     this.addSubview("ul", new DbAlpha.Views.MarketBoardItem({
       model: model
     }));
   },
 
-  _removeBoardItem: function (model) {
+  removeBoardItem: function (model) {
     this.removeModelSubview("ul", model);
   },
 
-  _size: function () {
-    this._subviews("ul").size();
+  size: function () {
+    return this.subviews("ul").size();
   },
 });

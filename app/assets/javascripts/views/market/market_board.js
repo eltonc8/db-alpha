@@ -14,13 +14,13 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     }.bind(this));
     this.rows = _([]);
     this._setup();
-    $(window).on("resize", this._setup);
+    $(window).on("resize", this._setup.bind(this));
     this.collection.fetch({merge: true});
     this._updateQuote();
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection, "remove", this._removeBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
-    // this.collection.each(this._addBoardItem.bind(this));
+    this.collection.each(this._addBoardItem.bind(this));
     this.addSubview(".market-view.information", new DbAlpha.Views.MarketTime());
   },
 
@@ -37,6 +37,16 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.$el.html( this.template() );
     this.attachSubviews();
     return this;
+  },
+
+  _addBoardItem: function (model) {
+    var idx = 0, rows = this.rows.values();
+    while ( rows[idx].size() > this.rows.last().size() ) idx++;
+    rows[idx].addBoardItem(model)
+  },
+
+  _removeBoardItem: function (model) {
+    this.rows.each( removeBoardItem.bind(model) );
   },
 
   _addBoardRow: function (row) {
