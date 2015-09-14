@@ -31,6 +31,10 @@ footer,
               inset 0px -5px 5px -5px #000;
 }
 
+.navbar > .container-fluid {
+  min-width: 850px;
+}
+
 .navbar-nav li .nav-search input {
   color: #000;
   width: 4em;

@@ -1,6 +1,7 @@
 DbAlpha.Views.MarketBoardRow = Backbone.CompositeView.extend({
   tagName: "li",
   className: "market-board-row",
+  template: JST["market/board_row"],
 
   attributes: {
     "width": "160px",
@@ -10,24 +11,23 @@ DbAlpha.Views.MarketBoardRow = Backbone.CompositeView.extend({
   initialize: function () {},
 
   render: function () {
-    var content = $("<div>");
-    content.html($("<ul>"));
+    var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
     return this;
   },
 
   addBoardItem: function (model) {
-    this.addSubview("ul", new DbAlpha.Views.MarketBoardItem({
+    this.addSubview("ul.marquee-list", new DbAlpha.Views.MarketBoardItem({
       model: model
     }));
   },
 
   removeBoardItem: function (model) {
-    this.removeModelSubview("ul", model);
+    this.removeModelSubview("ul.marquee-list", model);
   },
 
   size: function () {
-    return this.subviews("ul").size();
+    return this.subviews("ul.marquee-list").size();
   },
 });

@@ -192,7 +192,7 @@ div.current-time-plus {
 
 ul.market-board-rows {
   margin: 0;
-  padding: 1em;
+  padding: 30px;
   min-height: 160px;
 }
 
@@ -201,20 +201,20 @@ ul.market-board-rows > li {
 }
 
 li.market-board-row > div {
-  display: block;
+  display: inline-block;
   margin: 0 auto;
   padding: 0;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   height: 160px;
+  min-width: 160px;
 }
 
 li.market-board-row > div > ul {
   margin: 0 auto;
   padding: 0;
   position: absolute;
-  background-color: #888;
-  width: 160px;
+  width: 100%;
   top: 0;
   left: 0;
 }
@@ -230,6 +230,7 @@ li.board-list-item {
   color: #FFF;
   box-shadow: inset 0px 0px 5em #000;
   margin: 0em;
+  float: left;
 }
 
 li.board-list-item > div.board-item {
