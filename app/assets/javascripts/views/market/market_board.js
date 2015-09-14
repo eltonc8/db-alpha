@@ -9,7 +9,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   template: JST["market/market_board"],
 
   initialize: function () {
-    this.interval = setInterval(this.marquee.bind(this), 1000);
+    this.interval = setInterval(this.marquee.bind(this), 1000/60);
     _(this.djia).each( function (symbol) {
       this.collection.getOrFetch(symbol, {delayFetch: true}).bind(this.collection);
     }.bind(this));
@@ -35,11 +35,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   marquee: function () {
-    if ( !this.capacity ) {
-      this.capacity = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
-      this.capacity = Math.max(1, this.capacity);
-      var rowWidth = (this.capacity) * 160;
-      this.rows.each( function (subview) { subview.setWidth(rowWidth); } );
+    if ( this.wLimit ) {
+      this.rows.each( function (subview) { subview.marquee(); } );
+    } else {
+      this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
+      this.wLimit = Math.max(1, this.wLimit);
+      this._distributeRows();
     }
   },
 
@@ -56,8 +57,9 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _addBoardItem: function (model) {
     var idx = 0, rows = this.rows.values();
-    while ( rows[idx].size() > this.rows.last().size() ) idx++;
-    rows[idx].addBoardItem(model);
+    this.addSubview("marquee-list", new DbAlpha.Views.MarketBoardItem({
+      model: model
+    }));
   },
 
   _removeBoardItem: function (model) {
@@ -72,16 +74,38 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.removeSubview("ul.market-board-rows", model);
   },
 
+  _distributeRows: function () {
+    var rowCount = this._rowUsageOptimizer(),
+        rows = this.rows.values(),
+        divide = this.subviews("marquee-list").size() / rowCount;
+    var lower, upper;
+    for (i = 0; i < rowCount; i++) {
+      start = Math.floor(i * divide);
+      end = Math.floor(( i + 1 ) * divide - 1);
+      rows[i].setViewBounds(start, end, divide);
+    }
+  },
+
+  _rowUsageOptimizer: function () {
+    var total = this.subviews("marquee-list").size();
+    var row = this.rows.size();
+    if (this.wLimit >= total) return 1;
+    for (i = 1; i <= row; i++) {
+      if (!total % i && this.wLimit * i >= total) return i;
+    }
+    return Math.min( row, Math.floor(total / this.wLimit + 1) );
+  },
+
   _setup: function () {
     this.rows.each( this._removeBoardRow.bind(this) );
     while ( this.rows.size() < 4 || 160 * this.rows.size() < window.innerHeight ) {
-      this.rows.push( new DbAlpha.Views.MarketBoardRow() );
+      this.rows.push( new DbAlpha.Views.MarketBoardRow({board: this}) );
     }
     while ( (!(this.rows.size() < 4)) && 160 * this.rows.size() > window.innerHeight - 20 ) {
       this.rows.pop();
     }
     this.rows.each( this._addBoardRow.bind(this) );
-    this.capacity = 0;
+    this.wLimit = 0;
   },
 
   _updateQuote: function () {
