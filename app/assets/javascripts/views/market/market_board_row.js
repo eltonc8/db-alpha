@@ -87,7 +87,6 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
     this.end = Math.min( end, start + this.board.wLimit + 1 );
     this.render();
     this.setWidths();
-    console.log([this.start, this.end])
   },
 
   setWidths: function () {
