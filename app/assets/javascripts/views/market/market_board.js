@@ -42,7 +42,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
       this.wLimit = Math.max(1, this.wLimit);
       this._distributeRows();
-    } else if ( this.overSize ) {
+    } else  {
       var rows = this.rows.values(), a, b;
       for (i = 1; i <= rows.length; i++) {
         a = rows[i - 1];
@@ -83,21 +83,23 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _distributeRows: function () {
-    var rowCount = this._rowUsageOptimizer(),
+    var rowUsed = this._rowUsageOptimizer(),
         rows = this.rows.values(),
         length =  this.subviews("marquee-list").size(),
-        divide = length / rowCount;
-    var lower, upper;
+        offset = rows[0].start || 0,
+        divide = length / rowUsed;
 
     this.wMin = Math.min(Math.ceil(divide), this.wLimit);
-    this.overSize = this.wLimit * rowCount < this.subviews("marquee-list").size();
+    this.overSize = this.wLimit * rowUsed < this.subviews("marquee-list").size();
 
-    for (i = 0; i < rowCount; i++) {
-      start = Math.floor(i * divide);
-      end = Math.floor(( i + 1 ) * divide - 1);
-      start = Math.min(start, length - 1);
-      end = Math.min(end, length - 1);
-      rows[i].setViewBounds(start, end, divide);
+    for (i = 0; i < rows.length; i++) {
+      if (i < rowUsed) {
+        start = Math.floor(i * divide) + offset;
+        end = Math.floor(( i + 1 ) * divide - 1) + offset;
+      } else {
+        start = end = -1;
+      }
+      rows[i].setViewBounds(start, end, i );
     }
   },
 

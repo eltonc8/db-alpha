@@ -120,28 +120,28 @@ input.article-title {
 li.board-list-item.red,
 li.fundamental-item.red {
   background-color: red;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s;
 }
 
 li.board-list-item.green,
 li.fundamental-item.green {
   background-color: green;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s;
 }
 
 li.board-list-item:hover,
 li.fundamental-item:hover {
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s;
   background-color: #888;
 }
 
 li.board-list-item {
-  transition: background-color 2s ease-in-out;
+  transition: background-color 2s;
 }
 
 li.fundamental-item {
   background-color: white;
-  transition: background-color 2s ease-in-out;
+  transition: background-color 2s;
   display: block;
   width: 12em;
   margin: 0.25em;
@@ -287,7 +287,7 @@ li.board-list-item > div.board-item.name,
 li.board-list-item > div.board-item.logo {
   opacity: 0;
   height: 25%;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s;
 }
 
 li.board-list-item:hover > div.board-item.name,
