@@ -28,7 +28,7 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
       subviews = subviews.concat(wrapSubviews);
     }
 
-    while (subviews.length < this.board.wMin) {
+    while (this.start != this.end && subviews.length < this.board.wMin) {
       var filler = $("<li>").addClass("board-list-item");
       subviews.push(filler);
     }
@@ -42,17 +42,18 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
     }.bind(this));
   },
 
+  length: function () {
+    return this.end - this.start + 1;
+  },
+
   marquee: function (successor) {
     if (this.offset || this.end - this.start >= this.board.wLimit) {
-      if ( this.offset >= -160) {
-        this.offset--;
-        this.$("ul.marquee-list").css({left: this.offset});
-      } else {
-        this.shift();
-        this.$("ul.marquee-list").css({left: this.offset});
+      if (this.offset++ >= 20) {
+        this.offset = 0;
+        this._offset();
+        return true;
       }
     } else {
-      console.log([this.end, successor.start])
       if (this.end <= successor.start) {
         if (this.end + 1 < successor.start) this.push();
       } else {
@@ -92,5 +93,15 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
 
   _list: function () {
     return this.board.subviews("marquee-list");
+  },
+
+  _offset: function () {
+    this.$el.addClass("offset");
+    setTimeout( this._offsetUndo.bind(this), 1000);
+  },
+
+  _offsetUndo: function () {
+    this.$el.removeClass("offset");
+    this.shift();
   },
 });

@@ -9,7 +9,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   template: JST["market/market_board"],
 
   initialize: function () {
-    this.interval = setInterval(this.marquee.bind(this), 1000/60);
+    this.interval = setInterval(this.marquee.bind(this), 200);
     _(this.djia).each( function (symbol) {
       this.collection.getOrFetch(symbol, {delayFetch: true}).bind(this.collection);
     }.bind(this));
@@ -26,12 +26,15 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   events: {
-    "click .board-list-item": "clickNavigate"
+    "click .board-list-item": "clickNavigate",
+    "click .information": "_quoteFetch",
   },
 
   clickNavigate: function (event) {
     var symbol = $(event.currentTarget).data().symbol;
-    Backbone.history.navigate("securities/" + symbol, {trigger: true});
+    if (symbol) {
+      Backbone.history.navigate("securities/" + symbol, {trigger: true});
+    }
   },
 
   marquee: function () {
@@ -44,7 +47,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       for (i = 1; i <= rows.length; i++) {
         a = rows[i - 1];
         b = rows[i % rows.length];
-        a.marquee(b);
+        if (a.marquee(b)) return; //automatically staggers any behaviors
       }
     }
   },
@@ -82,7 +85,8 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   _distributeRows: function () {
     var rowCount = this._rowUsageOptimizer(),
         rows = this.rows.values(),
-        divide = this.subviews("marquee-list").size() / rowCount;
+        length =  this.subviews("marquee-list").size(),
+        divide = length / rowCount;
     var lower, upper;
 
     this.wMin = Math.min(Math.ceil(divide), this.wLimit);
@@ -91,8 +95,14 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     for (i = 0; i < rowCount; i++) {
       start = Math.floor(i * divide);
       end = Math.floor(( i + 1 ) * divide - 1);
+      start = Math.min(start, length - 1);
+      end = Math.min(end, length - 1);
       rows[i].setViewBounds(start, end, divide);
     }
+  },
+
+  _quoteFetch: function () {
+    this.collection.quotes().fetch();
   },
 
   _rowUsageOptimizer: function () {
@@ -110,7 +120,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     while ( this.rows.size() < 4 || 160 * this.rows.size() < window.innerHeight ) {
       this.rows.push( new DbAlpha.Views.MarketBoardRow({board: this}) );
     }
-    while ( (!(this.rows.size() < 4)) && 160 * this.rows.size() > window.innerHeight - 20 ) {
+    while ( this.rows.size() > 4 && 160 * this.rows.size() > window.innerHeight - 20 ) {
       this.rows.pop();
     }
     this.rows.each( this._addBoardRow.bind(this) );
@@ -118,7 +128,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _updateQuote: function () {
-    this.collection.quotes().fetch();
+    this._quoteFetch();
     setTimeout(function () {
         this._updateQuote();
       }.bind(this), this._updateQuoteTimer()

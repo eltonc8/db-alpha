@@ -200,23 +200,28 @@ ul.market-board-rows > li {
   height: 160px;
 }
 
-li.market-board-row > div {
+li.market-board-row > div.marquee-container {
   display: inline-block;
   margin: 0 auto;
   padding: 0;
   position: relative;
   overflow: hidden;
   height: 160px;
-  min-width: 160px;
+  width: 0px;
 }
 
-li.market-board-row > div > ul {
+div.marquee-container > ul.marquee-list {
   margin: 0 auto;
   padding: 0;
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
+}
+
+li.market-board-row.offset > div.marquee-container > ul.marquee-list {
+  left: -160px;
+  transition: left 0.8s ease-in;
 }
 
 li.board-list-item {
