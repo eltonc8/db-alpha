@@ -37,7 +37,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
       this.wLimit = Math.max(1, this.wLimit);
       this._distributeRows();
-    } else  {
+    } else if (this.overSize) {
       var a, b;
       for (i = 1; i <= this.rows.length; i++) {
         a = this.rows[i - 1];
@@ -105,12 +105,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _pauseRow: function (event) {
     var index = $(event.currentTarget).data().index;
-    this.rows[index].freeze = true;
+    try { this.rows[index].freeze = true; } catch (e) {}
   },
 
   _pauseRowUndo: function (event) {
     var index = $(event.currentTarget).data().index;
-    this.rows[index].freeze = false;
+    try { this.rows[index].freeze = false; } catch (e) {}
   },
 
   _quoteFetch: function () {

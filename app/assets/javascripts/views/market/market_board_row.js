@@ -97,7 +97,7 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
 
   _offset: function () {
     this.$el.addClass("offset");
-    setTimeout( this._offsetUndo.bind(this), 1000);
+    setTimeout( this._offsetUndo.bind(this), 818);
   },
 
   _offsetUndo: function () {
