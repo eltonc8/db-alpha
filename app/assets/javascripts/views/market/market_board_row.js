@@ -36,11 +36,7 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
     }
 
     _(subviews).each( function (subview) {
-      if (subview.model) {
-        this.$("ul.marquee-list").append(subview.$el);
-      } else {
-        this.$("ul.marquee-list").append(subview);
-      }
+      this.$("ul.marquee-list").append( subview.model ? subview.$el : subview );
     }.bind(this));
   },
 
@@ -50,7 +46,7 @@ DbAlpha.Views.MarketBoardRow = Backbone.View.extend({
 
   marquee: function (successor) {
     if (this.offset || this.end - this.start >= this.board.wLimit) {
-      if (this.offset++ >= 15) {
+      if (!this.freeze && this.offset++ >= 15) {
         this.offset = 0;
         this._offset();
         return true;

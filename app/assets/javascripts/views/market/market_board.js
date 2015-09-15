@@ -105,11 +105,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _pauseRow: function (event) {
     var index = $(event.currentTarget).data().index;
+    this.rows[index].freeze = true;
   },
 
   _pauseRowUndo: function (event) {
     var index = $(event.currentTarget).data().index;
-    console.log("leave" + index);
+    this.rows[index].freeze = false;
   },
 
   _quoteFetch: function () {
