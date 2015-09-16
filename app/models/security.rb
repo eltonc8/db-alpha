@@ -2,6 +2,9 @@ class Security < ActiveRecord::Base
   validates :symbol, presence: true, uniqueness: true
   attr_accessor :feeds, :status
 
+  has_many :security_list_items, dependent: :destroy
+  has_many :security_lists, through: :security_list_items
+
   def self.search_or_initialize(value)
     begin
       if value.to_i > 0
@@ -25,7 +28,7 @@ class Security < ActiveRecord::Base
       self.status = 404
       return
     end
-    
+
     /for (?<qname>.*)\Z/ =~ feeds.description #grabs the name out of the feed
     qname.slice!(/ (c|com|comm|commo|common|new com)\b.*\Z/i)
     self.name = qname
