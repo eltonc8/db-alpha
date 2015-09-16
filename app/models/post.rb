@@ -8,9 +8,9 @@ class Post < ActiveRecord::Base
     if options[:security_id]
       query = "(user_id = ? OR shared_with ~* 'public') AND tags ~* ?"
       options[:security_id] = options[:security_id].upcase
-      Post.order("created_at DESC").where(query, options[:user].id, "\\y#{ options[:security_id] }\\y")
+      Post.order(:created_at).reverse.where(query, options[:user].id, "\\y#{ options[:security_id] }\\y")
     else
-      options[:user].posts.order("created_at DESC")
+      options[:user].posts.order(:created_at).reverse
     end
   end
 

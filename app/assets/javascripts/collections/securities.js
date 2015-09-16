@@ -26,9 +26,11 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
   },
 
   quotes: function () {
-    if (!this._quotes) { this._quotes = new Backbone.StocksQuery({
-      collection: this
-    }); }
+    if (!this._quotes) {
+      this._quotes = new Backbone.StocksQuery({ collection: this });
+    }
+
+
 
     return this._quotes;
   }

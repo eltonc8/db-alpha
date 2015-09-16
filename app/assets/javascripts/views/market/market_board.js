@@ -1,18 +1,9 @@
 DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
-  djia: [ "AAPL","AXP","BA","CAT","CSCO",
-          "CVX","DD","DIS","GE","GS",
-          "HD","IBM","INTC","JNJ","JPM",
-          "KO","MCD","MMM","MRK","MSFT",
-          "NKE","PFE","PG","TRV","UNH",
-          "UTX","V","VZ","WMT","XOM"],
   className: "market-board",
   template: JST["market/market_board"],
 
   initialize: function () {
     this.interval = setInterval(this.marquee.bind(this), 200);
-    _(this.djia).each( function (symbol) {
-      this.collection.getOrFetch(symbol, {delayFetch: true}).bind(this.collection);
-    }.bind(this));
     this.rows = [];
     this._setup();
     $(window).on("resize", this._setup.bind(this));
