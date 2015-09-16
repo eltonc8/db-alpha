@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :securities, only: [:index, :show, :create] do
       resources :posts, only: [:index]
     end
+    resources :security_lists, only: [:index, :show]
+
     resources :posts, only: [:index, :create, :show, :update, :destroy]
   end
 end

@@ -12,7 +12,7 @@ module Api
       if @security
         render "securities/show.json"
       else
-        render JSON: @security, status: 404
+        render json: @security, status: 404
       end
     end
 
