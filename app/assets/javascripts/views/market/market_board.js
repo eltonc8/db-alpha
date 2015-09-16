@@ -4,11 +4,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.interval = setInterval(this.marquee.bind(this), 200);
+    this.refresh = 0;
     this.rows = [];
     this._setup();
     $(window).on("resize", this._setup.bind(this));
     this.collection.fetch({merge: true});
-    this._updateQuote();
+    this.listenTo(this.collection, "sync", this.render);
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection, "remove", this._removeBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
@@ -24,6 +25,10 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   marquee: function () {
+    if ( --this.refresh < 0 ) {
+      this.refresh += 10 + Math.log2(1 + this.collection.length) * Math.PI*2;
+      this._updateQuote();
+    }
     if ( !this.wLimit ) {
       this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
       this.wLimit = Math.max(1, this.wLimit);
@@ -39,7 +44,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html( this.template() );
+    this.$el.html( this.template( this.collection.ops ) );
     this.attachSubviews();
     return this;
   },
