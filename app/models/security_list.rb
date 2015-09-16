@@ -6,7 +6,7 @@ class SecurityList < ActiveRecord::Base
 
   def securities=(list)
     list.map! do |security|
-      if /\A[[:digit:]]+\Z/ =~ security.to_s
+      if security.is_a?(Fixnum) || /\A[[:digit:]]+\Z/ =~ security
         Security.find(security)
       elsif /\A[[:alpha:]]{1,5}\Z/ =~ security.to_s
         record = Security.find_or_initialize_by(symbol: security.upcase)
