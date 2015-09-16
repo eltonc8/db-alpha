@@ -11,8 +11,8 @@ class SecurityList < ActiveRecord::Base
       elsif /\A[[:alpha:]]{1,5}\Z/ =~ security.to_s
         record = Security.find_or_initialize_by(symbol: security.upcase)
         unless record.id
-          record = record.update_data #saves this into database if it is valid
-          sleep(0.1) #avoids insufficient resources limits from using yahoo API
+          record.update_data #saves this into database if it is valid
+          sleep(0.25 * rand) #avoids insufficient resources limits from using yahoo API
         end
 
         record
@@ -20,5 +20,9 @@ class SecurityList < ActiveRecord::Base
     end.compact!
 
     super(list)
+  end
+
+  def list
+    securities.order(:symbol).pluck(:symbol)
   end
 end
