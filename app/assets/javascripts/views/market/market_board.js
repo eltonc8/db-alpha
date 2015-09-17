@@ -7,7 +7,8 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.refresh = 0;
     this.rows = [];
     this._setup();
-    $(window).on("resize", this._setup.bind(this));
+    this._setupBinded = this._setup.bind(this)
+    $(window).on("resize", this._setupBinded);
     this.collection.fetch({merge: true});
     this.listenTo(this.collection, "sync", this.render);
     this.listenTo(this.collection, "add", this._addBoardItem);
@@ -50,6 +51,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   remove: function () {
+    $(window).off("resize", this._setupBinded);
     Backbone.CompositeView.prototype.remove.call(this);
     clearInterval(this.interval);
   },
@@ -73,9 +75,9 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _clickNavigate: function (event) {
-    var symbol = $(event.currentTarget).data().symbol;
+    var symbol = $(event.currentTarget).attr("symbol");
     if (symbol) {
-      Backbone.history.navigate("securities/" + symbol, {trigger: true});
+      Backbone.history.navigate("securities/" + symbol, trigger_true);
     }
   },
 
@@ -129,7 +131,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       this.rows.push( new DbAlpha.Views.MarketBoardRow({board: this}) );
     }
     while ( this.rows.length > 4 && 160 * this.rows.length > window.innerHeight - 20 ) {
-      this.rows.pop();
+      this.rows.pop().remove();
     }
     _.each(this.rows, this._addBoardRow.bind(this) );
     this.wLimit = 0;

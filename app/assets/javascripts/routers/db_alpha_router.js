@@ -6,6 +6,8 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
 
   routes: {
     "": "root",
+    "marketboards/": "marketView",
+    "marketboards/:value": "marketView",
     "securities": "marketView",
     "securities/:value": "securityShow",
     "homepage": "userShow",
@@ -17,8 +19,8 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
     this._swapView(view);
   },
 
-  marketView: function () {
-    if ( DbAlpha.Models.user.isNew() ) this._userAuth();
+  marketView: function (value) {
+    this.collection.setID(value);
     var view = new DbAlpha.Views.MarketBoard({
       collection: this.collection
     });
