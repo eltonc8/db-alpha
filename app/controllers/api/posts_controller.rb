@@ -8,9 +8,9 @@ module Api
     end
 
     def create
-      @post = current_user.posts.new(post_params)
-
-      if @post.save
+      if !signed_in?
+        render json: ["Please sign in to save an entry!"], status: 401 
+      elsif (@post = current_user.posts.new(post_params)) && @post.save
         render json: @post
       else
         render json: @post.errors.full_messages, status: 422

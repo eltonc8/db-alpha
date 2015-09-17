@@ -34,7 +34,6 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   securityShow: function (value) {
-    if ( DbAlpha.Models.user.isNew() ) this._userAuth();
     var view = new DbAlpha.Views.SecurityShow({
       model: this.collection.getOrFetch(value)
     });
@@ -42,7 +41,6 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   userShow: function () {
-    if ( DbAlpha.Models.user.isNew() ) this._userAuth();
     var view = new DbAlpha.Views.UserShow({});
     this._swapView(view);
   },
@@ -67,6 +65,4 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
       bootbox.alert("<br><br><br>Hello! Please sign in so that pages may be rendered correctly!");
     }
   }
-
-
 });

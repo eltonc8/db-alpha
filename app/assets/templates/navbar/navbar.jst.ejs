@@ -4,27 +4,27 @@
       <li class="navbar-nav" id="navbar-brand">
         <a href="#">dbAlpha</a>
       </li>
-      <% if ( !DbAlpha.Models.user.isNew() ) { %>
-        <li class=""><div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
-      <% } %>
+      <li class="">
+        <div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
+      </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <% if ( !DbAlpha.Models.user.isNew() ) { %>
-        <div class="dropdown nav-name">
-          <div class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            navigate to
-            <span class="caret"></span>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li>
-              <a href="#marketboards" class='btn'>Market Board</a>
-            </li>
-            <li>
-              <a href="#homepage" class='btn'>My Dashboard</a>
-            </li>
-          </ul>
+      <li class="dropdown nav-name nav-item">
+        <div class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          navigate to
+          <span class="caret"></span>
         </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li>
+            <a href="#marketboards" class='btn'>Market Board</a>
+          </li>
+          <li>
+            <a href="#homepage" class='btn'>My Dashboard</a>
+          </li>
+        </ul>
+      </li>
+      <% if ( !DbAlpha.Models.user.isNew() ) { %>
         <li class="nav-item username">Welcome, <%= DbAlpha.Models.user.escape("username") %></li>
         <li class="nav-item sign-out">Sign Out</li>
       <% } else { %>
