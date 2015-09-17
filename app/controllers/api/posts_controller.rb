@@ -1,5 +1,7 @@
 module Api
   class PostsController < ApiController
+    before_action :require_signed_in!, only: [:create, :update, :destroy]
+
     def index
       @posts = Post.search( user: current_user, security_id: params[:security_id] )
       render "posts/index.json"
@@ -7,7 +9,7 @@ module Api
 
     def create
       @post = current_user.posts.new(post_params)
-      
+
       if @post.save
         render json: @post
       else

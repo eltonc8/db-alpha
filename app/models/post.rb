@@ -6,11 +6,17 @@ class Post < ActiveRecord::Base
 
   def self.search(options)
     if options[:security_id]
-      query = "(user_id = ? OR shared_with ~* 'public') AND tags ~* ?"
       options[:security_id] = options[:security_id].upcase
-      Post.where(query, options[:user].id, "\\y#{ options[:security_id] }\\y").order(:created_at).reverse
-    else
+      if options[:user]
+        query = "(user_id = ? OR shared_with ~* 'public') AND tags ~* ?"
+        Post.where(query, options[:user].id, "\\y#{ options[:security_id] }\\y").order(:created_at).reverse
+      else
+        Post.where("shared_with ~* 'public' AND tags ~* ?", "\\y#{ options[:security_id] }\\y").order(:created_at).reverse
+      end
+    elsif options[:user]
       options[:user].posts.order(:created_at).reverse
+    else
+      Post.where("shared_with ~* 'public'").order(:created_at).reverse
     end
   end
 

@@ -119,6 +119,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   _refresh: function () {
     this.collection.removeNonlistMembers();
     this._quoteFetch();
+    this._setup();
     this.render();
   },
 
