@@ -6,7 +6,7 @@ module Api
     end
 
     def show
-      @security_list = SecurityList.includes(:securities).order("securities.symbol").find(params[:id])
+      @security_list = SecurityList.show(params[:id])
       render "security_lists/show.json"
     end
   end

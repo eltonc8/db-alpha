@@ -1,5 +1,22 @@
 <div class="row market-view title">
-  <h1 class="col-md-offset-2 col-md-8"><%= name ? name : "Market Board" %></h1>
+  <h1 class="col-md-offset-2 col-md-8">
+    <div class="dropdown nav-name dropdown-market-board">
+      <div class="dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <%= name ? name : "Market Board" %>
+      </div>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+        <li>
+          <a href="#marketboards/SPX" class='btn'>S&P500</a>
+        </li>
+        <li>
+          <a href="#marketboards/NDX" class='btn'>NASDAQ 100</a>
+        </li>
+        <li>
+          <a href="#marketboards/DJIA" class='btn'>Dow Jones Industrial Average</a>
+        </li>
+      </ul>
+    </div>
+  </h1>
 </div>
 <div class="row market-view information"></div>
 

@@ -42,7 +42,7 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
     if (resp.id) {
       this.ops.id = escape(resp.id);
       this.ops.symbol = escape(resp.symbol);
-      this.ops.name = escape(resp.name).replace(/%20/g, " ");
+      this.ops.name = escape(resp.name).replace(/%20/g, " ").replace(/%26/g, "&");
       resp = resp.securities;
     }
     return resp;

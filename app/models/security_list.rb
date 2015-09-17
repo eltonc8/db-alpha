@@ -4,6 +4,14 @@ class SecurityList < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def self.show(value)
+    if value.is_a?(Fixnum) || /\A[[:digit:]]+\Z/ =~ value
+      SecurityList.includes(:securities).order("securities.symbol").find(value)
+    elsif /\A[[:alpha:]]{1,5}\Z/ =~ value.to_s
+      SecurityList.includes(:securities).order("securities.symbol").find_by_symbol(value.upcase)
+    end
+  end
+
   def securities=(list)
     list.map! do |security|
       if security.is_a?(Fixnum) || /\A[[:digit:]]+\Z/ =~ security
@@ -20,6 +28,10 @@ class SecurityList < ActiveRecord::Base
     end.compact!
 
     super(list)
+  end
+
+  def symbol=(symbol)
+    super(symbol.upcase)
   end
 
   def list

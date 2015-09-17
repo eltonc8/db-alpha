@@ -1,3 +1,20 @@
 // Place all the styles related to the SecurityLists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#dropdownMenu3 + .dropdown-menu {
+  min-width: 100%;
+  background-color: #000;
+  border: 0;
+  box-shadow: 0 5px 20px rgba(255,255,255,0.5);
+}
+
+#dropdownMenu3 + .dropdown-menu > li > a {
+  color: #FFF;
+  font-size: 20px;
+}
+
+#dropdownMenu3 + .dropdown-menu > li > a:hover {
+  background-color: #004;
+  text-shadow: #FFF 0 0 6px;
+}
