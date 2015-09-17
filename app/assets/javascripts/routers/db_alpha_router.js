@@ -6,7 +6,7 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
 
   routes: {
     "": "root",
-    "marketboards/": "marketView",
+    "marketboards": "marketView",
     "marketboards/:value": "marketView",
     "securities": "marketView",
     "securities/:value": "securityShow",
@@ -20,7 +20,13 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   marketView: function (value) {
-    this.collection.setID(value);
+    if (value) {
+      this.collection.setID(value);
+    } else if (this.collection.length < 1) {
+      return Backbone.history.navigate("marketboards/1", trigger_true);
+    } else {
+      this.collection.unsetID();
+    }
     var view = new DbAlpha.Views.MarketBoard({
       collection: this.collection
     });

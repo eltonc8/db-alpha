@@ -3,7 +3,7 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
   ops: {},
 
   url: function () {
-    if (this.ops.id) {
+    if ( this.ops.id ) {
       return "/api/security_lists/" + this.ops.id;
     } else {
       return "/api/securities?symbols=" + this.getSymbols().join(",");
@@ -39,13 +39,20 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
   },
 
   parse: function(resp, options) {
-    this.ops.id = escape(resp.id);
-    this.ops.symbol = escape(resp.symbol);
-    this.ops.name = escape(resp.name).replace(/%20/g, " ");
-    return resp.securities;
+    if (resp.id) {
+      this.ops.id = escape(resp.id);
+      this.ops.symbol = escape(resp.symbol);
+      this.ops.name = escape(resp.name).replace(/%20/g, " ");
+      resp = resp.securities;
+    }
+    return resp;
   },
 
   setID: function (value) {
     this.ops.id = value;
-  }
+  },
+
+  unsetID: function () {
+    this.ops.id = this.ops.name = undefined
+  },
 });

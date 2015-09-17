@@ -63,7 +63,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _removeBoardItem: function (model) {
-    _.each(this.rows, removeBoardItem.bind(model) );
+    this.removeModelSubview("marquee-list", model);
   },
 
   _addBoardRow: function (row) {
@@ -130,7 +130,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     while ( this.rows.length < 4 || 160 * this.rows.length < window.innerHeight ) {
       this.rows.push( new DbAlpha.Views.MarketBoardRow({board: this}) );
     }
-    while ( this.rows.length > 4 && 160 * this.rows.length > window.innerHeight - 20 ) {
+    while ( this.rows.length > 4 && 160 * this.rows.length > window.innerHeight - 200 ) {
       this.rows.pop().remove();
     }
     _.each(this.rows, this._addBoardRow.bind(this) );
