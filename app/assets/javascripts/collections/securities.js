@@ -48,6 +48,15 @@ DbAlpha.Collections.Securities = Backbone.Collection.extend({
     return resp;
   },
 
+  removeNonlistMembers: function () {
+    if (!this.ops.id) return;
+    this.each( function (model) {
+      if (model.get("list_id") != this.ops.id) {
+        this.remove(model);
+      }
+    }.bind(this));
+  },
+
   setID: function (value) {
     this.ops.id = value;
   },

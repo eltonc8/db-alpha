@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.dropdown-market-board {
+  min-width: 40%;
+  cursor: pointer;
+}
+
 #dropdownMenu3 + .dropdown-menu {
   min-width: 100%;
   background-color: #000;
@@ -14,6 +19,7 @@
   font-size: 20px;
 }
 
+#dropdownMenu3 + .dropdown-menu > li > a:focus,
 #dropdownMenu3 + .dropdown-menu > li > a:hover {
   background-color: #004;
   text-shadow: #FFF 0 0 6px;

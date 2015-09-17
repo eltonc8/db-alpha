@@ -10,7 +10,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this._setupBinded = this._setup.bind(this)
     $(window).on("resize", this._setupBinded);
     this.collection.fetch({merge: true});
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync", this._refresh);
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection, "remove", this._removeBoardItem);
     this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
@@ -113,6 +113,13 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _quoteFetch: function () {
     this.collection.quotes().fetch();
+  },
+
+  // refresh
+  _refresh: function () {
+    this.collection.removeNonlistMembers();
+    this._quoteFetch();
+    this.render();
   },
 
   _rowUsageOptimizer: function () {
