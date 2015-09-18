@@ -2,12 +2,14 @@
 
 <!-- TradingView Widget BEGIN -->
 <script type="text/javascript">
-
+<% var symbol = model ? model.escape('symbol') : "FX:SPX500" %>
+<% if (/^BRKB$/i.exec(symbol)) symbol = "BRK.B" %>
+<% if (/^BFB$/i.exec(symbol)) symbol = "BF.B" %>
 $(function (model) {
   var widget = new TradingView.widget({
     "container_id": "tradingview-widget",
     "width": "100%",
-    "symbol": "<%= model ? model.escape('symbol') : "FX:SPX500" %>",
+    "symbol": "<%= symbol %>",
     "interval": "D",
     "timezone": "America/New_York",
     "theme": "Black",

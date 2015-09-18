@@ -43,7 +43,9 @@ DbAlpha.Views.UserShow = Backbone.CompositeView.extend({
 
   _userCheck: function () {
     if ( DbAlpha.Models.user.isNew() ) {
-      bootbox.alert("<br><br><br>Hello! You are not currently signed in. Please sign in, or functions will be limited until then! Meanwhile, some sample public notes and entries are displayed.");
+      bootbox.alert("<br><br>Hello! You are not currently signed in.<br>" +
+      "Please sign in, or functions will be limited.<br>" +
+      "Some sample public notes and entries are displayed.<br><br>");
     }
   }
 });
