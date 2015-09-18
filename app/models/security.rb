@@ -29,11 +29,13 @@ class Security < ActiveRecord::Base
       return
     end
 
-    /for (?<qname>.*)\Z/ =~ feeds.description #grabs the name out of the feed
-    qname.slice!(/ (c|com|comm|commo|common|new com)\b.*\Z/i)
-    self.name = qname
+    unless self.name
+      /for (?<qname>.*)\Z/ =~ feeds.description #grabs the name out of the feed
+      qname.slice!(/ (c|com|comm|commo|common|new com)\b.*\Z/i)
+      self.name = qname
+    end
 
-    if ( updated_at && updated_at > 1.day.ago) || !image || !website
+    if !image || !website
       qname = name.dup
       google_web = Google::Search::Web.new(query: qname + " investor")
       self.website ||= google_web.first.visible_uri

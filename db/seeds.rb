@@ -35,7 +35,7 @@ SecurityList.create!(name: "NASDAQ-100", symbol: "IXNDX", securities: [
   "PCLN", "TSCO", "TRIP", "FOX", "FOXA", "VRSK", "VRTX", "VIAB", "VIP", "VOD", "WBA",
   "WDC", "WFM", "WYNN", "XLNX", "YHOO"])
 
-SecurityList.create!(name: "Standard & Poor 500", symbol: "S&P500", securities: [
+SecurityList.create!(name: "Standard & Poor 500", symbol: "SPX", securities: [
   "A", "AA", "AAL", "AAP", "AAPL", "ABBV", "ABC", "ABT", "ACE", "ACN",
   "ADBE", "ADI", "ADM", "ADP", "ADS", "ADSK", "ADT", "AEE", "AEP", "AES",
   "AET", "AFL", "AGN", "AIG", "AIV", "AIZ", "AKAM", "ALL", "ALLE", "ALTR",
@@ -87,3 +87,6 @@ SecurityList.create!(name: "Standard & Poor 500", symbol: "S&P500", securities: 
   "WM", "WMB", "WMT", "WRK", "WU", "WY", "WYN", "WYNN", "XEC", "XEL",
   "XL", "XLNX", "XOM", "XRAY", "XRX", "XYL", "YHOO", "YUM", "ZBH", "ZION",
   "ZTS"])
+
+SecurityList.create!(name: "Sectors of the S&P 500", symbol: "SPDR", securities:
+  ["SPY", "XLB", "XLE", "XLF", "XLI", "XLK", "XLP", "XLU", "XLV", "XLY"])

@@ -7,7 +7,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.refresh = 0;
     this.rows = [];
     this._setup();
-    this._setupBinded = this._setup.bind(this)
+    this._setupBinded = this._setup.bind(this);
     $(window).on("resize", this._setupBinded);
     this.collection.fetch({merge: true});
     this.listenTo(this.collection, "sync", this._refresh);
@@ -75,10 +75,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _clickNavigate: function (event) {
-    var symbol = $(event.currentTarget).attr("symbol");
-    if (symbol) {
-      Backbone.history.navigate("securities/" + symbol, trigger_true);
-    }
+    var etfAddress, path, symbol = $(event.currentTarget).attr("symbol");
+    if (!symbol) return;
+
+    etfAddress = this._etfAddress(symbol);
+    path = (etfAddress && "marketboards/" + etfAddress.first()) || ("securities/" + symbol);
+    Backbone.history.navigate(path, trigger_true);
   },
 
   _distributeRows: function () {
@@ -99,6 +101,13 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       }
       this.rows[i].setViewBounds(start, end, i );
     }
+  },
+
+  _etfAddress: function (symbol) {
+    var spdr = /^xl[befikpuvy]$/i.exec(symbol);
+    if (spdr) return _(spdr);
+
+    return /^SPY$/i.exec(symbol) && _(["SPX", "SPY"]);
   },
 
   _pauseRow: function (event) {
@@ -124,13 +133,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _rowUsageOptimizer: function () {
-    var total = this.subviews("marquee-list").size();
+    var totalNum = this.subviews("marquee-list").size();
     var rowCount = this.rows.length;
-    if (this.wLimit >= total) return 1;
     for (i = 1; i <= rowCount; i++) {
-      if (!total % i && this.wLimit * i >= total) return i;
+      if ((!(totalNum % i)) && this.wLimit * i >= totalNum) return i;
     }
-    return Math.min( rowCount, Math.floor(total / this.wLimit + 1) );
+    return Math.min( rowCount, Math.floor(totalNum / this.wLimit + 1) );
   },
 
   _setup: function () {
