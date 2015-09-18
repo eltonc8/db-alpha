@@ -8,25 +8,29 @@ span.dbalpha:after {
   font-weight: bold;
 }
 
-.overlay1 {
+#slideshow-title.overlay1 {
   color: #FFF;
-  width: 20%;
-  display: block;
-  position: absolute;
-  top: 30%;
-  left: 10%;
-  width: 40%;
+  top: 20px;
+  left: 15%;
+  width: 70%;
+  height: 40px;
+  opacity: 1;
   z-index: 10;
+  text-align: center;
+  font-size: 50px;
+  text-shadow: #000 0px 0px 15px;
 }
 
 .overlay2 {
   color: #FFF;
-  width: 20%;
+  top: 100px;
+  left: 15%;
+  width: 70%;
+  height: 40px;
   display: block;
   position: absolute;
-  top: 30%;
-  left: 60%;
-  width: 25%;
+  text-align: center;
+  font-size: 14px;
   z-index: 10;
 }
 
@@ -71,16 +75,16 @@ span.dbalpha:after {
   margin: auto;
   position: relative;
   display: block;
-  min-width: 800px;
   width: 100%;
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  overflow: hidden;
 }
 
 #slideshow:before{
   content:     "";
   display:     block;
-  min-height:  480px;
-  padding-top: 60%;
+  min-height:  160px;
+  transition: height 1s;
 }
 
 /*controls slideshow content*/
@@ -110,4 +114,6 @@ span.dbalpha:after {
   -moz-filter: blur(1px) sepia(90%) hue-rotate(180deg);
   -o-filter: blur(1px) sepia(90%) hue-rotate(180deg);
   -ms-filter: blur(1px) sepia(90%) hue-rotate(180deg);
+  width: 100%;
+  height: auto;
 }
