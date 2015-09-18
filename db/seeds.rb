@@ -42,7 +42,7 @@ SecurityList.create!(name: "Standard & Poor 500", symbol: "SPX", securities: [
   "ALXN", "AMAT", "AME", "AMG", "AMGN", "AMP", "AMT", "AMZN", "AN", "ANTM",
   "AON", "APA", "APC", "APD", "APH", "ARG", "ATVI", "AVB", "AVGO", "AVY",
   "AXP", "AZO", "BA", "BAC", "BAX", "BBBY", "BBT", "BBY", "BCR", "BDX",
-  "BEN", "BF.B", "BHI", "BIIB", "BK", "BLK", "BLL", "BMY", "BRCM", "BRK.B",
+  "BEN", "BFB", "BHI", "BIIB", "BK", "BLK", "BLL", "BMY", "BRCM", "BRKB",
   "BSX", "BWA", "BXLT", "BXP", "C", "CA", "CAG", "CAH", "CAM", "CAT",
   "CB", "CBG", "CBS", "CCE", "CCI", "CCL", "CELG", "CERN", "CF", "CHK",
   "CHRW", "CI", "CINF", "CL", "CLX", "CMA", "CMCSA", "CME", "CMG", "CMI",
@@ -90,3 +90,39 @@ SecurityList.create!(name: "Standard & Poor 500", symbol: "SPX", securities: [
 
 SecurityList.create!(name: "Sectors of the S&P 500", symbol: "SPDR", securities:
   ["SPY", "XLB", "XLE", "XLF", "XLI", "XLK", "XLP", "XLU", "XLV", "XLY"])
+
+SecurityList.create!(name: "SPDR Materials Select Sector", symbol: "XLB", securities:
+  ["DOW","DD","MON","LYB","PX","APD","ECL","PPG","SHW","IP","SIAL","WRK","VMC","NUE","AA","CF","FCX","MOS","MLM","SEE","EMN","BLL","NEM","IFF","ARG","AVY","FMC","OI"])
+
+SecurityList.create!(name: "SPDR Energy Select Sector", symbol: "XLE", securities:
+  ["XOM","CVX","SLB","EOG","KMI","OXY","COP","WMB","PSX","VLO","PXD","APC","HAL","TSO","BHI","SE","MPC","COG","CAM","NOV","NBL","APA",
+   "DVN","HES","FTI","MRO","EQT","XEC","RRC","SWN","OKE","CPGX","MUR","CHK","NFX","HP","RIG","CNX","ESV","DO"])
+
+SecurityList.create!(name: "SPDR Financial Select Sector", symbol: "XLF", securities:
+  ["WFC","BRKB","JPM","BAC","C","AIG","GS","USB","AXP","SPG","MET","MS","PNC","BK","COF","BLK","AMT","PRU","SCHW","ACE","TRV","CME","PSA","STT","MMC","BBT","CB","CCI","EQR","ICE","MHFI","AON","AFL","ALL","DFS","HCN",
+    "AVB","STI","AMP","PLD","HIG","TROW","MCO","VTR","BXP","HCP","EQIX","PGR","FITB","MTB","GGP","VNO","NTRS","BEN","WY","IVZ","ESS","PFG","HST","LNC","RF","KEY","XL","L","SLG","O","MAC","AMG","KIM","CBG","HBAN","UNM",
+    "ETFC","CINF","CMA","TMK","PCL","LUK","NDAQ","ZION","AIV","IRM","AIZ","NAVI","PBCT","HCBK","LM","GNW"])
+
+SecurityList.create!(name: "SPDR Industrial Select Sector", symbol: "XLI", securities:
+  ["GE","MMM","BA","UNP","HON","UTX","UPS","DHR","LMT","CAT","GD","FDX","DAL","CMI","NOC","RTN","CSX","EMR","ETN","PCP","ITW","DE","AAL","NSC","LUV","PCAR","WM","UAL","PH","ROK","NLSN","GWW","ROP","EFX","SWK","TYC",
+    "IR","COL","TXT","AME","DOV","SRCL","MAS","FAST","KSU","RSG","CHRW","RHI","CTAS","PNR","FLR","EXPD","SNA","LLL","R","JBHT","URI","XYL","FLS","ALLE","ADT","PWR","JEC","PBI","DNB","JOY"])
+
+SecurityList.create!(name: "SPDR Technology Select Sector", symbol: "XLK", securities:
+  ["AAPL","MSFT","T","FB","GOOGL","VZ","GOOG","V","IBM","CSCO","ORCL","INTC","MA","QCOM","ACN","TXN","EMC","CRM","HPQ","CTSH","ADBE","ADP","PYPL","AVGO","BRCM","EBAY","YHOO","INTU","TEL","GLW","EA","FISV","FIS","AMAT",
+    "ADI","MU","WDC","SWKS","APH","ALTR","PAYX","ADS","STX","CTL","ATVI","AKAM","RHT","SYMC","LVLT","SNDK","NVDA","CTXS","XLNX","LRCX","XRX","ADSK","MSI","NTAP","LLTC","MCHP","WU","HRS","JNPR","CA","KLAC","CSC","TSS",
+    "FFIV","VRSN","QRVO","FTR","TDC","FLIR","FSLR"])
+
+SecurityList.create!(name: "SPDR Consumer Staples Select Sector", symbol: "XLP", securities:
+  ["PG","KO","PM","CVS","WMT","MO","WBA","PEP","MDLZ","COST","CL","KHC","KR","KMB","RAI","GIS","STZ","ADM","SYY","MNST","CAG","EL","K","BFB","CLX","DPS","TAP","TSN","MJN","HSY","SJM","WFM","MKC","CCE","HRL","CPB","GMCR"])
+
+SecurityList.create!(name: "SPDR Utilities Select Sector", symbol: "XLU", securities:
+  ["DUK","NEE","D","SO","AEP","EXC","PCG","SRE","PPL","PEG","EIX","ED","XEL","WEC","ES","DTE","FE","ETR","AEE","CMS","CNP","AES","SCG","GAS","PNW","TE","NRG","POM","NI"])
+
+SecurityList.create!(name: "SPDR Health Care Select Sector", symbol: "XLV", securities:
+  ["JNJ","PFE","GILD","MRK","AGN","UNH","AMGN","BMY","ABBV","MDT","CELG","LLY","BIIB","ESRX","ABT","TMO","MCK","AET","ANTM","REGN","CI","ALXN","VRTX","SYK","HUM","BDX","CAH","PRGO","HCA","BSX","ABC","ZTS","BXLT","MYL",
+    "BAX","STJ","CERN","ISRG","ZBH","ENDP","BCR","EW","DVA","UHS","A","LH","HSIC","WAT","DGX","MNK","VAR","XRAY","PKI","THC","PDCO"])
+
+SecurityList.create!(name: "SPDR Consumer Discretionary Select Sector", symbol: "XLY", securities:
+["AMZN","DIS","HD","CMCSA","MCD","SBUX","NKE","PCLN","LOW","F","TWX","TWC","TGT","TJX","FOXA","NFLX","GM","YUM","JCI","ORLY","VFC","CCL","AZO","DLPH","LB","CMG","DG","ROST","CBS","M","UA","OMC","VIAB","RCL","DLTR","MAR",
+  "WHR","GPC","AAP","KMX","MHK","HOT","EXPE","HBI","TSCO","HOG","NWL","BBY","SIG","BBBY","DHI","JWN","KSS","BWA","HRB","PVH","WYN","LEN","TIF","HAS","KORS","SPLS","DRI","GPS","IPG","GT","COH","MAT","TRIP","HAR","RL","PHM",
+  "DISCK","NWSA","CVC","LEG","WYNN","TGNA","SNI","GME","AN","GRMN","DISCA","URBN","FOSL","T"])
