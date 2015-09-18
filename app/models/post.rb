@@ -9,14 +9,14 @@ class Post < ActiveRecord::Base
       options[:security_id] = options[:security_id].upcase
       if options[:user]
         query = "(user_id = ? OR shared_with ~* 'public') AND tags ~* ?"
-        Post.where(query, options[:user].id, "\\y#{ options[:security_id] }\\y").order(:created_at).reverse
+        Post.includes(:user).where(query, options[:user].id, "\\y#{ options[:security_id] }\\y").order(:created_at).reverse
       else
-        Post.where("shared_with ~* 'public' AND tags ~* ?", "\\y#{ options[:security_id] }\\y").order(:created_at).reverse
+        Post.includes(:user).where("shared_with ~* 'public' AND tags ~* ?", "\\y#{ options[:security_id] }\\y").order(:created_at).reverse
       end
     elsif options[:user]
-      options[:user].posts.order(:created_at).reverse
+      options[:user].posts.includes(:user).order(:created_at).reverse
     else
-      Post.where("shared_with ~* 'public'").order(:created_at).reverse
+      Post.includes(:user).where("shared_with ~* 'public'").order(:created_at).reverse
     end
   end
 

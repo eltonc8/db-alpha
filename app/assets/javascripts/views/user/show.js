@@ -29,6 +29,21 @@ DbAlpha.Views.UserShow = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
+    this._userAuth();
     return this;
+  },
+
+  _userAuth: function () {
+    //ensures that the user has signed in.
+    if ( DbAlpha.Models.user.isNew() ) {
+      // gives time for syncing to occur
+      setTimeout( this._userCheck.bind(this), 2500);
+    }
+  },
+
+  _userCheck: function () {
+    if ( DbAlpha.Models.user.isNew() ) {
+      bootbox.alert("<br><br><br>Hello! You are not currently signed in. Please sign in, or functions will be limited until then! Meanwhile, some sample public notes and entries are displayed.");
+    }
   }
 });

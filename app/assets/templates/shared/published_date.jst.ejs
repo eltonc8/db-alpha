@@ -8,4 +8,7 @@
   <% } else { %>
     <%= pub_date.toDateString() %>
   <% } %>
+  <% if (typeof author !== "undefined") {%>
+    ■ by <%= author %>
+  <% } %>
 </div>

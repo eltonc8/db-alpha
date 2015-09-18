@@ -47,8 +47,4 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
       query: this.queryRoot.replace('#{}', this.collection.getSymbols().join('","').toUpperCase())
     });
   },
-
-  parse: function (response) {
-    return response.query;
-  }
 });

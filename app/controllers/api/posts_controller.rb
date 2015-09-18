@@ -1,6 +1,6 @@
 module Api
   class PostsController < ApiController
-    before_action :require_signed_in!, only: [:create, :update, :destroy]
+    before_action :require_signed_in!, only: [:update, :destroy]
 
     def index
       @posts = Post.search( user: current_user, security_id: params[:security_id] )
@@ -9,7 +9,7 @@ module Api
 
     def create
       if !signed_in?
-        render json: ["Please sign in to save an entry!"], status: 401 
+        render json: ["Please sign in to save an entry!"], status: 401
       elsif (@post = current_user.posts.new(post_params)) && @post.save
         render json: @post
       else

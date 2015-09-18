@@ -50,19 +50,4 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
     this._view = view;
     this.$rootEl.html(this._view.render().$el);
   },
-
-  _userAuth: function () {
-    //ensures that the user has signed in.
-    if ( DbAlpha.Models.user.isNew() ) {
-      // gives time for syncing to occur
-      setTimeout( this._userCheck.bind(this), 2500);
-    }
-  },
-
-  _userCheck: function () {
-    if ( DbAlpha.Models.user.isNew() ) {
-      Backbone.history.navigate("", trigger_true);
-      bootbox.alert("<br><br><br>Hello! Please sign in so that pages may be rendered correctly!");
-    }
-  }
 });
