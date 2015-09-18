@@ -16,7 +16,7 @@ DbAlpha.Views.SlideshowFade = Backbone.View.extend({
       "A tool to help you journal your thoughts, analyses, and plan."
     ],
     [
-      "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1439571654/warren_buffett_ah25n1.jpg",
+      "http://res.cloudinary.com/dwlxp9sf7/image/upload/c_crop,g_north,h_303,w_606/v1439571654/warren_buffett_ah25n1.jpg",
       '"The best asset is your own self." -Warren Buffett'
     ],
     [
@@ -25,7 +25,7 @@ DbAlpha.Views.SlideshowFade = Backbone.View.extend({
     ],
     [
       "http://res.cloudinary.com/dwlxp9sf7/image/upload/c_scale,w_2400/v1440499885/background/photo-1428677361686-f9d23be145c9.jpg",
-      "Read. Plan. Act."
+      "Read  ■  Plan  ■  Act"
     ],
   ],
 
@@ -36,7 +36,7 @@ DbAlpha.Views.SlideshowFade = Backbone.View.extend({
     this.transition = 1000;
     this._slides = [];
     _.each(this.slideContents, this.addSlide.bind(this));
-    this._index = Math.floor( Math.random() * this._slides.length );
+    this._index = 5;
     this._manualCount = 0;
     this.slide();
   },

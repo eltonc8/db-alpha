@@ -8,32 +8,6 @@ span.dbalpha:after {
   font-weight: bold;
 }
 
-#slideshow-title.overlay1 {
-  color: #FFF;
-  top: 20px;
-  left: 15%;
-  width: 70%;
-  height: 40px;
-  opacity: 1;
-  z-index: 10;
-  text-align: center;
-  font-size: 50px;
-  text-shadow: #000 0px 0px 15px;
-}
-
-.overlay2 {
-  color: #FFF;
-  top: 100px;
-  left: 15%;
-  width: 70%;
-  height: 40px;
-  display: block;
-  position: absolute;
-  text-align: center;
-  font-size: 14px;
-  z-index: 10;
-}
-
 #intro {
   min-height: 60vh;
 }
@@ -104,16 +78,48 @@ span.dbalpha:after {
 }
 
 #slideshow > div.slide > div {
-  text-shadow: #000 0px 0px 1em;
+  text-shadow: #000 0px 0px 8px;
   font-size: 20px;
 }
 
-#slideshow > div.slide > img {
-  filter: blur(1px) sepia(90%) hue-rotate(180deg);
-  -webkit-filter: blur(1px) sepia(90%) hue-rotate(180deg);
-  -moz-filter: blur(1px) sepia(90%) hue-rotate(180deg);
-  -o-filter: blur(1px) sepia(90%) hue-rotate(180deg);
-  -ms-filter: blur(1px) sepia(90%) hue-rotate(180deg);
+#slideshow > div.slide > .image {
+  left: 0;
+  top: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  filter: brightness(0.7) blur(1px) sepia(90%) hue-rotate(180deg);
+  -webkit-filter: brightness(0.7) blur(1px) sepia(90%) hue-rotate(180deg);
+  -moz-filter: brightness(0.7) blur(1px) sepia(90%) hue-rotate(180deg);
+  -o-filter: brightness(0.7) blur(1px) sepia(90%) hue-rotate(180deg);
+  -ms-filter: brightness(0.7) blur(1px) sepia(90%) hue-rotate(180deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#slideshow-title.overlay1 {
+  color: #FFF;
+  top: 20px;
+  left: 15%;
+  width: 70%;
+  height: 40px;
+  opacity: 1;
+  z-index: 10;
+  text-align: center;
+  font-size: 50px;
+  text-shadow: #000 0px 0px 15px;
+}
+
+#slideshow div.overlay2.text {
+  color: #FFF;
+  top: 100px;
+  left: 15%;
+  width: 70%;
+  height: 40px;
+  display: block;
+  position: absolute;
+  text-align: center;
+  font-size: 18px;
+  z-index: 10;
+  filter: none;
 }
