@@ -13,6 +13,7 @@
 .dropdown > .dropdown-menu {
   display: block;
   opacity: 0;
+  z-index: -1;
   transition: opacity 0.3s ease-in-out;
   margin-top: 0; // remove the gap so it doesn't close
 }
@@ -20,6 +21,7 @@
 .dropdown.open > .dropdown-menu,
 .dropdown:hover > .dropdown-menu {
   opacity: 1;
+  z-index: 250;
   margin-top: 0; // remove the gap so it doesn't close
 }
 
