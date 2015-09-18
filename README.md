@@ -1,8 +1,7 @@
 # db-Alpha [Dashboard Alpha]
 
-[Live Site]: http://www.dbalpha.info
-
-## Dashboard Alpha - an investment tool to help everyone be a better investor
+Dashboard Alpha - an investment tool to help everyone be a better investor
+- [Live Site](http://www.dbalpha.info)
 
 ### features
 Dashboard Alpha is an investment tool partially inspired by seekingAlpha.com. It is a tool that aims to help everyone be a better investor by conveniently gathering data and news of a company into one dashboard page.
