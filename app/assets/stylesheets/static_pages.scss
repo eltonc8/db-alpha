@@ -44,6 +44,10 @@ span.dbalpha:after {
   color: #589358;
 }
 
+#landing-market-board > div.market-board {
+  min-height: 0;
+  box-shadow: 0 5px 10px #000;
+}
 
 #slideshow {
   margin: auto;

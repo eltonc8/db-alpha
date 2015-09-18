@@ -30,11 +30,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       this.refresh += 10 + Math.log2(1 + this.collection.length) * Math.PI*2;
       this._quoteFetch();
     }
-    if ( !this.wLimit ) {
-      this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
-      this.wLimit = Math.max(1, this.wLimit);
-      this._distributeRows();
-    } else if (this.overSize) {
+    if (this.overSize) {
       var a, b;
       for (i = 1; i <= this.rows.length; i++) {
         a = this.rows[i - 1];
@@ -141,6 +137,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     return Math.min( rowCount, Math.floor(totalNum / this.wLimit + 1) );
   },
 
+  _rowWidthCalculate: function () {
+    this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
+    this.wLimit = Math.max(1, this.wLimit);
+    this._distributeRows();
+  },
+
   _setup: function () {
     _.each(this.rows, this._removeBoardRow.bind(this) );
     while ( this.rows.length < 4 || 160 * this.rows.length < window.innerHeight ) {
@@ -150,7 +152,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       this.rows.pop().remove();
     }
     _.each(this.rows, this._addBoardRow.bind(this) );
-    this.wLimit = 0;
+    this._rowWidthCalculate();
   },
 
   _updateQuoteTimer: function () {

@@ -15,7 +15,9 @@ DbAlpha.Routers.DbAlphaRouter = Backbone.Router.extend({
   },
 
   root: function () {
-    var view = new DbAlpha.Views.Root();
+    var view = new DbAlpha.Views.Root({
+      collection: this.collection
+    });
     this._swapView(view);
   },
 
