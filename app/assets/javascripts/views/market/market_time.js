@@ -38,7 +38,8 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
     var h = Math.floor(timeDiff / 3600 % 24);
     var d = Math.floor(timeDiff / 86400);
     if (d) {
-      ops.countdown = d + " day" + ( d > 1 ? "s" : "");
+      ops.countdown = d + " day" + ( d > 1 ? "s " : " ")
+                    + (h > 1 ? h + " hour" : "") + (h > 2 ? "s" : "");
     } else {
       ops.countdown = (h ? h + ":" : "") + ("00" + m).slice(-2) + ":" + ("00" + s).slice(-2);
     }

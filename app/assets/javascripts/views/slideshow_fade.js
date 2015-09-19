@@ -16,7 +16,7 @@ DbAlpha.Views.SlideshowFade = Backbone.View.extend({
       "A tool to help you journal your thoughts, analyses, and plan."
     ],
     [
-      "http://res.cloudinary.com/dwlxp9sf7/image/upload/c_crop,g_north,h_303,w_606/v1439571654/warren_buffett_ah25n1.jpg",
+      "http://res.cloudinary.com/dwlxp9sf7/image/upload/c_crop,g_north,h_250,w_606/v1439571654/warren_buffett_ah25n1.jpg",
       '"The best asset is your own self." -Warren Buffett'
     ],
     [
