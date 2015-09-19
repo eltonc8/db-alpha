@@ -91,15 +91,15 @@ SecurityList.create!(name: "Standard & Poor 500", symbol: "SPX", securities: [
 SecurityList.create!(name: "Sectors of the S&P 500", symbol: "SPDR", securities:
   ["SPY", "XLB", "XLE", "XLF", "XLI", "XLK", "XLP", "XLU", "XLV", "XLY"])
 
-Security.find_by_symbol("XLB").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLB.png")
-Security.find_by_symbol("XLE").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLE.png")
-Security.find_by_symbol("XLF").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLF.png")
-Security.find_by_symbol("XLI").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLI.png")
-Security.find_by_symbol("XLK").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLK.png")
-Security.find_by_symbol("XLP").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLP.png")
-Security.find_by_symbol("XLU").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLU.png")
-Security.find_by_symbol("XLV").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLV.png")
-Security.find_by_symbol("XLY").update(image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLY.png")
+Security.find_by_symbol("XLB").update(name: "SPDR Select Sector Materials", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLB.png")
+Security.find_by_symbol("XLE").update(name: "SPDR Select Sector Energy", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLE.png")
+Security.find_by_symbol("XLF").update(name: "SPDR Select Sector Financials", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLF.png")
+Security.find_by_symbol("XLI").update(name: "SPDR Select Sector Industrials", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLI.png")
+Security.find_by_symbol("XLK").update(name: "SPDR Select Sector Technology", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLK.png")
+Security.find_by_symbol("XLP").update(name: "SPDR Select Sector Consumer Staples", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLP.png")
+Security.find_by_symbol("XLU").update(name: "SPDR Select Sector Utilities", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLU.png")
+Security.find_by_symbol("XLV").update(name: "SPDR Select Sector Health Care", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLV.png")
+Security.find_by_symbol("XLY").update(name: "SPDR Select Sector Consumer Discretionary", image: "http://res.cloudinary.com/dwlxp9sf7/image/upload/v1442617799/SPDR/XLY.png")
 
 SecurityList.create!(name: "SPDR Materials Select Sector", symbol: "XLB", securities:
   ["DOW","DD","MON","LYB","PX","APD","ECL","PPG","SHW","IP","SIAL","WRK","VMC","NUE","AA","CF","FCX","MOS","MLM","SEE","EMN","BLL","NEM","IFF","ARG","AVY","FMC","OI"])

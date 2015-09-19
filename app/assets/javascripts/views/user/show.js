@@ -37,7 +37,7 @@ DbAlpha.Views.UserShow = Backbone.CompositeView.extend({
     //ensures that the user has signed in.
     if ( DbAlpha.Models.user.isNew() ) {
       // gives time for syncing to occur
-      setTimeout( this._userCheck.bind(this), 2500);
+      setTimeout( this._userCheck.bind(this), 1000);
     }
   },
 
@@ -45,7 +45,7 @@ DbAlpha.Views.UserShow = Backbone.CompositeView.extend({
     if ( DbAlpha.Models.user.isNew() ) {
       bootbox.alert("<br><br>Hello! You are not currently signed in.<br>" +
       "Please sign in, or functions will be limited.<br>" +
-      "Some sample public notes and entries are displayed.<br><br>");
+      "Sample public notes and entries are displayed.<br><br>");
     }
   }
 });
