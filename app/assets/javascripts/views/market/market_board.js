@@ -126,13 +126,14 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.collection.removeNonlistMembers();
     this._quoteFetch();
     this._setup();
+    this.$("#dropdownMenu3").html( this.collection.ops.name || "Market Board" );
   },
 
   _rowUsageOptimizer: function () {
     var totalNum = this.subviews("marquee-list").size();
     var rowCount = this.rows.length;
     for (i = 1; i <= rowCount; i++) {
-      if ((!(totalNum % i)) && this.wLimit * i >= totalNum) return i;
+      if (totalNum % i == 0 && this.wLimit * i >= totalNum) return i;
     }
     return Math.min( rowCount, Math.floor(totalNum / this.wLimit + 1) );
   },
@@ -157,19 +158,6 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this._setRows();
     this._rowWidthCalculate();
     this._distributeRows();
-  },
-
-  _updateQuoteTimer: function () {
-    var time = new Date();
-    if ( 12 < time.getUTCHours() && time.getUTCHours() < 20) {
-      return 8000 + 2000 * Math.random();
-    } else {
-      time.setUTCHours(13);
-      time.setMinutes(29);
-      var dayDelay = (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1;
-      time.setDate(time.getDate() + dayDelay);
-      return time - new Date();
-    }
   },
 
   _distributeQuotes: function (e) {
