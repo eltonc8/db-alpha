@@ -11,6 +11,7 @@
 /*formatting for info*/
 
 .dropdown > .dropdown-menu {
+  min-width: 100%;
   display: block;
   opacity: 0;
   visibility: hidden;
@@ -28,9 +29,13 @@
   display: inline-block;
 }
 
+li.dropdown.nav-item {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 #dropdownMenu1 {
   float: left;
-  margin: 1em;
 }
 
 .security-show-sub-info {
@@ -122,6 +127,22 @@ input.article-title {
 
 /* format for security fundamentals */
 
+.security-tradingview,
+.info-container {
+  display: block;
+  float: left;
+  padding: 10px;
+}
+
+.info-container.links {
+  text-align: center;
+  width: 100%;
+}
+
+.security-tradingview {
+  width: 100%;
+}
+
 li.board-list-item.red,
 li.fundamental-item.red {
   background-color: red;
@@ -157,11 +178,11 @@ li.fundamental-item {
   border: 1px solid #EEE;
 }
 
-.fundamental-list > ul:after {
+.fundamental-list > ul {
   display: block;
 }
 
-/* format for market show */
+/* format for market board header and time */
 
 div.market-board > .title > h1 {
   color: #FFF;
@@ -195,6 +216,7 @@ div.current-time-plus {
   transition: opacity 0.5s;
 }
 
+/* format for market board */
 ul.market-board-rows {
   margin: 30px;
   padding: 0;
@@ -273,7 +295,7 @@ li.board-list-item > div.board-item.symbol {
   font-weight: bold;
   font-size: 1.5em;
 }
-/* 25 20 20 10 25*/
+
 li.board-list-item > div.board-item.percent-change {
   text-shadow: 0 0 8px black;
   font-size: 1.7em;
