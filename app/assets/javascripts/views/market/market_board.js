@@ -109,13 +109,11 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _pauseRow: function (event) {
     var index = $(event.currentTarget).data().index;
-    console.log(index)
     try { this.rows[index].freeze = true; } catch (e) {}
   },
 
   _pauseRowUndo: function (event) {
     var index = $(event.currentTarget).data().index;
-    console.log(index)
     try { this.rows[index].freeze = false; } catch (e) {}
   },
 
@@ -146,10 +144,10 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _setRows: function () {
     _.each(this.rows, this._removeBoardRow.bind(this) );
-    while ( this.rows.length < 4 || 160 * this.rows.length < window.innerHeight ) {
+    while ( this.rows.length < 3 || 160 * this.rows.length < window.innerHeight ) {
       this.rows.push( new DbAlpha.Views.MarketBoardRow({board: this}) );
     }
-    while ( this.rows.length > 4 && 160 * this.rows.length > window.innerHeight - 200 ) {
+    while ( this.rows.length > 3 && 160 * this.rows.length > window.innerHeight - 200 ) {
       this.rows.pop().remove();
     }
     _.each(this.rows, this._addBoardRow.bind(this) );

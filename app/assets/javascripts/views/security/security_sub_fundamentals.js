@@ -13,9 +13,14 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    this._updateQuote();
+    this.model.quotes().updateBegin();
     this.listenTo(this.model.quotes(), "sync", this._updateFundamental);
     _.each(this.fundamentals, this._addFundamental.bind(this));
+  },
+
+  remove: function () {
+    this.model.quotes().updateEnd();
+    Backbone.CompositeView.prototype.remove.call(this);
   },
 
   render: function () {
@@ -29,27 +34,6 @@ DbAlpha.Views.SecurityFundamentals = Backbone.CompositeView.extend({
       label: label,
       key: key
     }));
-  },
-
-  _updateQuote: function () {
-    this.model.quotes().fetch();
-    setTimeout(function () {
-        this._updateQuote();
-      }.bind(this), this._updateQuoteTimer()
-    );
-  },
-
-  _updateQuoteTimer: function () {
-    var time = new Date();
-    if ( 12 < time.getUTCHours() && time.getUTCHours() < 20) {
-      return 2000 + 8000 * Math.random();
-    } else {
-      time.setMinutes(29);
-      time.setUTCHours(13);
-      var dayDelay = (time.getUTCDay() === 5 && 3) || (time.getUTCDay() === 6 && 2) || 1;
-      time.setDate(time.getDate() + dayDelay);
-      return time - new Date();
-    }
   },
 
   _updateFundamental: function () {

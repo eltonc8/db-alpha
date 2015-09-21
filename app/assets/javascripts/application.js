@@ -18,6 +18,7 @@
 //= require backbone
 //= require db_alpha
 //= require_tree ../templates
+//= require ./models/time.js
 //= require_tree ./utilities
 //= require_tree ./models
 //= require_tree ./collections

@@ -1,11 +1,11 @@
 Backbone.YqlQuery = Backbone.Model.extend({
   rootUrl: "https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys",
+  time: DbAlpha.time,
 
   url: function () {
-    var uri = this.rootUrl;
-    if (this.get("query")) { uri += "&q=" + encodeURIComponent(this.get("query")); }
-
-    return uri;
+    if (this.get("query")) {
+      return this.rootUrl + "&q=" + encodeURIComponent(this.get("query"));
+    }
   },
 
   initialize: function (options) {
@@ -14,7 +14,37 @@ Backbone.YqlQuery = Backbone.Model.extend({
 
   parse: function (response) {
     return response.query;
-  }
+  },
+
+  updateBegin: function () {
+    this._idle = false;
+    this._update();
+  },
+
+  updateEnd: function () {
+    this._idle = true;
+  },
+
+  _update: function () {
+    this.fetch();
+    if(this._idle) return;
+
+    setTimeout(function () {
+        this._update();
+      }.bind(this), this._updateDownTime()
+    );
+  },
+
+  _updateDownTime: function () {
+    if (this.time.ops.nextClose && this.time.ops.nextClose > Date.now()) {
+      return 1000 + this._baseCooldown();
+    } else if (this.time.ops.nextOpen && this.time.ops.nextOpen > Date.now()) {
+      return this.time.ops.nextOpen - Date.now();
+    } else {
+      this.time.updateOps();
+      return 500;
+    }
+  },
 });
 
 Backbone.StockQuery = Backbone.YqlQuery.extend({
@@ -30,7 +60,11 @@ Backbone.StockQuery = Backbone.YqlQuery.extend({
     this.set({
       query: this.queryRoot.replace("#{}", this.security.get("symbol"))
     });
-  }
+  },
+
+  _baseCooldown: function () {
+    return Math.random * 2000;
+  },
 });
 
 Backbone.StocksQuery = Backbone.YqlQuery.extend({

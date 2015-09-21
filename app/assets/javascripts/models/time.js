@@ -2,7 +2,7 @@ DbAlpha.Models.Time = Backbone.Model.extend({
   // 9am EDT = 13; EST = 14
   _opening: 13,
   ops: {
-    eastTZ: "(EDT)",
+    eastTZ: this._opening == 13 ? "(EDT)" : "(EST)",
     localTZ: new Date().toTimeString().replace(/.*(\(.*\)).*/, "$1"),
     // mins to be added to get Eastern Time
     eastLocalOffset: new Date().getTimezoneOffset() - 4 * 60,
