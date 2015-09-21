@@ -13,16 +13,15 @@
 .dropdown > .dropdown-menu {
   display: block;
   opacity: 0;
-  z-index: -1;
-  transition: opacity 0.3s ease-in-out;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
   margin-top: 0; // remove the gap so it doesn't close
 }
 
 .dropdown.open > .dropdown-menu,
 .dropdown:hover > .dropdown-menu {
+  visibility: visible;
   opacity: 1;
-  z-index: 250;
-  margin-top: 0; // remove the gap so it doesn't close
 }
 
 .dropdown {
@@ -158,8 +157,8 @@ li.fundamental-item {
   border: 1px solid #EEE;
 }
 
-ul.fundamental-list:after {
-  clear: both;
+.fundamental-list > ul:after {
+  display: block;
 }
 
 /* format for market show */
