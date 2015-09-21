@@ -17,8 +17,8 @@ Backbone.YqlQuery = Backbone.Model.extend({
   },
 
   updateBegin: function () {
+    if (!this._idle) this._update();
     this._idle = false;
-    this._update();
   },
 
   updateEnd: function () {
@@ -52,7 +52,6 @@ Backbone.StockQuery = Backbone.YqlQuery.extend({
 
   initialize: function (options) {
     if (options && options.security) { this.security = options.security; }
-    this.listenTo(this.security, "sync", this.updateQuery);
     this.updateQuery();
   },
 
@@ -71,14 +70,98 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
   queryRoot: 'SELECT Symbol,Change,PercentChange,LastTradePriceOnly FROM yahoo.finance.quotes WHERE symbol in("#")',
 
   initialize: function (options) {
+    this.queries = [];
+    this.securitiesSets = _([]);
     if (options && options.collection) { this.collection = options.collection; }
-    this.listenTo(this.collection, "sync sort", this.updateQuery);
-    this.updateQuery();
+    this.listenTo(this, "sync", this._distributeQuotes);
   },
 
-  updateQuery: function () {
-    this.set({
-      query: this.queryRoot.replace(/#/, this.collection.getSymbols().join('","').toUpperCase())
+  allocateSets: function () {
+    this.securitiesSets = [[0, this.collection.length]];
+    var i = 0, diff, dicedSets, set;
+    while (i < this.securitiesSets.length) {
+      set = this.securitiesSets[i];
+      dicedSets = this._allocateSetsDicer(set);
+      if (dicedSets) {
+        this.securitiesSets.splice(i, 1);
+        this.securitiesSets = this.securitiesSets.concat(dicedSets);
+      } else {
+        i++;
+      }
+    }
+
+    var list = this.collection;
+    this.securitiesSets = _(this.securitiesSets.map(function (set) {
+      return _(list.slice(set[0], set[1]));
+    }));
+    this.queries = this.securitiesSets.map(function (set) {
+      return set.map(function (model) {
+        return model.get("symbol");
+      }).join('","').toUpperCase();
     });
+  },
+
+  reset: function () {
+    this.allocateSets();
+    this.updateEnd();
+    this.updateBegin();
+  },
+
+  updateBegin: function () {
+    this.allocateSets();
+    if (!this._idle) this._update();
+    this._idle = false;
+  },
+
+  _allocateSetsDicer: function (set) {
+    var span = set[1] - set[0] + 1, pt1, pt2;
+    if (span < 200) {
+      // the maximum span that will not be diced: 199;
+      return false;
+    } else if (span >= 300 && span < 400) {
+      pt1 = Math.floor(span / 3) + set[0];
+      pt2 = Math.floor(span * 2 / 3) + set[0];
+      return [[set[0], pt1], [pt1, pt2], [pt2, set[1]]];
+    } else {
+      pt1 = Math.floor(span / 2) + set[0];
+      return [[set[0], pt1], [pt1, set[1]]];
+    }
+  },
+
+  _fetch: function () {
+    for (i = 0; i < this.securitiesSets.size(); i++) {
+      this.set({
+        query: this.queryRoot.replace(/#/, this.queries[i])
+      });
+      this.fetch();
+    }
+  },
+
+  _update: function () {
+    this._fetch();
+    if(this._idle) return;
+
+    setTimeout(function () {
+        this._update();
+      }.bind(this), this._updateDownTime()
+    );
+  },
+
+  _distributeQuotes: function () {
+    if (!this.get("results") ) return;
+    var i = 0, quotes = this.get("results").quote, sets = this.securitiesSets;
+    sets.each(function (set) {
+      if (!(set.first() && set.first().get("symbol") == quotes[0].Symbol)) return;
+
+      set.each(function (model) {
+        if ( quotes[i].Symbol == model.get("symbol") ) {
+          model.quotes().set("results", {quote: quotes[i++]});
+        }
+      });
+    });
+  },
+
+  _baseCooldown: function () {
+    return 9000;
   },
 });

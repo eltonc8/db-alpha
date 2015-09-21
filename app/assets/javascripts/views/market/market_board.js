@@ -14,7 +14,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "sync", this._refresh);
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection, "remove", this._removeBoardItem);
-    this.listenTo(this.collection.quotes(), "sync", this._distributeQuotes);
+    this.collection.quotes().updateBegin();
     this.collection.each(this._addBoardItem.bind(this));
     this.addSubview(".market-view.information", new DbAlpha.Views.MarketTime());
   },
@@ -27,10 +27,6 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   marquee: function () {
-    if ( --this.refresh < 0 ) {
-      this.refresh += 10 + Math.log2(1 + this.collection.length) * Math.PI*2;
-      this._quoteFetch();
-    }
     if (this.overSize) {
       var a, b;
       for (i = 1; i <= this.rows.length; i++) {
@@ -49,6 +45,7 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   remove: function () {
     $(window).off("resize", this._setupBinded);
+    this.collection.quotes().updateEnd();
     Backbone.CompositeView.prototype.remove.call(this);
     clearInterval(this.interval);
   },
@@ -118,13 +115,13 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _quoteFetch: function () {
-    this.collection.quotes().fetch();
+    // this.collection.quotes().fetch();
   },
 
   // refresh
   _refresh: function () {
     this.collection.removeNonlistMembers();
-    this._quoteFetch();
+    this.collection.quotes().allocateSets();
     this._setup();
     this.$("#dropdownMenu3").html( this.collection.ops.name || "Market Board" );
   },
@@ -156,17 +153,8 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _setup: function () {
     this._setRows();
+    this.collection.quotes().reset();
     this._rowWidthCalculate();
     this._distributeRows();
-  },
-
-  _distributeQuotes: function (e) {
-    var quotes = this.collection.quotes().get("results").quote;
-    var idx = 0;
-    this.collection.each(function (model) {
-      if ( RegExp(quotes[idx].Symbol, "i").test(model.get("symbol")) ) {
-        model.quotes().set("results", {quote: quotes[idx++]});
-      }
-    });
   },
 });
