@@ -3,13 +3,14 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   template: JST["market/market_board"],
 
   initialize: function () {
+    this.collection.fetch({merge: true});
     this.interval = setInterval(this.marquee.bind(this), 200);
     this.refresh = 0;
     this.rows = [];
     this._setup();
     this._setupBinded = this._setup.bind(this);
     $(window).on("resize", this._setupBinded);
-    this.collection.fetch({merge: true});
+
     this.listenTo(this.collection, "sync", this._refresh);
     this.listenTo(this.collection, "add", this._addBoardItem);
     this.listenTo(this.collection, "remove", this._removeBoardItem);
@@ -108,11 +109,13 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   _pauseRow: function (event) {
     var index = $(event.currentTarget).data().index;
+    console.log(index)
     try { this.rows[index].freeze = true; } catch (e) {}
   },
 
   _pauseRowUndo: function (event) {
     var index = $(event.currentTarget).data().index;
+    console.log(index)
     try { this.rows[index].freeze = false; } catch (e) {}
   },
 
@@ -125,7 +128,6 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     this.collection.removeNonlistMembers();
     this._quoteFetch();
     this._setup();
-    this.render();
   },
 
   _rowUsageOptimizer: function () {
@@ -140,10 +142,9 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   _rowWidthCalculate: function () {
     this.wLimit = Math.floor( this.$(".market-board-row").eq(0).innerWidth() / 160 );
     this.wLimit = Math.max(1, this.wLimit);
-    this._distributeRows();
   },
 
-  _setup: function () {
+  _setRows: function () {
     _.each(this.rows, this._removeBoardRow.bind(this) );
     while ( this.rows.length < 4 || 160 * this.rows.length < window.innerHeight ) {
       this.rows.push( new DbAlpha.Views.MarketBoardRow({board: this}) );
@@ -152,7 +153,12 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
       this.rows.pop().remove();
     }
     _.each(this.rows, this._addBoardRow.bind(this) );
+  },
+
+  _setup: function () {
+    this._setRows();
     this._rowWidthCalculate();
+    this._distributeRows();
   },
 
   _updateQuoteTimer: function () {

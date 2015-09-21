@@ -5,10 +5,10 @@ DbAlpha.Views.MarketBoardLimited = DbAlpha.Views.MarketBoard.extend({
     return this;
   },
 
-  _setup: function () {
-    _.each(this.rows, this._removeBoardRow.bind(this) );
-    this.rows = [new DbAlpha.Views.MarketBoardRow({board: this})];
-    _.each(this.rows, this._addBoardRow.bind(this) );
-    this._rowWidthCalculate();
+  _setRows: function () {
+    if (this.rows.length != 1) {
+      this.rows = [new DbAlpha.Views.MarketBoardRow({board: this})];
+      _.each(this.rows, this._addBoardRow.bind(this) );
+    }
   },
 });

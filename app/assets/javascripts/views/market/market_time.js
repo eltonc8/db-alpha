@@ -38,8 +38,8 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
     var h = Math.floor(timeDiff / 3600 % 24);
     var d = Math.floor(timeDiff / 86400);
     if (d) {
-      ops.countdown = d + " day" + ( d > 1 ? "s " : " ")
-                    + (h > 1 ? h + " hour" : "") + (h > 2 ? "s" : "");
+      ops.countdown = d + " day" + ( d > 1 ? "s " : " ") +
+                     (h > 1 ? h + " hour" : "") + (h > 2 ? "s" : "");
     } else {
       ops.countdown = (h ? h + ":" : "") + ("00" + m).slice(-2) + ":" + ("00" + s).slice(-2);
     }
@@ -47,7 +47,7 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
     // var timeString = time.toTimeString()
     ops.localTime = time.toLocaleTimeString();
     if ( ops.eastLocalOffset ) {
-      time.setTime( time.getTime() + ops.eastLocalOffset * 60000) // ms/minute
+      time.setTime( time.getTime() + ops.eastLocalOffset * 60000); // ms/minute
       ops.eastTime = time.toLocaleTimeString();
     }
     if ( time.getSeconds() % 2) {
@@ -60,4 +60,4 @@ DbAlpha.Views.MarketTime = Backbone.View.extend({
     Backbone.View.prototype.remove.call(this);
     clearInterval(this.interval);
   }
-})
+});
