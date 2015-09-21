@@ -48,7 +48,7 @@ Backbone.YqlQuery = Backbone.Model.extend({
 });
 
 Backbone.StockQuery = Backbone.YqlQuery.extend({
-  queryRoot: 'SELECT*FROM yahoo.finance.quotes WHERE symbol="#{}"',
+  queryRoot: 'SELECT*FROM yahoo.finance.quotes WHERE symbol="#"',
 
   initialize: function (options) {
     if (options && options.security) { this.security = options.security; }
@@ -58,17 +58,17 @@ Backbone.StockQuery = Backbone.YqlQuery.extend({
 
   updateQuery: function () {
     this.set({
-      query: this.queryRoot.replace("#{}", this.security.get("symbol"))
+      query: this.queryRoot.replace(/#/, this.security.get("symbol"))
     });
   },
 
   _baseCooldown: function () {
-    return Math.random * 2000;
+    return Math.random() * 2000;
   },
 });
 
 Backbone.StocksQuery = Backbone.YqlQuery.extend({
-  queryRoot: 'SELECT Symbol,Change,PercentChange,LastTradePriceOnly FROM yahoo.finance.quotes WHERE symbol in("#{}")',
+  queryRoot: 'SELECT Symbol,Change,PercentChange,LastTradePriceOnly FROM yahoo.finance.quotes WHERE symbol in("#")',
 
   initialize: function (options) {
     if (options && options.collection) { this.collection = options.collection; }
@@ -78,7 +78,7 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
 
   updateQuery: function () {
     this.set({
-      query: this.queryRoot.replace('#{}', this.collection.getSymbols().join('","').toUpperCase())
+      query: this.queryRoot.replace(/#/, this.collection.getSymbols().join('","').toUpperCase())
     });
   },
 });
