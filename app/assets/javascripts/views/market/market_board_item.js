@@ -12,7 +12,7 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
 
   render: function () {
     var content = this.template({model: this.model});
-    this.$el.attr("symbol", this.model.escape("symbol"))
+    this.$el.attr("symbol", this.model.escape("symbol"));
     this.$el.html( content );
     this.update();
     return this;
@@ -57,6 +57,6 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
   },
 
   _update: function () {
-    setTimeout(this.update.bind(this), Math.random() * (8000));
+    setTimeout(this.update.bind(this), Math.random() * (4000));
   }
 });

@@ -154,6 +154,6 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
   },
 
   _baseCooldown: function () {
-    return 9000 + 2000 * Math.random();
+    return 4000 + 2000 * Math.random();
   },
 });
