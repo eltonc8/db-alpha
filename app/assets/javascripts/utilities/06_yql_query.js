@@ -17,12 +17,12 @@ Backbone.YqlQuery = Backbone.Model.extend({
   },
 
   updateBegin: function () {
-    if (!this._idle) this._update();
-    this._idle = false;
+    if (this._timeout) clearTimeout(this._timeout);
+    this._update();
   },
 
   updateEnd: function () {
-    this._idle = true;
+    if (this._timeout) clearTimeout(this._timeout);
   },
 
   _fetch: function () {
@@ -31,9 +31,8 @@ Backbone.YqlQuery = Backbone.Model.extend({
 
   _update: function () {
     this._fetch();
-    if(this._idle) return;
 
-    setTimeout(function () {
+    this._timeout = setTimeout(function () {
         this._update();
       }.bind(this), this._updateDownTime()
     );
@@ -107,15 +106,13 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
 
   reset: function () {
     this.updateEnd();
-    this._fetch();
-
     this.updateBegin();
   },
 
   updateBegin: function () {
     this.allocateSets();
-    if (!this._idle) this._update();
-    this._idle = false;
+    if (this._timeout) clearTimeout(this._timeout);
+    this._update();
   },
 
   _allocateSetsDicer: function (set) {
@@ -157,6 +154,6 @@ Backbone.StocksQuery = Backbone.YqlQuery.extend({
   },
 
   _baseCooldown: function () {
-    return 9000;
+    return 9000 + 2000 * Math.random();
   },
 });

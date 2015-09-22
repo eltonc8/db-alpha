@@ -33,14 +33,14 @@ DbAlpha.Views.MarketBoardItem = Backbone.View.extend({
     var r = 255 - g;
     var b = Math.min(r,g);
     var colors = [r,g,b];
-    var gradient = this._gradient.replace(/#{}/g, colors.join(","));
+    var gradient = this._gradient.replace(/#/g, colors.join(","));
     this.$("div.percent-change").css("background", gradient);
     this.$("div.percent-change").html( percent + "%" );
     this._percent = percent;
   },
 
   _factor: 255 / Math.PI,
-  _gradient: "linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(#{},1) 20%,rgba(#{},1) 80%,rgba(0,0,0,0) 100%)",
+  _gradient: "linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(#,1) 20%,rgba(#,1) 80%,rgba(0,0,0,0) 100%)",
 
   _triggerDefault: function () {
     this.$el.removeClass("red").removeClass("green");
