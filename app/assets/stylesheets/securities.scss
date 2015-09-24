@@ -202,6 +202,21 @@ div.market-board {
   min-height: 100vh;
 }
 
+div.market-board.loading:after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 10%;
+  width: 100%;
+  margin: 0 auto;
+  color: #FFF;
+  background-image: url('http://res.cloudinary.com/dwlxp9sf7/image/upload/dbalpha/loading.gif');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  text-align: center;
+  content: 'loading... please wait';
+}
+
 div.current-time {
   cursor: pointer;
 }
@@ -217,6 +232,7 @@ div.current-time-plus {
 }
 
 /* format for market board */
+
 ul.market-board-rows {
   margin: 30px;
   padding: 0;

@@ -21,7 +21,6 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
 
   events: {
     "click .board-list-item": "_clickNavigate",
-    "click .information": "_quoteFetch",
     "mouseover li.market-board-row": "_pauseRow",
     "mouseleave li.market-board-row": "_pauseRowUndo",
   },
@@ -114,10 +113,6 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
     try { this.rows[index].freeze = false; } catch (e) {}
   },
 
-  _quoteFetch: function () {
-    // this.collection.quotes().fetch();
-  },
-
   // refresh
   _refresh: function () {
     this.collection.removeNonlistMembers();
@@ -152,6 +147,8 @@ DbAlpha.Views.MarketBoard = Backbone.CompositeView.extend({
   },
 
   _setup: function () {
+    this.collection.size() ? this.$el.removeClass("loading") : this.$el.addClass("loading")
+
     this._setRows();
     this.collection.quotes().reset();
     this._rowWidthCalculate();
