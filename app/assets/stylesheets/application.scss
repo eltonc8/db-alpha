@@ -54,7 +54,16 @@ footer,
   max-height: 50px;
 }
 
-#navbar-brand > a {
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-toggle,
+.navbar-fixed-top { border-color: #000; }
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #20508B;
+}
+
+a#navbar-brand {
   font-size: large;
   font-weight: bold;
   color: #A8CBFF;

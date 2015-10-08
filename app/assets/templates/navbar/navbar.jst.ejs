@@ -1,36 +1,45 @@
-<nav class="navbar navbar-fixed-top">
-  <div class="container container-fluid">
-    <ul class="nav navbar-nav navbar-left">
-      <li class="navbar-nav" id="navbar-brand">
-        <a href="#">dbAlpha</a>
-      </li>
-      <li class="">
-        <div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
-      </li>
-    </ul>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="navbar-brand" href="#">dbAlpha</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="">
+          <div class="nav-box nav-search"><input class="typeahead" type="text" placeholder=" search"></div>
+        </li>
+      </ul>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown nav-name nav-item">
-        <div class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          navigate to
-          <span class="caret"></span>
-        </div>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li>
-            <a href="#marketboards" class='btn'>Market Board</a>
-          </li>
-          <li>
-            <a href="#homepage" class='btn'>My Dashboard</a>
-          </li>
-        </ul>
-      </li>
-      <% if ( !DbAlpha.Models.user.isNew() ) { %>
-        <li class="nav-item username">Welcome, <%= DbAlpha.Models.user.escape("username") %></li>
-        <li class="nav-item sign-out">Sign Out</li>
-      <% } else { %>
-        <li class="nav-item sign-up">Sign Up</li>
-        <li class="nav-item sign-in">Sign In</li>
-      <% } %>
-    </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown nav-name nav-item">
+          <div class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            navigate to
+            <span class="caret"></span>
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li>
+              <a href="#marketboards" class='btn'>Market Board</a>
+            </li>
+            <li>
+              <a href="#homepage" class='btn'>My Dashboard</a>
+            </li>
+          </ul>
+        </li>
+        <% if ( !DbAlpha.Models.user.isNew() ) { %>
+          <li class="nav-item username">Welcome, <%= DbAlpha.Models.user.escape("username") %></li>
+          <li class="nav-item sign-out">Sign Out</li>
+        <% } else { %>
+          <li class="nav-item sign-up">Sign Up</li>
+          <li class="nav-item sign-in">Sign In</li>
+        <% } %>
+      </ul>
+    </div><!--/.nav-collapse -->
   </div>
 </nav>
