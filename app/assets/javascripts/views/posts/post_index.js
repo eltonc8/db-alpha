@@ -1,5 +1,5 @@
 DbAlpha.Views.PostIndex = Backbone.CompositeView.extend({
-  className: "post-index",
+  className: "post-index clearfix",
   template: JST['post/index'],
 
   initialize: function () {

@@ -9,18 +9,21 @@
   font-size: 1em;
   margin: auto;
   margin-top: 1em;
-  width: 100%;
+  width: 95%;
 }
 
 .post-index-title {
   display: inline-block;
   float: left;
-  padding: 1em;
   font-size: 1.5em;
   width: 100%;
-  padding-bottom: 0.25em;
   background-color: #FFF;
   border-bottom: 0.1em solid #000;
+}
+
+.post-index-title > .post-index-new {
+  padding: 10px;
+  align-items: center;
 }
 
 .post-index-new {
@@ -29,7 +32,7 @@
 }
 
 .post-index-new:hover {
-  text-shadow: 0 0 18px black;
+  background-color: rgba(0,0,0,0.3);
 }
 
 .post-form {
