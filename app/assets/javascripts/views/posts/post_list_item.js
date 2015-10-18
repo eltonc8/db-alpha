@@ -4,20 +4,19 @@ DbAlpha.Views.Post = Backbone.View.extend({
 
   template: function () {
     if (this._state === "edit") { return JST['post/post_form']; }
-    if (this._state === "show") { return JST['post/post_show']; }
     return JST['post/post_list_item'];
   },
 
   initialize: function (options) {
-    if (this.model.isNew()) { this._state = "edit"; }
+    this._state = this.model.isNew() ? "edit" : "condensed"
     this.listenTo(this.model, "sync", this.render);
   },
 
   events: {
     "click input.post-submit": "submitForm",
     "click button.post-delete": "deleteForm",
-    "click .post-toggle-show": "toggleShow",
-    "dblclick .post-toggle-hide": "toggleCondense",
+    "click .post-list-body": "toggleShow",
+    "dblclick .post-list-body": "toggleCondense",
     "click button.edit": "toggleEdit"
   },
 
@@ -35,6 +34,7 @@ DbAlpha.Views.Post = Backbone.View.extend({
       model: this.model
     });
     this.$el.html(content);
+    this._state == "condensed" ? this.$el.addClass("condensed") : this.$el.removeClass("condensed");
     return this;
   },
 
@@ -61,7 +61,7 @@ DbAlpha.Views.Post = Backbone.View.extend({
 
   toggleCondense: function () {
     if (this._state === "edit") { return; }
-    this._state = null;
+    this._state = "condensed";
     this.render();
   },
 

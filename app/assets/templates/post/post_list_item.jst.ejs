@@ -1,4 +1,10 @@
-<div class="post-toggle-show">
+<div class="post-list-body">
   <div class="post-title article-title"><%= model.escape("title") %></div>
   <%= JST["shared/published_date"]({ date: model.escape("created_at"), author: model.escape("author") }) %>
+
+  <div class="post-body"><%= marked(model.escape("body")) %></div>
+
+  <% if (model.escape("editable")) { %>
+    <button class="btn edit">Edit</button>
+  <% } %>
 </div>

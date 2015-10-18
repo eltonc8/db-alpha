@@ -56,8 +56,13 @@ ul:empty ~ div.placeholder-text {
   display: block;
 }
 
-.post-list-item {
-  transition: height 1s;
+.post-list-item .post-body {
+  transition: height 500ms;
+  overflow-x: hidden;
+}
+
+.post-list-item.condensed .post-body {
+  max-height: 0;
 }
 
 .post-body {
