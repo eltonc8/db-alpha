@@ -1,10 +1,12 @@
-<div class="post-list-body">
+<div class="post-list-body clearfix">
   <div class="post-title article-title"><%= model.escape("title") %></div>
   <%= JST["shared/published_date"]({ date: model.escape("created_at"), author: model.escape("author") }) %>
 
-  <div class="post-body"><%= marked(model.escape("body")) %></div>
+  <div class="post-body">
 
   <% if (model.escape("editable")) { %>
     <button class="btn edit">Edit</button>
   <% } %>
+  <%= marked(model.escape("body")) %>
+  </div>
 </div>

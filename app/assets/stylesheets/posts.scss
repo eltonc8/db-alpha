@@ -57,12 +57,13 @@ ul:empty ~ div.placeholder-text {
 }
 
 .post-list-item .post-body {
+  height: auto;
   transition: height 500ms;
   overflow-x: hidden;
 }
 
 .post-list-item.condensed .post-body {
-  max-height: 0;
+  height: 0;
 }
 
 .post-body {

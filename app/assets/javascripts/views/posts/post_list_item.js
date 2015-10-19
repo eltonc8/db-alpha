@@ -56,13 +56,13 @@ DbAlpha.Views.Post = Backbone.View.extend({
 
   toggleShow: function () {
     this._state = "show";
-    this.render();
+    this.$el.removeClass("condensed");
   },
 
   toggleCondense: function () {
     if (this._state === "edit") { return; }
     this._state = "condensed";
-    this.render();
+    this.$el.addClass("condensed");
   },
 
   _deleteConfirmed: function (confirmation) {
@@ -89,5 +89,6 @@ DbAlpha.Views.Post = Backbone.View.extend({
 
   _saveSuccess: function () {
     this.toggleShow();
+    this.render();
   },
 });
