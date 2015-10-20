@@ -8,7 +8,7 @@ DbAlpha.Views.Post = Backbone.View.extend({
   },
 
   initialize: function (options) {
-    this._state = this.model.isNew() ? "edit" : "condensed"
+    this._state = this.model.isNew() ? "edit" : "condensed";
     this.listenTo(this.model, "sync", this.render);
   },
 
