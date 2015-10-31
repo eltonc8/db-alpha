@@ -3,8 +3,8 @@
 Dashboard Alpha - an investment tool to help everyone be a better investor
 - [Live Site](http://www.dbalpha.info)
 
-### features
-Dashboard Alpha is an investment tool partially inspired by seekingAlpha.com. It is a tool that aims to help everyone be a better investor by conveniently gathering data and news of a company into one dashboard page.
+### About
+Dashboard Alpha is an investment tool partially inspired by seekingAlpha.com. It is a tool that aims to help everyone be a better investor by conveniently aggregating data and news of a company into one dashboard page.
 As emotions can be one of the biggest challenge to an investor (selling into panic, then buying into euphoria, for example), one of the most helpful process to an investor is that of journaling or writing down ideas. Dashboard alpha provides that tool to write down company or idea specific notes.
 
 #### MarketBoard
