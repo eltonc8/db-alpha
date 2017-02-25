@@ -1,0 +1,3 @@
+XLY = ["AMZN","DIS","HD","CMCSA","MCD","SBUX","NKE","PCLN","LOW","F","TWX","TWC","TGT","TJX","FOXA","NFLX","GM","YUM","JCI","ORLY","VFC","CCL","AZO","DLPH","LB","CMG","DG","ROST","CBS","M","UA","OMC","VIAB","RCL","DLTR","MAR",
+  "WHR","GPC","AAP","KMX","MHK","HOT","EXPE","HBI","TSCO","HOG","NWL","BBY","SIG","BBBY","DHI","JWN","KSS","BWA","HRB","PVH","WYN","LEN","TIF","HAS","KORS","SPLS","DRI","GPS","IPG","GT","COH","MAT","TRIP","HAR","RL","PHM",
+  "DISCK","NWSA","CVC","LEG","WYNN","TGNA","SNI","GME","AN","GRMN","DISCA","URBN","FOSL","T"])

@@ -499,5 +499,5 @@ SP500 = [
   "YUM",
   "ZBH",
   "ZION",
-  "ZTS"
+  "ZTS",
 ]
