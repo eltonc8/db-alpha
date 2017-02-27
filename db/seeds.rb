@@ -1,6 +1,15 @@
-require "./lists/dow.rb"
-require "./lists/nasdaq.rb"
-require "./lists/sp500.rb"
+load "./db/lists/dow.rb"
+load "./db/lists/nasdaq.rb"
+load "./db/lists/sp500.rb"
+load "./db/lists/xlb.rb"
+load "./db/lists/xle.rb"
+load "./db/lists/xlf.rb"
+load "./db/lists/xli.rb"
+load "./db/lists/xlk.rb"
+load "./db/lists/xlp.rb"
+load "./db/lists/xlu.rb"
+load "./db/lists/xlv.rb"
+load "./db/lists/xly.rb"
 
 User.create!(username: "eltonchan", email: "eltonchan@cal.berkeley.edu", password: "development123")
 User.create!(username: "guest_login", email: "guest_login@dbalpha.info", password: "GuestPassword")

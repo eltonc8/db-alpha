@@ -28,5 +28,5 @@ DOW = [
   "V",
   "VZ",
   "WMT",
-  "XOM"
+  "XOM",
 ]
